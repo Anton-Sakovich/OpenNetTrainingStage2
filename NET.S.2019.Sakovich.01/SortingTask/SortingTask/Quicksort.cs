@@ -67,7 +67,7 @@ namespace SortingTask
 
         private int SelectPrivot(int[] array, int left, int right)
         {
-            int middle = (left - right) / 2;
+            int middle = (right + left) / 2;
 
             if (array[left] < array[middle])
             {
