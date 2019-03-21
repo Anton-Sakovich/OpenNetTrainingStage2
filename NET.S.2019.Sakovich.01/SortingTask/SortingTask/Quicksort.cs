@@ -34,7 +34,7 @@ namespace SortingTask
             int r = right;
             int temp;
 
-            while (l < r)
+            while (l <= r)
             {
                 for(; l <= r; l++)
                 {
@@ -58,11 +58,24 @@ namespace SortingTask
                 }
             }
 
-            temp = array[r];
-            array[r] = array[pivot];
-            array[pivot] = temp;
-
-            return r;
+            if(pivot > l)
+            {
+                temp = array[l];
+                array[l] = array[pivot];
+                array[pivot] = temp;
+                return l;
+            }
+            else if(pivot < r)
+            {
+                temp = array[r];
+                array[r] = array[pivot];
+                array[pivot] = temp;
+                return r;
+            }
+            else
+            {
+                return pivot;
+            }
         }
 
         private int SelectPrivot(int[] array, int left, int right)
