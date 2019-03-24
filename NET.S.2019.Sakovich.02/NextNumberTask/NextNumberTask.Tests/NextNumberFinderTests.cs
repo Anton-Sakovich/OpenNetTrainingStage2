@@ -33,11 +33,11 @@ namespace NextNumberTask.Tests
         [TestCase(136384118, ExpectedResult = 136384181)]
         public int? RandomTests(int number) => NextNumberFinder.NextBiggerThan(number);
 
-        [Test]
-        public void InputNumber_NotPositive_ExceptionThrown()
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void InputNumber_NotPositive_ExceptionThrown(int number)
         {
-            Assert.Throws<ArgumentException>(() => NextNumberFinder.NextBiggerThan(0));
-            Assert.Throws<ArgumentException>(() => NextNumberFinder.NextBiggerThan(-2));
+            Assert.That(() => NextNumberFinder.NextBiggerThan(number), Throws.TypeOf<ArgumentException>());
         }
 
         [Test]
