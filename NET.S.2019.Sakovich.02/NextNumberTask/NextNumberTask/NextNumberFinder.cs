@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace NextNumberTask
 {
@@ -13,7 +14,7 @@ namespace NextNumberTask
         const int MaxDigitsCount = 10;
 
         // The main method
-        public static int? NextBiggerThan(int number)
+        public static int? NextBiggerThan(int number, IStopwatch timer = null)
         {
             if (number <= 0)
             {
@@ -23,11 +24,15 @@ namespace NextNumberTask
             // Destruct(int) returns digits of the given number in reversed order
             int[] NumberDigits = Destruct(number);
 
+
             // Swap(int[]) returns true if there is a number greater than
             // the given one and swaps digits of the array to obtain it.
             // Swap(int[]) returns false if there is no such a number and 
             // there is nothing to swap, leaving the array untouched
-            if (Swap(NumberDigits))
+            timer?.Start();
+            bool NextExists = Swap(NumberDigits);
+            timer?.Stop();
+            if (NextExists)
             {
                 // Construct(int[]) composes the number from its digits given in reversed order.
                 // If the digits provided correspond to a number greater than 2^31 - 1,
