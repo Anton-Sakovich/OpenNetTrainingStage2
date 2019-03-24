@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="NextNumberFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StopwatchTimer.cs" />
+    <Compile Include="TimeMeasurementServices.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
