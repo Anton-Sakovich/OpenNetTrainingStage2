@@ -1,6 +1,6 @@
-# Task 3 (Day 1)
+# SortingTask (Day 1, Task 3)
 
-## The task
+## Task description
 The task is to implement [quicksort](https://en.wikipedia.org/wiki/Quicksort) and
 [mergesort](https://en.wikipedia.org/wiki/Merge_sort) algorithms for an array of integers.
 
