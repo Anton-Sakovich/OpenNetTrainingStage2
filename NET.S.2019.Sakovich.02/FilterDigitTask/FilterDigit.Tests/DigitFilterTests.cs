@@ -12,25 +12,37 @@ namespace FilterDigit.Tests
         {
             get
             {
-                yield return new TestCaseData(new int[] { 1, 2, 3, 22, 12, 21, 32, 101, 115, 223, 0 }, 1)
+                yield return new TestCaseData(new int[] { 1, 2, 3, 22, 12, 21, 32, 101, 115, 223, 0, 1 }, 1, false)
+                    .Returns(new int[] { 1, 12, 21, 101, 115, 1 })
+                    .SetDescription("Filtering non empty array on one (present, retain duplicates).");
+                yield return new TestCaseData(new int[] { 1, 2, 3, 22, 12, 21, 32, 101, 115, 223, 0, 1 }, 1, true)
                     .Returns(new int[] { 1, 12, 21, 101, 115 })
-                    .SetDescription("Filtering non empty array on one (present).");
-                yield return new TestCaseData(new int[] { 2, 3, 22, 32, 223, 0 }, 1)
+                    .SetDescription("Filtering non empty array on one (present, delete duplicates).");
+                yield return new TestCaseData(new int[] { 2, 3, 22, 32, 223, 0 }, 1, false)
                     .Returns(new int[] { })
-                    .SetDescription("Filtering non empty array on one (absent).");
-                yield return new TestCaseData(new int[] { 1, 0, 11, 10, 235, 105 }, 0)
+                    .SetDescription("Filtering non empty array on one (absent, retain duplicates).");
+                yield return new TestCaseData(new int[] { 2, 3, 22, 32, 223, 0 }, 1, true)
+                    .Returns(new int[] { })
+                    .SetDescription("Filtering non empty array on one (absent, delete duplicates).");
+                yield return new TestCaseData(new int[] { 1, 0, 11, 10, 235, 105, 0 }, 0, false)
+                    .Returns(new int[] { 0, 10, 105, 0 })
+                    .SetDescription("Filtering non empty array on zero (present, retain duplicates).");
+                yield return new TestCaseData(new int[] { 1, 0, 11, 10, 235, 105, 0 }, 0, true)
                     .Returns(new int[] { 0, 10, 105 })
-                    .SetDescription("Filtering non empty array on zero (present).");
-                yield return new TestCaseData(new int[] { 1, 11, 235 }, 0)
+                    .SetDescription("Filtering non empty array on zero (present, delete duplicates).");
+                yield return new TestCaseData(new int[] { 1, 11, 235 }, 0, false)
                     .Returns(new int[] { })
-                    .SetDescription("Filtering non empty array on zero (absent).");
+                    .SetDescription("Filtering non empty array on zero (absent, retain duplicates).");
+                yield return new TestCaseData(new int[] { 1, 11, 235 }, 0, true)
+                    .Returns(new int[] { })
+                    .SetDescription("Filtering non empty array on zero (absent, delete duplicates).");
             }
         }
 
         [TestCaseSource(nameof(NormalTestCases))]
-        public int[] NonEmptyArraysTests(int[] nums, int digit)
+        public int[] NonEmptyArraysTests(int[] nums, int digit, bool deleteDuplicates)
         {
-            return new DigitFilter().Filter(nums, digit);
+            return new DigitFilter().Filter(nums, digit, deleteDuplicates);
         }
 
         [Test]
