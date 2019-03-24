@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{83F285AB-325E-4106-B945-9B1E6D23005C}</ProjectGuid>
+    <ProjectGuid>{B7B7433D-DE77-49D4-A916-28B4730676D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InsertNumberTask.MSTests</RootNamespace>
-    <AssemblyName>InsertNumberTask.MSTests</AssemblyName>
+    <RootNamespace>InsertNumberTask.Tests.MSTest</RootNamespace>
+    <AssemblyName>InsertNumberTask.Tests.MSTest</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,13 +49,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InsertNumberTaskTests.cs" />
+    <Compile Include="InsertNumberTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InsertNumberTask.Tests.Common\InsertNumberTask.Tests.Common.csproj">
+      <Project>{71f4e4e9-b1aa-4a10-960f-5b75c3cbc2b4}</Project>
+      <Name>InsertNumberTask.Tests.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InsertNumberTask\InsertNumberTask.csproj">
       <Project>{612da172-9695-4c43-82b4-1ef40918b6d5}</Project>
       <Name>InsertNumberTask</Name>
