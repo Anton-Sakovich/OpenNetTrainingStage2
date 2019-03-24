@@ -14,3 +14,4 @@ Here I will post links to solutions for the tasks.
 ### Day 2
 
 1. [InsertNumberTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.02/InsertNumberTask)
+2. [NextNumberTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.02/NextNumberTask)
