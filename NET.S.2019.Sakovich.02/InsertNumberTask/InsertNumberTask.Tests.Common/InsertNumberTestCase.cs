@@ -25,6 +25,11 @@ namespace InsertNumberTask.Tests.Common
             }
         }
 
+        // MergeInto = 1010 1010 1010 1010 1010 1010 1010 1010
+        // MergeFrom = 0000 0000 0000 0000 0000 0000 0000 0011
+        // Result0 = 1010 1010 1010 1010 1010 1010 1010 0011
+        // Result1 = 1010 1010 1010 1010 1010 1010 0011 1010
+        // etc...
         public static IEnumerable<InsertNumberTestCase> FourBitsTestCases
         {
             get
@@ -40,6 +45,11 @@ namespace InsertNumberTask.Tests.Common
             }
         }
 
+        // MergeInto = 1010 1010 1010 1010 1010 1010 1010 1010
+        // MergeFrom = 0000 0000 0000 0000 0000 0000 0000 0001
+        // Result0 = 1010 1010 1010 1010 1010 1010 1010 1110
+        // Result1 = 1010 1010 1010 1010 1010 1010 1110 1010
+        // etc...
         public static IEnumerable<InsertNumberTestCase> SingleBitTestCases
         {
             get
