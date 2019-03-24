@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterDigitTask", "FilterDigitTask\FilterDigitTask.csproj", "{4620A941-00EC-4340-8B5D-806EF1C9971D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterDigit.Tests", "FilterDigit.Tests\FilterDigit.Tests.csproj", "{EC5420D8-0F64-46A7-8A47-41F5629BFCBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterDigitTask.Tests", "FilterDigitTask.Tests\FilterDigitTask.Tests.csproj", "{EC5420D8-0F64-46A7-8A47-41F5629BFCBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
