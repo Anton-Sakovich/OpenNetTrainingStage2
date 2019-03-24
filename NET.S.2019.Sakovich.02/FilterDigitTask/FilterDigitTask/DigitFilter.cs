@@ -8,7 +8,7 @@ namespace FilterDigitTask
 {
     public class DigitFilter
     {
-        public int[] Filter(int[] nums, int digit)
+        public int[] Filter(int[] nums, int digit, bool deleteDuplicates = false)
         {
             if (digit < 0 || digit > 9)
                 throw new ArgumentOutOfRangeException(nameof(digit), digit, "Filtering digit must be a valid decimal digit.");
@@ -16,7 +16,15 @@ namespace FilterDigitTask
             if (nums == null)
                 throw new ArgumentNullException(nameof(nums), "Input array of digits must not be null.");
 
-            List<int> FilteredNums = new List<int>();
+            ICollection<int> FilteredNums;
+            if(deleteDuplicates)
+            {
+                FilteredNums = new HashSet<int>();
+            }
+            else
+            {
+                FilteredNums = new List<int>();
+            }
 
             foreach(int num in nums)
             {
