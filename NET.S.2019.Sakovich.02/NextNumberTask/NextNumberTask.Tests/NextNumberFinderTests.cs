@@ -45,5 +45,19 @@ namespace NextNumberTask.Tests
         {
             Assert.That(NextNumberFinder.NextBiggerThan(1999999999), Is.Null);
         }
+
+        [Test]
+        public void TimeMeasurements_Stopwatch()
+        {
+            IStopwatch Timer1 = new StopwatchTimer();
+
+            int? NextNumberFound = NextNumberFinder.NextBiggerThan(123, Timer1);
+
+            Assert.That(Timer1.IsRunning, Is.False, "Timer is not running after the method finished.");
+            Assert.That(NextNumberFound, Is.EqualTo(132), "Timer does not break the method's logic.");
+            Assert.That(Timer1.Elapsed.Ticks, Is.GreaterThan(0), "Timer shows a non-negative number of ticks elapsed.");
+
+            Assert.Pass("{0} ticks elapsed ({1} milliseconds).", Timer1.Elapsed.Ticks, Timer1.Elapsed.Milliseconds);
+        }
     }
 }
