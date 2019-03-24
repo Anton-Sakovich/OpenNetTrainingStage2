@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterDigitTask", "FilterDigitTask\FilterDigitTask.csproj", "{4620A941-00EC-4340-8B5D-806EF1C9971D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterDigit.Tests", "FilterDigit.Tests\FilterDigit.Tests.csproj", "{EC5420D8-0F64-46A7-8A47-41F5629BFCBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4620A941-00EC-4340-8B5D-806EF1C9971D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4620A941-00EC-4340-8B5D-806EF1C9971D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4620A941-00EC-4340-8B5D-806EF1C9971D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4620A941-00EC-4340-8B5D-806EF1C9971D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC5420D8-0F64-46A7-8A47-41F5629BFCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC5420D8-0F64-46A7-8A47-41F5629BFCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC5420D8-0F64-46A7-8A47-41F5629BFCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC5420D8-0F64-46A7-8A47-41F5629BFCBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B339A84F-A75A-4C4F-A8FA-F6C0662FFFD8}
+	EndGlobalSection
+EndGlobal
