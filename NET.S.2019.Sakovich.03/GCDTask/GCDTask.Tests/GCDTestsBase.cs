@@ -145,5 +145,32 @@ namespace GCDTask.Tests
             Assert.That(TestedGCDObject.GCD(6, 42, 1, 66), Is.EqualTo(1));
             Assert.That(TestedGCDObject.GCD(6, 42, 30, 1), Is.EqualTo(1));
         }
+
+        [TestCase(0, 0, ExpectedResult = 0)]
+        [TestCase(0, 1, ExpectedResult = 1)]
+        [TestCase(0, 2, ExpectedResult = 2)]
+        [TestCase(0, -1, ExpectedResult = 1)]
+        [TestCase(0, -2, ExpectedResult = 2)]
+        [TestCase(1, 0, ExpectedResult = 1)]
+        [TestCase(2, 0, ExpectedResult = 2)]
+        [TestCase(-1, 0, ExpectedResult = 1)]
+        [TestCase(-2, 0, ExpectedResult = 2)]
+        public int TwoArguments_SpecialInputTests(int x, int y)
+        {
+            return TestedGCDObject.GCD(x, y);
+        }
+
+        [Test]
+        public void MultipleArguments_SpecialInputTests()
+        {
+            Assert.That(TestedGCDObject.GCD(6, 42, 30), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(0, 42, 30), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(6, 0, 30), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(6, 42, 0), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(0, 0, 30), Is.EqualTo(30));
+            Assert.That(TestedGCDObject.GCD(6, 0, 0), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(0, 42, 0), Is.EqualTo(42));
+            Assert.That(TestedGCDObject.GCD(0, 0, 0), Is.EqualTo(0));
+        }
     }
 }
