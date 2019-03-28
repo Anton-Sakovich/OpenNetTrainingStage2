@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GCDTask
 {
     public abstract class GCDBase
     {
+        // A simple attached Stopwatch makes this class not thread safe,
+        // don't have time to make it thread safe.
+        public Stopwatch SWatch;
+
         protected abstract int GetGCDBase(int x, int y);
 
         public int GCD(int x)
@@ -20,7 +25,18 @@ namespace GCDTask
             if (x == 0 || x == y)
                 return GCD(y);
             else
-                return GetGCDBase(GCD(x), GCD(y));
+            {
+                x = GCD(x);
+                y = GCD(y);
+
+                int Result;
+
+                SWatch?.Start();
+                Result = GetGCDBase(x, y);
+                SWatch?.Stop();
+
+                return Result;
+            }
         }
 
         public int GCD(params int[] nums)
@@ -34,6 +50,7 @@ namespace GCDTask
 
             int Length = nums.Length;
             int i;
+            SWatch?.Start();
             while(Length > 1)
             {
                 i = 0;
@@ -50,6 +67,7 @@ namespace GCDTask
                     nums[i] = nums[i << 1];
                 }
             }
+            SWatch?.Stop();
 
             return nums[0];
         }
