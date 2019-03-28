@@ -17,3 +17,7 @@ Here I will post links to solutions for the tasks.
 2. [NextNumberTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.02/NextNumberTask)
 3. [FilterDigitTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.02/FilterDigitTask)
 4. [NthRootTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.02/NthRootTask)
+
+### Day 3
+
+1.[GCDTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.03/GCDTask)
