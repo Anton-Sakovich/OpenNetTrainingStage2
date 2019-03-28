@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GCDBinaryEuclidTests.cs" />
     <Compile Include="GCDEuclidTests.cs" />
     <Compile Include="GCDTestsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
