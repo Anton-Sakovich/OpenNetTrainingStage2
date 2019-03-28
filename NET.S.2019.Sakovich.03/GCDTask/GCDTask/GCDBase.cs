@@ -35,8 +35,14 @@ namespace GCDTask
         /// <returns>The GCD of input numbers.</returns>
         public int GCD(int x, int y)
         {
-            if (x == 0 || x == y)
+            if(x == 0)
+            {
                 return y > 0 ? y : -y;
+            }
+            else if(y == 0)
+            {
+                return x > 0 ? x : -x;
+            }
             else
             {
                 x = x > 0 ? x : -x;
@@ -65,51 +71,57 @@ namespace GCDTask
             if (nums.Length < 2)
                 throw new ArgumentException("There must be at least two input numbers specified.");
 
-            // For an array of input integers, their GCD is computed
-            // via binary ascending, i.e.
-            // GCD(a, b, c, d, e) = GCD(GCD(GCD(a, b), GCD(c, d)), e)
-
-            // It is implementted by taking successive pairs and computing
-            // their GCD on each step.
-            // For example, for {a, b, c, d, e} the first step is
-            // a -> GCD(a, b)
-            // b -> GCD(c, d)
-            // c -> e
-            // resuling in
-            // {GCD(a, b), GCD(c, d), e, d (don't care), e (don't care)}
-
-            // The length of the subarray with data
-            int Length = nums.Length;
-            // An index inside the subarray
-            int i;
-
             SWatch?.Start();
-            while(Length > 1)
+
+            // Move all non zeros to the beginning of the array. Length is the length
+            // of the non-zero part of the resulting array.
+            int Length = ShiftNonZeros(nums);
+
+            // All are zeros
+            if (Length == 0)
+                return 0;
+
+            // Only one non-zero
+            if (Length == 1)
+                return nums[0];
+
+            // At least two non-zeros. Check the signs because we promised GetGCDBase
+            // to pass only positive numbers
+            for (int i = 0; i < Length; i++)
             {
-                // Reset index on each step
-                i = 0;
-
-                // Loop the first half of the old array.
-                for (; i < (Length >> 1); i++)
-                {
-                    nums[i] = GetGCDBase(nums[i << 1], nums[(i << 1) + 1]);
-                }
-
-                // If in the old array there is still an unvisited element,
-                // then take it and change the length appropriately
-                if ((i << 1) < Length)
-                {
-                    nums[i] = nums[i << 1];
-                    Length = (Length >> 1) + 1;
-                }
-                else
-                {
-                    Length = Length >> 1;
-                }
+                if (nums[i] < 0)
+                    nums[i] = -nums[i];
             }
+
+            // Compute GCD
+            int gcd = GetGCDBase(nums[0], nums[1]);
+            for(int i = 2; i < Length; i++)
+            {
+                gcd = GetGCDBase(gcd, nums[i]);
+            }
+
             SWatch?.Stop();
 
-            return nums[0];
+            return gcd;
+        }
+
+        private int ShiftNonZeros(int[] array)
+        {
+            int ZeroPos = 0;
+
+            for (ZeroPos = 0; ZeroPos < array.Length; ZeroPos++)
+            {
+                if (array[ZeroPos] == 0)
+                    break;
+            }
+
+            for(int i = ZeroPos + 1; i < array.Length; i++)
+            {
+                if (array[i] != 0)
+                    array[ZeroPos++] = array[i];
+            }
+
+            return ZeroPos;
         }
     }
 }
