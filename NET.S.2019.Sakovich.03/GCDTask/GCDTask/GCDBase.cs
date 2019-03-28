@@ -38,11 +38,11 @@ namespace GCDTask
             {
                 i = 0;
 
-                Length = Length >> 1; ;
+                Length = Length >> 1;
 
                 for (; i < Length; i++)
                 {
-                    nums[i] = GetGCDBase(nums[i << 1], nums[i << 1 + 1]);
+                    nums[i] = GetGCDBase(nums[i << 1], nums[(i << 1) + 1]);
                 }
 
                 if (i << 1 < Length << 1)
