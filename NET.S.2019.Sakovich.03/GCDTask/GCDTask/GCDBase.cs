@@ -55,16 +55,22 @@ namespace GCDTask
             {
                 i = 0;
 
-                Length = Length >> 1;
-
-                for (; i < Length; i++)
+                // Loop the first half of the old array.
+                for (; i < (Length >> 1); i++)
                 {
                     nums[i] = GetGCDBase(nums[i << 1], nums[(i << 1) + 1]);
                 }
 
-                if (i << 1 < Length << 1)
+                // If in the old array there is still an unvisited element,
+                // then take it and change the length appropriately
+                if ((i << 1) < Length)
                 {
                     nums[i] = nums[i << 1];
+                    Length = (Length >> 1) + 1;
+                }
+                else
+                {
+                    Length = Length >> 1;
                 }
             }
             SWatch?.Stop();
