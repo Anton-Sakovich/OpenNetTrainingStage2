@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using System.Diagnostics;
 
 namespace GCDTask.Tests
 {
@@ -72,6 +73,7 @@ namespace GCDTask.Tests
                 yield return new TestCaseData(991706733, 603561839).Returns(1);
                 yield return new TestCaseData(27337174, 1914852204).Returns(2);
                 yield return new TestCaseData(371709579, -829060874).Returns(1);
+                yield return new TestCaseData(323323, -2310).Returns(77);
             }
         }
 
@@ -96,6 +98,36 @@ namespace GCDTask.Tests
         public int Heavy_TwoArguments_NonSpecial_Testss(int x, int y)
         {
             return TestedGCDObject.GCD(x, y);
+        }
+
+        [Test]
+        public void Heavy_TwoArguments_NonSpecial_Testss_Stopwatched()
+        {
+            Stopwatch MyStopwatch = new Stopwatch();
+
+            // Make the first time precaution as mentioned by Pavel
+            MyStopwatch.Start();
+            MyStopwatch.Stop();
+            MyStopwatch.Reset();
+
+            TestedGCDObject.SWatch = MyStopwatch;
+
+            // Make sure that the compiler will not throw away the method call
+            // inside the loop
+            int ReturnedGCD = 0;
+
+            for(int i = 0; i < 10; i++)
+            {
+                ReturnedGCD = TestedGCDObject.GCD(323323 + i, -2310 - i);
+            }
+
+            // Again, this is necessary to be sure that the compiler will not
+            // throw away ReturnedGCD and its compuation from above
+            if (ReturnedGCD == 0)
+                return;
+
+            Assert.That(TestedGCDObject.SWatch.ElapsedTicks, Is.GreaterThan(1));
+            Assert.Pass("Ticks = {0}, Milliseconds = {1}", TestedGCDObject.SWatch.ElapsedTicks, TestedGCDObject.SWatch.ElapsedMilliseconds);
         }
 
         [Test]
