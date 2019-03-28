@@ -10,22 +10,22 @@ namespace GCDTask
     {
         protected override int GetGCDBase(int x, int y)
         {
-            int Multiplier = 1;
+            int Shift = 0;
 
-            while ((x | y) > 0)
+            while ((x > 0) && (y > 0))
             {
-                switch (((x << 1) & 2) | y & 1)
+                switch (((x & 1) << 1) | y & 1)
                 {
                     case 0:
-                        Multiplier <<= 1;
+                        Shift++;
                         x >>= 1;
                         y >>= 1;
                         break;
                     case 1:
-                        y >>= 1;
+                        x >>= 1;
                         break;
                     case 2:
-                        x >>= 1;
+                        y >>= 1;
                         break;
                     case 3:
                         if(x > y)
@@ -40,7 +40,7 @@ namespace GCDTask
                 }
             }
 
-            return (x > 0 ? x : y) << Multiplier;
+            return (x > 0 ? x : y) << Shift;
         }
     }
 }
