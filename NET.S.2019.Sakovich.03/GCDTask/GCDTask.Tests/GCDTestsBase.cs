@@ -132,11 +132,17 @@ namespace GCDTask.Tests
             Assert.That(TestedGCDObject.GCD(1, 2, 3, 4), Is.EqualTo(1));
             Assert.That(TestedGCDObject.GCD(1, 2, 3, 4, 5), Is.EqualTo(1));
 
-            // A very important test. It checks whether the last element
-            // is not lost for arrays of odd length.
+            // A very important test. It checks whether elements are not
+            // lost while scanning the array of arguments.
             Assert.That(TestedGCDObject.GCD(6, 42, 30), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(1, 42, 30), Is.EqualTo(1));
+            Assert.That(TestedGCDObject.GCD(6, 1, 30), Is.EqualTo(1));
             Assert.That(TestedGCDObject.GCD(6, 42, 1), Is.EqualTo(1));
+
             Assert.That(TestedGCDObject.GCD(6, 42, 30, 66), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(1, 42, 30, 66), Is.EqualTo(1));
+            Assert.That(TestedGCDObject.GCD(6, 1, 30, 66), Is.EqualTo(1));
+            Assert.That(TestedGCDObject.GCD(6, 42, 1, 66), Is.EqualTo(1));
             Assert.That(TestedGCDObject.GCD(6, 42, 30, 1), Is.EqualTo(1));
         }
     }
