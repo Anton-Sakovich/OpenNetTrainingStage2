@@ -109,5 +109,12 @@ namespace GCDTask.Tests
         {
             Assert.Throws<ArgumentException>(() => new GCDEuclid().GCD());
         }
+
+        [Test]
+        public void Lightweight_MultipleArguments_NonSpecial_Tests()
+        {
+            Assert.That(TestedGCDObject.GCD(1, 2, 3, 4), Is.EqualTo(1));
+            Assert.That(TestedGCDObject.GCD(6, 42, 30), Is.EqualTo(6));
+        }
     }
 }
