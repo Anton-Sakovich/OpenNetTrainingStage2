@@ -18,17 +18,6 @@ namespace GCDTask.Tests
             TestedGCDObject = tested;
         }
 
-        protected static IEnumerable<TestCaseData> SingleArgumentTestData
-        {
-            get
-            {
-                for (int i = -2; i < 3; i++)
-                {
-                    yield return new TestCaseData(i).Returns(Math.Abs(i));
-                }
-            }
-        }
-
         protected static IEnumerable<TestCaseData> TwoArgumentsTestData
         {
             get
@@ -75,12 +64,6 @@ namespace GCDTask.Tests
                 yield return new TestCaseData(371709579, -829060874).Returns(1);
                 yield return new TestCaseData(323323, -2310).Returns(77);
             }
-        }
-
-        [TestCaseSource(nameof(SingleArgumentTestData))]
-        public int SingleArgumentTests(int x)
-        {
-            return TestedGCDObject.GCD(x);
         }
 
         [TestCase(5, 2, ExpectedResult = 1)]
@@ -145,8 +128,16 @@ namespace GCDTask.Tests
         [Test]
         public void Lightweight_MultipleArguments_NonSpecial_Tests()
         {
+            Assert.That(TestedGCDObject.GCD(1, 2, 3), Is.EqualTo(1));
             Assert.That(TestedGCDObject.GCD(1, 2, 3, 4), Is.EqualTo(1));
+            Assert.That(TestedGCDObject.GCD(1, 2, 3, 4, 5), Is.EqualTo(1));
+
+            // A very important test. It checks whether the last element
+            // is not lost for arrays of odd length.
             Assert.That(TestedGCDObject.GCD(6, 42, 30), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(6, 42, 1), Is.EqualTo(1));
+            Assert.That(TestedGCDObject.GCD(6, 42, 30, 66), Is.EqualTo(6));
+            Assert.That(TestedGCDObject.GCD(6, 42, 30, 1), Is.EqualTo(1));
         }
     }
 }
