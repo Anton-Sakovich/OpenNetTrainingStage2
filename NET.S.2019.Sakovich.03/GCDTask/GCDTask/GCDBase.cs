@@ -21,7 +21,7 @@ namespace GCDTask
         public Stopwatch SWatch;
 
         // An internal method for computing GCD. Arguments to this method
-        // are guaranted to be positive. Do not check them inside an
+        // are guaranted to be non-negative. Do not check them inside an
         // implementation.
         protected abstract int GetGCDBase(int x, int y);
 
@@ -35,27 +35,13 @@ namespace GCDTask
         /// <returns>The GCD of input numbers.</returns>
         public int GCD(int x, int y)
         {
-            if(x == 0)
-            {
-                return y > 0 ? y : -y;
-            }
-            else if(y == 0)
-            {
-                return x > 0 ? x : -x;
-            }
-            else
-            {
-                x = x > 0 ? x : -x;
-                y = y > 0 ? y : -y;
+            int Result;
 
-                int Result;
+            SWatch?.Start();
+            Result = GetGCDBase(x > 0 ? x : -x, y > 0 ? y : -y);
+            SWatch?.Stop();
 
-                SWatch?.Start();
-                Result = GetGCDBase(x, y);
-                SWatch?.Stop();
-
-                return Result;
-            }
+            return Result;
         }
 
         /// <summary>
@@ -73,55 +59,15 @@ namespace GCDTask
 
             SWatch?.Start();
 
-            // Move all non zeros to the beginning of the array. Length is the length
-            // of the non-zero part of the resulting array.
-            int Length = ShiftNonZeros(nums);
-
-            // All are zeros
-            if (Length == 0)
-                return 0;
-
-            // Only one non-zero
-            if (Length == 1)
-                return nums[0];
-
-            // At least two non-zeros. Check the signs because we promised GetGCDBase
-            // to pass only positive numbers
-            for (int i = 0; i < Length; i++)
-            {
-                if (nums[i] < 0)
-                    nums[i] = -nums[i];
-            }
-
-            // Compute GCD
             int gcd = GetGCDBase(nums[0], nums[1]);
-            for(int i = 2; i < Length; i++)
+            for(int i = 2; i < nums.Length; i++)
             {
-                gcd = GetGCDBase(gcd, nums[i]);
+                gcd = GetGCDBase(gcd, nums[i] > 0 ? nums[i] : -nums[i]);
             }
 
             SWatch?.Stop();
 
             return gcd;
-        }
-
-        private int ShiftNonZeros(int[] array)
-        {
-            int ZeroPos = 0;
-
-            for (ZeroPos = 0; ZeroPos < array.Length; ZeroPos++)
-            {
-                if (array[ZeroPos] == 0)
-                    break;
-            }
-
-            for(int i = ZeroPos + 1; i < array.Length; i++)
-            {
-                if (array[i] != 0)
-                    array[ZeroPos++] = array[i];
-            }
-
-            return ZeroPos;
         }
     }
 }
