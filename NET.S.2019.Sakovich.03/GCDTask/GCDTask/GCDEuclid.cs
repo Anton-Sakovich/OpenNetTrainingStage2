@@ -10,22 +10,22 @@ namespace GCDTask
     {
         protected override int GetGCDBase(int min, int max)
         {
-            if(min > max)
+            if(max < min)
             {
-                int temp = min;
-                min = max;
-                max = temp;
+                if (max == 0)
+                    return min;
+                min = min % max;
             }
 
             while(true)
             {
-                max = max % min;
-                if (max == 0)
-                    return min;
-
-                min = min % max;
                 if (min == 0)
                     return max;
+                max = max % min;
+
+                if (max == 0)
+                    return min;
+                min = min % max;
             }
         }
     }
