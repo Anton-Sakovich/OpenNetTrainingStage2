@@ -72,6 +72,12 @@ namespace GCDTask.Tests
         [TestCase(-5, 2, ExpectedResult = 1)]
         [TestCase(21, -16, ExpectedResult = 1)]
         [TestCase(-63, -81, ExpectedResult = 9)]
+        [TestCase(2, 5, ExpectedResult = 1)]
+        [TestCase(16, 21, ExpectedResult = 1)]
+        [TestCase(81, 63, ExpectedResult = 9)]
+        [TestCase(-2, 5, ExpectedResult = 1)]
+        [TestCase(16, -21, ExpectedResult = 1)]
+        [TestCase(-81, -63, ExpectedResult = 9)]
         public int Lightweight_TwoArguments_NonSpecial_Tests(int x, int y)
         {
             return TestedGCDObject.GCD(x, y);
