@@ -28,18 +28,18 @@ namespace IEEE754Task
             bool IsNegativeCached = num.CompareTo(Anatomy.Zero) < 0;
 
             if (IsNegativeCached)
-                FlipSign(num);
+                num = FlipSign(num);
 
             if(num.CompareTo(Anatomy.MinNormalNumber) < 0)
             {
                 exponent = 0;
 
-                mantissa = ProjectIntegerPart(RightShift(num, Anatomy.ExponentShift + Anatomy.MantissaLength));
+                mantissa = ProjectIntegerPart(RightShift(num, Anatomy.ExponentShift + Anatomy.MantissaLength - 1));
 
                 return IsNegativeCached;
             }
 
-            ulong MantissaMask = 1UL << Anatomy.MantissaLength;
+            ulong MantissaMask = ~(ulong.MaxValue << Anatomy.MantissaLength);
             exponent = (ulong)Anatomy.ExponentShift + (ulong)Anatomy.MantissaLength;
             T LowerBound = RightShift(Anatomy.One, Anatomy.MantissaLength);
             T UpperBound = RightShift(Anatomy.One, Anatomy.MantissaLength + 1);
@@ -59,7 +59,7 @@ namespace IEEE754Task
                 exponent++;
             }
 
-            mantissa = ProjectIntegerPart(num);
+            mantissa = ProjectIntegerPart(num) & MantissaMask;
             return IsNegativeCached;
         }
     }
