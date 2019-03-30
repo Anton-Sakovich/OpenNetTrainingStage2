@@ -62,5 +62,43 @@ namespace IEEE754Task
             mantissa = ProjectIntegerPart(num) & MantissaMask;
             return IsNegativeCached;
         }
+
+        public ulong Bitmap(T num)
+        {
+            bool sign = Destruct(num, out ulong exponent, out ulong mantissa);
+
+            return ComposeBitmap(sign, exponent, mantissa);
+        }
+
+        private ulong ComposeBitmap(bool sign, ulong exponent, ulong mantissa)
+        {
+            return ((sign ? 1UL : 0UL) << (Anatomy.FullLength - 1)) | (exponent << Anatomy.MantissaLength) | mantissa;
+        }
+
+        public string BinaryString(T num)
+        {
+            return ToBinaryString(Bitmap(num));
+        }
+
+        private static readonly string[] HexStrings = new string[]
+            {
+                "0000", "0001", "0010", "0011",
+                "0100", "0101", "0110", "0111",
+                "1000", "1001", "1010", "1011",
+                "1100", "1101", "1110", "1111"
+            };
+
+        private static string ToBinaryString(ulong num)
+        {
+            string[] BitGroups = new string[16];
+
+            for (int i = 15; i >= 0; i--)
+            {
+                BitGroups[i] = HexStrings[num & 0xF];
+                num >>= 4;
+            }
+
+            return String.Concat(BitGroups);
+        }
     }
 }
