@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace IEEE754Task
 {
-    abstract class FloatAdapter<T> where T : IComparable<T>
+    public abstract class FPointAdapter<T> where T : IComparable<T>
     {
-        public readonly IFloatAnatomy<T> Anatomy;
+        public readonly IFPointAnatomy<T> Anatomy;
 
-        public FloatAdapter(IFloatAnatomy<T> anat)
+        public FPointAdapter(IFPointAnatomy<T> anat)
         {
             Anatomy = anat;
         }

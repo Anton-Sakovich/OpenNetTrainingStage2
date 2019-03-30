@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IEEE754Task
 {
-    class FloatTypeMismatchException : ApplicationException
+    public class FPointTypeMismatchException : ApplicationException
     {
     }
 }

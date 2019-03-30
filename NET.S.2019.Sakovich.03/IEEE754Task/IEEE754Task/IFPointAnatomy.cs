@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IEEE754Task
 {
-    public interface IFloatAnatomy<T>
+    public interface IFPointAnatomy<T>
     {
         int FullLength { get; }
 
