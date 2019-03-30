@@ -14,8 +14,12 @@ namespace IEEE754Task
 
         int ExponentLength { get; }
 
-        double MinNormalNumber { get; }
-
         int ExponentShift { get; }
+
+        T Zero { get; }
+
+        T One { get; }
+
+        T MinNormalNumber { get; }
     }
 }

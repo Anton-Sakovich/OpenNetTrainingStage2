@@ -19,24 +19,18 @@ namespace IEEE754Task
 
         protected abstract T RightShift(T num, int steps);
 
-        protected abstract bool IsNegative(T num);
-
-        protected abstract bool IsNormal(T num);
-
         protected abstract ulong ProjectIntegerPart(T num);
 
         protected abstract T FlipSign(T num);
 
-        protected abstract T One { get; }
-
         public bool Destruct(T num, out ulong exponent, out ulong mantissa)
         {
-            bool IsNegativeCached = IsNegative(num);
+            bool IsNegativeCached = num.CompareTo(Anatomy.Zero) < 0;
 
             if (IsNegativeCached)
                 FlipSign(num);
 
-            if(!IsNormal(num))
+            if(num.CompareTo(Anatomy.MinNormalNumber) < 0)
             {
                 exponent = 0;
 
@@ -47,8 +41,8 @@ namespace IEEE754Task
 
             ulong MantissaMask = 1UL << Anatomy.MantissaLength;
             exponent = (ulong)Anatomy.ExponentShift + (ulong)Anatomy.MantissaLength;
-            T LowerBound = RightShift(One, Anatomy.MantissaLength);
-            T UpperBound = RightShift(One, Anatomy.MantissaLength + 1);
+            T LowerBound = RightShift(Anatomy.One, Anatomy.MantissaLength);
+            T UpperBound = RightShift(Anatomy.One, Anatomy.MantissaLength + 1);
 
             if(num.CompareTo(LowerBound) < 0)
             {

@@ -14,11 +14,13 @@ namespace IEEE754Task
 
         public int ExponentLength { get => 11; }
 
-        public double MinNormalNumber { get => _MinNormalNumber; }
-
         public int ExponentShift { get => _ExponentShift; }
 
-        public Type FloatType { get => typeof(double); }
+        public double Zero { get => 0D; }
+
+        public double One { get => 1D; }
+
+        public double MinNormalNumber { get => _MinNormalNumber; }
 
         static readonly int _ExponentShift;
 
