@@ -23,9 +23,14 @@ namespace IEEE754Task
 
         protected abstract T FlipSign(T num);
 
+        protected abstract bool IsNegativeZero(T num);
+
         public bool Destruct(T num, out ulong exponent, out ulong mantissa)
         {
             bool IsNegativeCached = num.CompareTo(Anatomy.Zero) < 0;
+
+            if (num.CompareTo(Anatomy.Zero) == 0)
+                IsNegativeCached = IsNegativeZero(num);
 
             if (IsNegativeCached)
                 num = FlipSign(num);

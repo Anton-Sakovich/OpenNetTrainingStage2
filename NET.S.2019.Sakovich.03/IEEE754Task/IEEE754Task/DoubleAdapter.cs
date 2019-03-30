@@ -29,5 +29,11 @@ namespace IEEE754Task
 
             return num;
         }
+
+        // https://stackoverflow.com/questions/4739795/how-can-i-test-for-negative-zero
+        protected override bool IsNegativeZero(double num)
+        {
+            return num == 0.0 && double.IsNegativeInfinity(1.0 / num);
+        }
     }
 }
