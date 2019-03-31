@@ -163,6 +163,40 @@ namespace PolynomialTask
             return ResultingPoly;
         }
 
+        public static Polynomial Times(Polynomial poly1, Polynomial poly2)
+        {
+            ValidateArguments(poly1, poly2);
+
+            if (poly1._Coefficients.Length == 0)
+                return (Polynomial)poly1.Clone();
+
+            if (poly2._Coefficients.Length == 0)
+                return (Polynomial)poly2.Clone();
+
+            Polynomial[] CopiesOfPoly2 = new Polynomial[poly1._Coefficients.Length];
+            for(int i = 0; i < CopiesOfPoly2.Length; i++)
+            {
+                CopiesOfPoly2[i] = (Polynomial)poly2.Clone();
+            }
+
+            for(int p1 = 0; p1 < poly1._Coefficients.Length; p1++)
+            {
+                for(int p2 = 0; p2 < poly2._Coefficients.Length; p2++)
+                {
+                    CopiesOfPoly2[p1]._Coefficients[p2] *= poly1._Coefficients[p1];
+                    CopiesOfPoly2[p1]._Powers[p2] += poly1._Powers[p1];
+                }
+            }
+
+            Polynomial ResultingPoly = CopiesOfPoly2[0];
+            for(int i = 1; i < CopiesOfPoly2.Length; i++)
+            {
+                ResultingPoly = Add(ResultingPoly, CopiesOfPoly2[i]);
+            }
+
+            return ResultingPoly;
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(obj, null))
