@@ -22,3 +22,7 @@ Here I will post links to solutions for the tasks.
 
 1. [GCDTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.03/GCDTask)
 2. [IEEE754Task](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.03/IEEE754Task)
+
+### Day 5
+
+1. [PolynomialTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.05/PolynomialTask)
