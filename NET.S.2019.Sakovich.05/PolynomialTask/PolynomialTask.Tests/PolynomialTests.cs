@@ -13,12 +13,12 @@ namespace PolynomialTask.Tests
         [Test]
         public void Polynomial_Initialization_Tests()
         {
-            int[] Poly1_Powers = new int[] { 1, 4, 0 };
+            int[] Poly1_Powers = new int[] { 1, 0, 4 };
             int[] Poly1_Coefficients = new int[] { 2, 3, 4 };
 
             Polynomial Poly1 = new Polynomial(Poly1_Powers, Poly1_Coefficients);
 
-            Assert.That(Poly1.Coefficients, Is.EquivalentTo(new int[] { 4, 2, 3}));
+            Assert.That(Poly1.Coefficients, Is.EquivalentTo(new int[] { 3, 2, 4}));
             Assert.That(Poly1.Powers, Is.EquivalentTo(new int[] { 0, 1, 4}));
 
             Assert.That(Poly1.MaxPower, Is.EqualTo(4));
