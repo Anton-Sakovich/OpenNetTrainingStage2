@@ -261,14 +261,28 @@ namespace PolynomialTask
             for (i = 0; i < (_Coefficients.Length - 1); i++)
             {
                 bldr.Append(_Coefficients[i].ToString());
-                bldr.Append(" * x^");
-                bldr.Append(_Powers[i].ToString());
+                if(_Powers[i] > 0)
+                {
+                    bldr.Append(" * x");
+                }
+                if(_Powers[i] > 1)
+                {
+                    bldr.Append("^");
+                    bldr.Append(_Powers[i].ToString());
+                }
                 bldr.Append(" + ");
             }
 
             bldr.Append(_Coefficients[i].ToString());
-            bldr.Append(" * x^");
-            bldr.Append(_Powers[i].ToString());
+            if (_Powers[i] > 0)
+            {
+                bldr.Append(" * x");
+            }
+            if (_Powers[i] > 1)
+            {
+                bldr.Append("^");
+                bldr.Append(_Powers[i].ToString());
+            }
 
             return bldr.ToString();
         }
