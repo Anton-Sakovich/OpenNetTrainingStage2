@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PolynomialTask
 {
-    public sealed class Polynomial
+    public sealed class Polynomial : ICloneable
     {
         int[] _Powers;
         int[] _Coefficients;
@@ -65,6 +65,18 @@ namespace PolynomialTask
             Temp = array[i];
             array[i] = array[j];
             array[j] = Temp;
+        }
+
+        public object Clone()
+        {
+            Polynomial PolyClone = new Polynomial();
+
+            PolyClone._Powers = (int[])_Powers.Clone();
+            PolyClone._Coefficients = (int[])_Coefficients.Clone();
+            PolyClone._HashCache = _HashCache;
+            PolyClone._HashComputed = _HashComputed;
+
+            return PolyClone;
         }
 
         public int[] Powers
