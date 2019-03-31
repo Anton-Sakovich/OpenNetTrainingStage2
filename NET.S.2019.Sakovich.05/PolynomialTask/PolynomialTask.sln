@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolynomialTask", "PolynomialTask\PolynomialTask.csproj", "{C5D1720E-1B5E-4E71-9A7D-67F24201EE98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolynomialTask.Tests", "PolynomialTask.Tests\PolynomialTask.Tests.csproj", "{3A1646E8-D20F-466C-99D8-24829B2D1A60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C5D1720E-1B5E-4E71-9A7D-67F24201EE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D1720E-1B5E-4E71-9A7D-67F24201EE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D1720E-1B5E-4E71-9A7D-67F24201EE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A1646E8-D20F-466C-99D8-24829B2D1A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A1646E8-D20F-466C-99D8-24829B2D1A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A1646E8-D20F-466C-99D8-24829B2D1A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A1646E8-D20F-466C-99D8-24829B2D1A60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
