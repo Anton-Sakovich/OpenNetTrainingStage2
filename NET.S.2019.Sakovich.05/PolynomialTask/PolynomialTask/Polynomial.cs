@@ -96,6 +96,7 @@ namespace PolynomialTask
             int j1 = 0;
             int j2 = 0;
             int j = 0;
+            int sum;
 
             for (; j1 < poly1._Coefficients.Length && j2 < poly2._Coefficients.Length;)
             {
@@ -111,8 +112,14 @@ namespace PolynomialTask
                 }
                 else
                 {
-                    NewPowersTemp[j] = poly1._Powers[j1];
-                    NewCoefficientsTemp[j++] = poly1._Coefficients[j1++] + poly2._Coefficients[j2++];
+                    if((sum = poly1._Coefficients[j1] + poly2._Coefficients[j2]) != 0)
+                    {
+                        NewPowersTemp[j] = poly1._Powers[j1];
+                        NewCoefficientsTemp[j++] = sum;
+                    }
+
+                    j1++;
+                    j2++;
                 }
             }
 
