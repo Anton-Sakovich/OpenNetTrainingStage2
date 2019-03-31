@@ -25,8 +25,8 @@ namespace PolynomialTask
             if (powList.Length != coeffsList.Length)
                 throw new ArgumentException("The length of arrays for powers and coefficients must be the same.");
 
-            _Powers = (int[])powList.Clone();
-            _Coefficients = (int[])coeffsList.Clone();
+            _Powers = powList.Where((pow, index) => coeffsList[index] != 0).ToArray();
+            _Coefficients = coeffsList.Where(coeff => coeff != 0).ToArray();
 
             PairwiseSort(_Powers, _Coefficients);
         }
@@ -91,7 +91,7 @@ namespace PolynomialTask
 
         public int MaxPower
         {
-            get => _Powers[_Powers.Length - 1];
+            get => _Powers.Length > 0 ? _Powers.Last() : 0;
         }
 
         static void ValidateArguments(Polynomial poly1, Polynomial poly2)
