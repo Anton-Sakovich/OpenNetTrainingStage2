@@ -317,5 +317,25 @@ namespace PolynomialTask
         {
             return !(poly1 == other);
         }
+
+        public static Polynomial operator +(Polynomial poly1, Polynomial poly2)
+        {
+            return Add(poly1, poly2);
+        }
+
+        public static Polynomial operator -(Polynomial poly1, Polynomial poly2)
+        {
+            return Subtract(poly1, poly2);
+        }
+
+        public static Polynomial operator -(Polynomial poly)
+        {
+            return UnaryMinus(poly);
+        }
+
+        public static Polynomial operator *(Polynomial poly1, Polynomial poly2)
+        {
+            return Times(poly1, poly2);
+        }
     }
 }
