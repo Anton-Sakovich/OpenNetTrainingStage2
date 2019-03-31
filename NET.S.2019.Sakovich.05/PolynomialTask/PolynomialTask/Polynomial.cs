@@ -94,13 +94,18 @@ namespace PolynomialTask
             get => _Powers[_Powers.Length - 1];
         }
 
-        public static Polynomial Add(Polynomial poly1, Polynomial poly2)
+        static void ValidateArguments(Polynomial poly1, Polynomial poly2)
         {
             if (poly1 == null)
                 throw new ArgumentNullException(nameof(poly1));
 
             if (poly2 == null)
                 throw new ArgumentNullException(nameof(poly2));
+        }
+
+        public static Polynomial Add(Polynomial poly1, Polynomial poly2)
+        {
+            ValidateArguments(poly1, poly2);
 
             int[] NewCoefficientsTemp = new int[poly1._Coefficients.Length + poly2._Coefficients.Length];
             int[] NewPowersTemp = new int[poly1._Powers.Length + poly2._Powers.Length];
