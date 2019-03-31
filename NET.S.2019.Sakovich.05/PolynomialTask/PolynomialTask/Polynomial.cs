@@ -115,12 +115,12 @@ namespace PolynomialTask
 
             for (; j1 < poly1._Coefficients.Length && j2 < poly2._Coefficients.Length;)
             {
-                if(poly1._Powers[j1] < poly2._Powers[j1])
+                if(poly1._Powers[j1] < poly2._Powers[j2])
                 {
                     NewPowersTemp[j] = poly1._Powers[j1];
                     NewCoefficientsTemp[j++] = poly1._Coefficients[j1++];
                 }
-                else if(poly1._Powers[j1] > poly2._Powers[j1])
+                else if(poly1._Powers[j1] > poly2._Powers[j2])
                 {
                     NewPowersTemp[j] = poly2._Powers[j2];
                     NewCoefficientsTemp[j++] = poly2._Coefficients[j2++];
