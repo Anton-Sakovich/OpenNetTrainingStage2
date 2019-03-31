@@ -161,6 +161,28 @@ namespace PolynomialTask
             return ResultingPoly;
         }
 
+        public static Polynomial UnaryMinus(Polynomial poly)
+        {
+            ValidateArgument(poly);
+
+            Polynomial ResultingPoly = (Polynomial)poly.Clone();
+
+            for(int i = 0; i < ResultingPoly._Coefficients.Length; i++)
+            {
+                ResultingPoly._Coefficients[i] = -ResultingPoly._Coefficients[i];
+            }
+
+            return ResultingPoly;
+        }
+
+        public static Polynomial Subtract(Polynomial poly1, Polynomial poly2)
+        {
+            ValidateArgument(poly1);
+            ValidateArgument(poly2);
+
+            return Add(poly1, UnaryMinus(poly2));
+        }
+
         public static Polynomial Times(Polynomial poly1, Polynomial poly2)
         {
             ValidateArgument(poly1);
