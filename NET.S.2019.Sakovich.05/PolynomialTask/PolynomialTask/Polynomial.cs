@@ -310,7 +310,7 @@ namespace PolynomialTask
 
         public static bool operator ==(Polynomial poly1, object other)
         {
-            return poly1 == null ? other == null : poly1.Equals(other);
+            return ReferenceEquals(poly1, null) ? ReferenceEquals(other, null) : poly1.Equals(other);
         }
 
         public static bool operator !=(Polynomial poly1, object other)
