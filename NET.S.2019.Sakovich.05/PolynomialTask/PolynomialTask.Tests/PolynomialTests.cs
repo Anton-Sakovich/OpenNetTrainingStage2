@@ -40,5 +40,25 @@ namespace PolynomialTask.Tests
 
             Assert.That(Poly1.ToString(), Is.EqualTo("1 + 2 * x + 3 * x^2"));
         }
+
+        [Test]
+        public void ZeroCoefficients_Deleted()
+        {
+            Polynomial Poly1 = new Polynomial(new int[] { 0, 1, 2 }, new int[] { 0, 2, 0 });
+
+            Assert.That(Poly1.Coefficients, Is.EquivalentTo(new int[] { 2 }));
+            Assert.That(Poly1.Powers, Is.EquivalentTo(new int[] { 1 }));
+            Assert.That(Poly1.MaxPower, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Zero_IsRepresentedByEmptyArrays()
+        {
+            Polynomial Poly1 = new Polynomial(new int[] { 0, 1, 2 }, new int[] { 0, 0, 0 });
+
+            Assert.That(Poly1.Coefficients, Is.EquivalentTo(new int[] { }));
+            Assert.That(Poly1.Powers, Is.EquivalentTo(new int[] { }));
+            Assert.That(Poly1.MaxPower, Is.EqualTo(0));
+        }
     }
 }
