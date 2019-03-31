@@ -8,7 +8,7 @@ namespace BubbleTask
 {
     public class BubbleSort
     {
-        public void Sort(int[][] array, IComparer<int[]> comp)
+        public void Sort(int[][] array, IComparer<int[]> comp, bool desc = false)
         {
             int[] Temp;
 
@@ -16,7 +16,7 @@ namespace BubbleTask
             {
                 for(int BubblePos = 0; BubblePos < (UnsortedLength - 1); BubblePos++)
                 {
-                    if(comp.Compare(array[BubblePos], array[BubblePos + 1]) > 0)
+                    if((comp.Compare(array[BubblePos], array[BubblePos + 1]) > 0) ^ desc)
                     {
                         Temp = array[BubblePos];
                         array[BubblePos] = array[BubblePos + 1];
