@@ -94,18 +94,16 @@ namespace PolynomialTask
             get => _Powers.Length > 0 ? _Powers.Last() : 0;
         }
 
-        static void ValidateArguments(Polynomial poly1, Polynomial poly2)
+        static void ValidateArgument(Polynomial poly)
         {
-            if (poly1 == null)
-                throw new ArgumentNullException(nameof(poly1));
-
-            if (poly2 == null)
-                throw new ArgumentNullException(nameof(poly2));
+            if (poly == null)
+                throw new ArgumentNullException(nameof(poly));
         }
 
         public static Polynomial Add(Polynomial poly1, Polynomial poly2)
         {
-            ValidateArguments(poly1, poly2);
+            ValidateArgument(poly1);
+            ValidateArgument(poly2);
 
             int[] NewCoefficientsTemp = new int[poly1._Coefficients.Length + poly2._Coefficients.Length];
             int[] NewPowersTemp = new int[poly1._Powers.Length + poly2._Powers.Length];
@@ -165,7 +163,8 @@ namespace PolynomialTask
 
         public static Polynomial Times(Polynomial poly1, Polynomial poly2)
         {
-            ValidateArguments(poly1, poly2);
+            ValidateArgument(poly1);
+            ValidateArgument(poly2);
 
             if (poly1._Coefficients.Length == 0)
                 return (Polynomial)poly1.Clone();
