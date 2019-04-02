@@ -55,5 +55,13 @@ namespace IEEE754Task.Tests
             Assert.That(Adapter.BinaryString(0), Is.EqualTo("0000000000000000000000000000000000000000000000000000000000000000"));
             Assert.That(Adapter.BinaryString(-0.0), Is.EqualTo("1000000000000000000000000000000000000000000000000000000000000000"));
         }
+
+        [Test]
+        public void NotNumbersTests()
+        {
+            Assert.That(Adapter.BinaryString(double.NaN), Is.EqualTo("1111111111111000000000000000000000000000000000000000000000000000"));
+            Assert.That(Adapter.BinaryString(double.PositiveInfinity), Is.EqualTo("0111111111110000000000000000000000000000000000000000000000000000"));
+            Assert.That(Adapter.BinaryString(double.NegativeInfinity), Is.EqualTo("1111111111110000000000000000000000000000000000000000000000000000"));
+        }
     }
 }
