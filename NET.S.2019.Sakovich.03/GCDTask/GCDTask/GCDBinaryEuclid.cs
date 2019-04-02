@@ -74,7 +74,7 @@ namespace GCDTask
                         return y << Shift;
                     }
 
-                    // Here, y is still odd and x is even.
+                    // Here, y is still odd and x is even greater than zero. Make x odd.
                     while ((x & 1) == 0)
                     {
                         x >>= 1;
@@ -90,7 +90,7 @@ namespace GCDTask
                         return x << Shift;
                     }
 
-                    // Here, x is still odd and y is even.
+                    // Here, x is still odd and y is even greater than zero. Make y odd.
                     while ((y & 1) == 0)
                     {
                         y >>= 1;
