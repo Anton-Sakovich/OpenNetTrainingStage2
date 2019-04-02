@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DoubleExtensions.cs" />
-    <Compile Include="DoubleAdapter.cs" />
+    <Compile Include="FPointAdapter.cs" />
+    <Compile Include="FPointAnatomy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,7 @@ namespace IEEE754Task
 {
     public static class DoubleExtensions
     {
-        private static DoubleAdapter Adapter = new DoubleAdapter();
+        private static FPointAdapter Adapter = new FPointAdapter(new FPointAnatomy(64, 52));
 
         public static string ToIEEE754String(this double d)
         {

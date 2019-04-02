@@ -6,9 +6,9 @@ using NUnit.Framework;
 namespace IEEE754Task.Tests
 {
     [TestFixture]
-    public class DoubleAdapterTests
+    public class FPointAdapterTests
     {
-        static DoubleAdapter Adapter = new DoubleAdapter();
+        static FPointAdapter Adapter = new FPointAdapter(new FPointAnatomy(64, 52));
 
         /*IntegerString[FromDigits[Reverse @ ImportString[ExportString[255.255, "Real64"], "Byte"], 256], 2, 64]*/
         static IEnumerable<TestCaseData> NormalNumbers
@@ -62,6 +62,27 @@ namespace IEEE754Task.Tests
             Assert.That(Adapter.BinaryString(double.NaN), Is.EqualTo("1111111111111000000000000000000000000000000000000000000000000000"));
             Assert.That(Adapter.BinaryString(double.PositiveInfinity), Is.EqualTo("0111111111110000000000000000000000000000000000000000000000000000"));
             Assert.That(Adapter.BinaryString(double.NegativeInfinity), Is.EqualTo("1111111111110000000000000000000000000000000000000000000000000000"));
+        }
+
+        [Test]
+        public void ShortNumbersTest()
+        {
+            FPointAdapter Adapter1 = new FPointAdapter(new FPointAnatomy(8, 4));
+
+            // A noramal number 11.011 = 1.1011 2^1 = 1.1011 2^(4 - 3) => 0 100 1011
+            Assert.That(Adapter1.BinaryString(3.375), Is.EqualTo("01001011"));
+            // A noramal number -11.011 = -1.1011 2^1 = -1.1011 2^(4 - 3) => 1 100 1011
+            Assert.That(Adapter1.BinaryString(-3.375), Is.EqualTo("11001011"));
+            // A subnormal number 0.101 2^(-3) = 0.101 2^(0 - 3) => 0 000 0101
+            Assert.That(Adapter1.BinaryString(0.078125), Is.EqualTo("00000101"));
+            // A subnormal number -0.101 2^(-3) = -0.101 2^(0 - 3) => 1 000 0101
+            Assert.That(Adapter1.BinaryString(-0.078125), Is.EqualTo("10000101"));
+            // NaN => 1 111 1000
+            Assert.That(Adapter1.BinaryString(double.NaN), Is.EqualTo("11111000"));
+            // PositiveInfinity => 0 111 0000
+            Assert.That(Adapter1.BinaryString(double.PositiveInfinity), Is.EqualTo("01110000"));
+            // NegativeInfinity => 1 111 0000
+            Assert.That(Adapter1.BinaryString(double.NegativeInfinity), Is.EqualTo("11110000"));
         }
     }
 }
