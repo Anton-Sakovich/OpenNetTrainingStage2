@@ -16,6 +16,17 @@ namespace BooksTask
         public uint Pages;
         public uint Price;
 
+        public enum Tag
+        {
+            Isdbn = 0x00,
+            Author= 0x01,
+            Title = 0x02,
+            Publisher = 0x03,
+            YearPublished = 0x10,
+            Pages = 0x11,
+            Price = 0x12
+        }
+
         public Book(string isbn, string author, string title, string publisher, uint yearPublished, uint pages, uint price)
         {
             this.Isbn = isbn;
@@ -65,7 +76,7 @@ namespace BooksTask
 
         public override string ToString()
         {
-            return $"{this.GetType().Name}<{this.Title}, {this.YearPublished}>";
+            return $"{this.GetType().Name}<{this.Title} by {this.Author}, {this.YearPublished}>";
         }
 
         public bool Equals(Book other)
@@ -94,28 +105,109 @@ namespace BooksTask
 
             int CompareResult;
 
-            if ((CompareResult = this.Title.CompareTo(other.Title)) != 0)
+            foreach (IComparer<Book> comp in PrimaryComparers)
             {
-                return CompareResult;
-            } else if ((CompareResult = this.Author.CompareTo(other.Author)) != 0)
-            {
-                return CompareResult;
-            } else if ((CompareResult = this.Publisher.CompareTo(other.Publisher)) != 0)
-            {
-                return CompareResult;
+                CompareResult = comp.Compare(this, other);
+                if(CompareResult != 0)
+                {
+                    return CompareResult;
+                }
             }
-            else if (this.YearPublished != other.YearPublished)
+
+            return 0;
+        }
+
+        public sealed class IsbnComparer : IComparer<Book>
+        {
+            public int Compare(Book book1, Book book2)
             {
-                return (((int)this.YearPublished - (int)other.YearPublished) >> 31) & 1;
+                return book1.Isbn.CompareTo(book2.Isbn);
             }
-            else if (this.Pages != other.Pages)
+        }
+
+        public sealed class AuthorComparer : IComparer<Book>
+        {
+            public int Compare(Book book1, Book book2)
             {
-                return (((int)this.Pages - (int)other.Pages) >> 31) & 1;
+                return book1.Author.CompareTo(book2.Author);
             }
-            else
+        }
+
+        public sealed class TitleComparer : IComparer<Book>
+        {
+            public int Compare(Book book1, Book book2)
             {
-                return (((int)this.Price - (int)other.Price) >> 31) & 1;
+                return book1.Title.CompareTo(book2.Title);
             }
+        }
+
+        public sealed class PublisherComparer : IComparer<Book>
+        {
+            public int Compare(Book book1, Book book2)
+            {
+                return book1.Publisher.CompareTo(book2.Publisher);
+            }
+        }
+
+        public sealed class YearPublishedComparer : IComparer<Book>
+        {
+            public int Compare(Book book1, Book book2)
+            {
+                if (book1.YearPublished == book2.YearPublished)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (((int)book1.YearPublished - (int)book2.YearPublished) >> 31) & 1;
+                }
+            }
+        }
+
+        public sealed class PagesComparer : IComparer<Book>
+        {
+            public int Compare(Book book1, Book book2)
+            {
+                if (book1.Pages == book2.Pages)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (((int)book1.Pages - (int)book2.Pages) >> 31) & 1;
+                }
+            }
+        }
+
+        public sealed class PriceComparer : IComparer<Book>
+        {
+            public int Compare(Book book1, Book book2)
+            {
+                if (book1.Price == book2.Price)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return (((int)book1.Price - (int)book2.Price) >> 31) & 1;
+                }
+            }
+        }
+
+        static readonly IComparer<Book>[] PrimaryComparers = new IComparer<Book>[]
+        {
+            new TitleComparer(), new AuthorComparer(), new YearPublishedComparer(),
+            new PagesComparer(), new YearPublishedComparer()
+        };
+
+        public static bool operator ==(Book book1, Book book2)
+        {
+            return ReferenceEquals(book1, null) ? ReferenceEquals(book2, null) : book1.Equals(book2);
+        }
+
+        public static bool operator !=(Book book1, Book book2)
+        {
+            return ReferenceEquals(book1, null) ? !ReferenceEquals(book2, null) : !book1.Equals(book2);
         }
     }
 }

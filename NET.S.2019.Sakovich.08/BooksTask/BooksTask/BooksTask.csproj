@@ -53,6 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
+    <Compile Include="BookList.cs" />
+    <Compile Include="BookNotFoundException.cs" />
+    <Compile Include="BookReader.cs" />
+    <Compile Include="BookWriter.cs" />
+    <Compile Include="AddDuplicateBookException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
