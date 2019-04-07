@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BooksTask
 {
-    public class Book
+    public class Book : IEquatable<Book>, IComparable<Book>
     {
         public string Isbn;
         public string Author;
@@ -16,16 +16,22 @@ namespace BooksTask
         public uint Pages;
         public uint Price;
 
+        public Book(string isbn, string author, string title, string publisher, uint yearPublished, uint pages, uint price)
+        {
+            this.Isbn = isbn;
+            this.Author = author;
+            this.Title = title;
+            this.Publisher = publisher;
+            this.YearPublished = yearPublished;
+            this.Pages = pages;
+            this.Price = price;
+        }
+
         public override bool Equals(object obj)
         {
-            if(obj == null || obj.GetType() != this.GetType())
+            if(obj is Book Other)
             {
-                return false;
-            }
-
-            Book Other = (Book)obj;
-
-            return
+                return
                 this.Isbn == Other.Isbn &&
                 this.Author == Other.Author &&
                 this.Title == Other.Title &&
@@ -33,6 +39,11 @@ namespace BooksTask
                 this.YearPublished == Other.YearPublished &&
                 this.Pages == Other.Pages &&
                 this.Price == Other.Price;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public override int GetHashCode()
@@ -55,6 +66,56 @@ namespace BooksTask
         public override string ToString()
         {
             return $"{this.GetType().Name}<{this.Title}, {this.YearPublished}>";
+        }
+
+        public bool Equals(Book other)
+        {
+            if(other == null)
+            {
+                return false;
+            }
+
+            return
+                this.Isbn == other.Isbn &&
+                this.Author == other.Author &&
+                this.Title == other.Title &&
+                this.Publisher == other.Publisher &&
+                this.YearPublished == other.YearPublished &&
+                this.Pages == other.Pages &&
+                this.Price == other.Price;
+        }
+
+        public int CompareTo(Book other)
+        {
+            if(other == null)
+            {
+                throw new InvalidOperationException("A Book instance has been compared with null.");
+            }
+
+            int CompareResult;
+
+            if ((CompareResult = this.Title.CompareTo(other.Title)) != 0)
+            {
+                return CompareResult;
+            } else if ((CompareResult = this.Author.CompareTo(other.Author)) != 0)
+            {
+                return CompareResult;
+            } else if ((CompareResult = this.Publisher.CompareTo(other.Publisher)) != 0)
+            {
+                return CompareResult;
+            }
+            else if (this.YearPublished != other.YearPublished)
+            {
+                return (((int)this.YearPublished - (int)other.YearPublished) >> 31) & 1;
+            }
+            else if (this.Pages != other.Pages)
+            {
+                return (((int)this.Pages - (int)other.Pages) >> 31) & 1;
+            }
+            else
+            {
+                return (((int)this.Price - (int)other.Price) >> 31) & 1;
+            }
         }
     }
 }
