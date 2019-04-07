@@ -27,3 +27,7 @@ Here I will post links to solutions for the tasks.
 
 1. [PolynomialTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.05/PolynomialTask)
 2. [BubbleTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.05/BubbleTask)
+
+### Day 8
+
+1. [BooksTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.08/BooksTask)
