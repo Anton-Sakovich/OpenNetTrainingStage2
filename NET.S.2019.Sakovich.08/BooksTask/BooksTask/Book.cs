@@ -159,7 +159,7 @@ namespace BooksTask
                 }
                 else
                 {
-                    return (((int)book1.YearPublished - (int)book2.YearPublished) >> 31) & 1;
+                    return (((int)book1.YearPublished - (int)book2.YearPublished) >> 31) | 1;
                 }
             }
         }
@@ -174,7 +174,7 @@ namespace BooksTask
                 }
                 else
                 {
-                    return (((int)book1.Pages - (int)book2.Pages) >> 31) & 1;
+                    return (((int)book1.Pages - (int)book2.Pages) >> 31) | 1;
                 }
             }
         }
@@ -189,7 +189,7 @@ namespace BooksTask
                 }
                 else
                 {
-                    return (((int)book1.Price - (int)book2.Price) >> 31) & 1;
+                    return (((int)book1.Price - (int)book2.Price) >> 31) | 1;
                 }
             }
         }
