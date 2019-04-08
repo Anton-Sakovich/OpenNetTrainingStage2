@@ -9,22 +9,127 @@ namespace BooksTask
     public class Book : IEquatable<Book>, IComparable<Book>
     {
         public string Isbn;
+
+        class IsbnSelector : IBookTagSelector<string>
+        {
+            public string SelectTag(Book book) => book.Isbn;
+        }
+
         public string Author;
+
+        class AuthorSelector : IBookTagSelector<string>
+        {
+            public string SelectTag(Book book) => book.Author;
+        }
+
         public string Title;
+
+        class TitleSelector : IBookTagSelector<string>
+        {
+            public string SelectTag(Book book) => book.Title;
+        }
+
         public string Publisher;
+
+        class PublisherSelector : IBookTagSelector<string>
+        {
+            public string SelectTag(Book book) => book.Publisher;
+        }
+
         public uint YearPublished;
+
+        class YearPublishedSelector : IBookTagSelector<uint>
+        {
+            public uint SelectTag(Book book) => book.YearPublished;
+        }
+
         public uint Pages;
+
+        class PagesSelector : IBookTagSelector<uint>
+        {
+            public uint SelectTag(Book book) => book.Pages;
+        }
+
         public uint Price;
+
+        class PriceSelector : IBookTagSelector<uint>
+        {
+            public uint SelectTag(Book book) => book.Price;
+        }
 
         public enum Tag
         {
-            Isdbn = 0x00,
-            Author= 0x01,
-            Title = 0x02,
-            Publisher = 0x03,
-            YearPublished = 0x10,
-            Pages = 0x11,
-            Price = 0x12
+            Isdbn = 6,
+            Author= 1,
+            Title = 0,
+            Publisher = 2,
+            YearPublished = 3,
+            Pages = 4,
+            Price = 5
+        }
+
+        static readonly IBookTagSelector<string>[] StringTagSelectors = new IBookTagSelector<string>[]
+        {
+            new TitleSelector(),
+            new AuthorSelector(),
+            new PublisherSelector(), 
+            null,
+            null,
+            null,
+            new IsbnSelector()
+        };
+
+        static readonly IBookTagSelector<uint>[] UIntTagSelectors = new IBookTagSelector<uint>[]
+        {
+            null,
+            null,
+            null,
+            new YearPublishedSelector(),
+            new PagesSelector(),
+            new PriceSelector(),
+            null
+        };
+
+        static readonly IEqualityComparer<Book>[] BookByTagEqualityComparers = new IEqualityComparer<Book>[]
+        {
+            new BookTagEqualityComparer<string>(StringTagSelectors[(int)Book.Tag.Title]),
+            new BookTagEqualityComparer<string>(StringTagSelectors[(int)Book.Tag.Author]),
+            new BookTagEqualityComparer<string>(StringTagSelectors[(int)Book.Tag.Publisher]),
+            new BookTagEqualityComparer<uint>(UIntTagSelectors[(int)Book.Tag.YearPublished]),
+            new BookTagEqualityComparer<uint>(UIntTagSelectors[(int)Book.Tag.Pages]),
+            new BookTagEqualityComparer<uint>(UIntTagSelectors[(int)Book.Tag.Price]),
+            new BookTagEqualityComparer<string>(StringTagSelectors[(int)Book.Tag.Isdbn])
+        };
+
+        static readonly IComparer<Book>[] BookByTagComparers = new IComparer<Book>[]
+        {
+            new BookTagComaprer<string>(StringTagSelectors[(int)Book.Tag.Title]),
+            new BookTagComaprer<string>(StringTagSelectors[(int)Book.Tag.Author]),
+            new BookTagComaprer<string>(StringTagSelectors[(int)Book.Tag.Publisher]),
+            new BookTagComaprer<uint>(UIntTagSelectors[(int)Book.Tag.YearPublished]),
+            new BookTagComaprer<uint>(UIntTagSelectors[(int)Book.Tag.Pages]),
+            new BookTagComaprer<uint>(UIntTagSelectors[(int)Book.Tag.Price]),
+            new BookTagComaprer<string>(StringTagSelectors[(int)Book.Tag.Isdbn])
+        };
+
+        public static IEqualityComparer<Book> GetBookByTagEqualityComparer(Book.Tag tag)
+        {
+            return BookByTagEqualityComparers[(int)tag];
+        }
+
+        public static IComparer<Book> GetBookByTagComparer(Book.Tag tag)
+        {
+            return BookByTagComparers[(int)tag];
+        }
+
+        public static IBookTagSelector<string> GetStringTagSelector(Book.Tag tag)
+        {
+            return StringTagSelectors[(int)tag];
+        }
+
+        public static IBookTagSelector<uint> GetUIntTagSelector(Book.Tag tag)
+        {
+            return UIntTagSelectors[(int)tag];
         }
 
         public Book(string isbn, string author, string title, string publisher, uint yearPublished, uint pages, uint price)
@@ -105,7 +210,7 @@ namespace BooksTask
 
             int CompareResult;
 
-            foreach (IComparer<Book> comp in PrimaryComparers)
+            foreach (IComparer<Book> comp in BookByTagComparers)
             {
                 CompareResult = comp.Compare(this, other);
                 if(CompareResult != 0)
@@ -116,89 +221,6 @@ namespace BooksTask
 
             return 0;
         }
-
-        public sealed class IsbnComparer : IComparer<Book>
-        {
-            public int Compare(Book book1, Book book2)
-            {
-                return book1.Isbn.CompareTo(book2.Isbn);
-            }
-        }
-
-        public sealed class AuthorComparer : IComparer<Book>
-        {
-            public int Compare(Book book1, Book book2)
-            {
-                return book1.Author.CompareTo(book2.Author);
-            }
-        }
-
-        public sealed class TitleComparer : IComparer<Book>
-        {
-            public int Compare(Book book1, Book book2)
-            {
-                return book1.Title.CompareTo(book2.Title);
-            }
-        }
-
-        public sealed class PublisherComparer : IComparer<Book>
-        {
-            public int Compare(Book book1, Book book2)
-            {
-                return book1.Publisher.CompareTo(book2.Publisher);
-            }
-        }
-
-        public sealed class YearPublishedComparer : IComparer<Book>
-        {
-            public int Compare(Book book1, Book book2)
-            {
-                if (book1.YearPublished == book2.YearPublished)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return (((int)book1.YearPublished - (int)book2.YearPublished) >> 31) | 1;
-                }
-            }
-        }
-
-        public sealed class PagesComparer : IComparer<Book>
-        {
-            public int Compare(Book book1, Book book2)
-            {
-                if (book1.Pages == book2.Pages)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return (((int)book1.Pages - (int)book2.Pages) >> 31) | 1;
-                }
-            }
-        }
-
-        public sealed class PriceComparer : IComparer<Book>
-        {
-            public int Compare(Book book1, Book book2)
-            {
-                if (book1.Price == book2.Price)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return (((int)book1.Price - (int)book2.Price) >> 31) | 1;
-                }
-            }
-        }
-
-        static readonly IComparer<Book>[] PrimaryComparers = new IComparer<Book>[]
-        {
-            new TitleComparer(), new AuthorComparer(), new YearPublishedComparer(),
-            new PagesComparer(), new YearPublishedComparer()
-        };
 
         public static bool operator ==(Book book1, Book book2)
         {

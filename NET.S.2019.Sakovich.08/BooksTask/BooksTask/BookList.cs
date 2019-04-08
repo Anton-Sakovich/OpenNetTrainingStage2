@@ -72,34 +72,7 @@ namespace BooksTask
 
         public void SortBooksByTag(Book.Tag tag)
         {
-            IComparer<Book> SelectedComparer = null;
-
-            switch (tag)
-            {
-                case Book.Tag.Author:
-                    SelectedComparer = new Book.AuthorComparer();
-                    break;
-                case Book.Tag.Isdbn:
-                    SelectedComparer = new Book.IsbnComparer();
-                    break;
-                case Book.Tag.Pages:
-                    SelectedComparer = new Book.PagesComparer();
-                    break;
-                case Book.Tag.Price:
-                    SelectedComparer = new Book.PriceComparer();
-                    break;
-                case Book.Tag.Publisher:
-                    SelectedComparer = new Book.PublisherComparer();
-                    break;
-                case Book.Tag.Title:
-                    SelectedComparer = new Book.TitleComparer();
-                    break;
-                case Book.Tag.YearPublished:
-                    SelectedComparer = new Book.YearPublishedComparer();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(); // In case we modify Tag enum but forget to modify this
-            }
+            IComparer<Book> SelectedComparer = Book.GetBookByTagComparer(tag);
 
             // Insertion sort
             Book Temp;
@@ -124,29 +97,16 @@ namespace BooksTask
 
         public Book FindBookByTag(Book.Tag tag, string value)
         {
-            ITagChecker<string> SelectedChecker = null;
+            IBookTagSelector<string> Selector = Book.GetStringTagSelector(tag);
 
-            switch (tag)
+            if(Selector == null)
             {
-                case Book.Tag.Author:
-                    SelectedChecker = new AuthorChecker();
-                    break;
-                case Book.Tag.Isdbn:
-                    SelectedChecker = new IsbnChecker();
-                    break;
-                case Book.Tag.Publisher:
-                    SelectedChecker = new PublisherChecker();
-                    break;
-                case Book.Tag.Title:
-                    SelectedChecker = new TitleChecker();
-                    break;
-                default:
-                    throw new ArgumentException();
+                throw new ArgumentException("The tag specified corresponds to a non-string tag value.");
             }
 
             foreach(Book book in Books)
             {
-                if(SelectedChecker.CheckTag(book, value))
+                if(Selector.SelectTag(book) == value)
                 {
                     return book;
                 }
@@ -157,93 +117,22 @@ namespace BooksTask
 
         public Book FindBookByTag(Book.Tag tag, uint value)
         {
-            ITagChecker<uint> SelectedChecker = null;
+            IBookTagSelector<uint> Selector = Book.GetUIntTagSelector(tag);
 
-            switch (tag)
+            if (Selector == null)
             {
-                case Book.Tag.Pages:
-                    SelectedChecker = new PagesChecker();
-                    break;
-                case Book.Tag.Price:
-                    SelectedChecker = new PriceChecker();
-                    break;
-                case Book.Tag.YearPublished:
-                    SelectedChecker = new YearPublishedChecker();
-                    break;
-                default:
-                    throw new ArgumentException();
+                throw new ArgumentException("The tag specified corresponds to a non-string tag value.");
             }
 
             foreach (Book book in Books)
             {
-                if (SelectedChecker.CheckTag(book, value))
+                if (Selector.SelectTag(book) == value)
                 {
                     return book;
                 }
             }
 
             throw new BookNotFoundException();
-        }
-
-        interface ITagChecker<T>
-        {
-            bool CheckTag(Book book, T val);
-        }
-
-        class IsbnChecker : ITagChecker<string>
-        {
-            public bool CheckTag(Book book, string val)
-            {
-                return book.Isbn == val;
-            }
-        }
-
-        class AuthorChecker : ITagChecker<string>
-        {
-            public bool CheckTag(Book book, string val)
-            {
-                return book.Author == val;
-            }
-        }
-
-        class TitleChecker : ITagChecker<string>
-        {
-            public bool CheckTag(Book book, string val)
-            {
-                return book.Title == val;
-            }
-        }
-
-        class PublisherChecker : ITagChecker<string>
-        {
-            public bool CheckTag(Book book, string val)
-            {
-                return book.Publisher == val;
-            }
-        }
-
-        class YearPublishedChecker : ITagChecker<uint>
-        {
-            public bool CheckTag(Book book, uint val)
-            {
-                return book.YearPublished == val;
-            }
-        }
-
-        class PagesChecker : ITagChecker<uint>
-        {
-            public bool CheckTag(Book book, uint val)
-            {
-                return book.Pages == val;
-            }
-        }
-
-        class PriceChecker : ITagChecker<uint>
-        {
-            public bool CheckTag(Book book, uint val)
-            {
-                return book.Price == val;
-            }
         }
     }
 }
