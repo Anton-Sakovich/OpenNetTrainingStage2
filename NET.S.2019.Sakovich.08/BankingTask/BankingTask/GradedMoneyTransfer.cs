@@ -10,23 +10,25 @@ namespace BankingTask
     {
         public virtual void Apply(BonusedAccount acc, decimal sum)
         {
-            if(sum > 0)
+            Validate(acc, sum);
+
+            if (sum > 0)
             {
                 acc.Money.DepositMoney(sum);
 
                 switch (acc.Grade)
                 {
                     case BonusedAccount.Grades.Bronze:
-                        acc.Bonuses.Add((int)sum / 100 * 2);
+                        acc.AddBonuses((int)((double)sum / 100 * 2));
                         break;
                     case BonusedAccount.Grades.Silver:
-                        acc.Bonuses.Add((int)sum / 100 * 3);
+                        acc.AddBonuses((int)((double)sum / 100 * 3));
                         break;
                     case BonusedAccount.Grades.Gold:
-                        acc.Bonuses.Add((int)sum / 100 * 4);
+                        acc.AddBonuses((int)((double)sum / 100 * 4));
                         break;
                     case BonusedAccount.Grades.Platimum:
-                        acc.Bonuses.Add((int)sum / 100 * 5);
+                        acc.AddBonuses((int)((double)sum / 100 * 5));
                         break;
                     default:
                         throw new NotSupportedException();
@@ -39,16 +41,16 @@ namespace BankingTask
                     switch (acc.Grade)
                     {
                         case BonusedAccount.Grades.Bronze:
-                            acc.Bonuses.Take((int)sum / 100 * 2);
+                            acc.TakeBonuses((int)(-(double)sum / 100 * 5));
                             break;
                         case BonusedAccount.Grades.Silver:
-                            acc.Bonuses.Take((int)sum / 100 * 3);
+                            acc.TakeBonuses((int)(-(double)sum / 100 * 4));
                             break;
                         case BonusedAccount.Grades.Gold:
-                            acc.Bonuses.Take((int)sum / 100 * 4);
+                            acc.TakeBonuses((int)(-(double)sum / 100 * 3));
                             break;
                         case BonusedAccount.Grades.Platimum:
-                            acc.Bonuses.Take((int)sum / 100 * 5);
+                            acc.TakeBonuses((int)(-(double)sum / 100 * 2));
                             break;
                         default:
                             throw new NotSupportedException();

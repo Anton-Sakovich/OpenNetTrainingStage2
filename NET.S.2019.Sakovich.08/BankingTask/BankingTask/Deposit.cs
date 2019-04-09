@@ -12,6 +12,21 @@ namespace BankingTask
 
         public decimal Balance { get => _Balance; }
 
+        public Deposit(decimal initBalance)
+        {
+            if (initBalance < 0)
+            {
+                throw new ArgumentException();
+            }
+
+            _Balance = initBalance;
+        }
+
+        public Deposit()
+        {
+
+        }
+
         public void DepositMoney(decimal sum)
         {
             _Balance += sum;

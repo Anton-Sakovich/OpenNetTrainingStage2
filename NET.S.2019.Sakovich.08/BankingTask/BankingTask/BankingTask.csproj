@@ -42,11 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AccountClosedException.cs" />
     <Compile Include="BonusedAccount.cs" />
     <Compile Include="Deposit.cs" />
     <Compile Include="GradedMoneyTransfer.cs" />
     <Compile Include="MoneyTransfer.cs" />
-    <Compile Include="NonNegativeInteger.cs" />
     <Compile Include="NotEnoughMoneyException.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

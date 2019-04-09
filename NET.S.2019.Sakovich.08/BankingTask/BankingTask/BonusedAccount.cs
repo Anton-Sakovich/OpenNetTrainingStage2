@@ -8,7 +8,7 @@ namespace BankingTask
 {
     public class BonusedAccount : Account
     {
-        public NonNegativeInteger Bonuses { get; set; } = (NonNegativeInteger)0;
+        public int Bonuses { get; private set; } = 0;
         public Grades Grade { get; set; } = Grades.Base;
 
         public BonusedAccount(int id, Person holder, Deposit money = null, bool opened = true)
@@ -20,6 +20,26 @@ namespace BankingTask
         public enum Grades
         {
             Base, Bronze, Silver, Gold, Platimum
+        }
+
+        public void AddBonuses(int b)
+        {
+            if(b < 0)
+            {
+                throw new ArgumentException();
+            }
+
+            Bonuses += b;
+        }
+
+        public void TakeBonuses(int b)
+        {
+            if (b < 0)
+            {
+                throw new ArgumentException();
+            }
+
+            Bonuses = Math.Max(0, Bonuses - b);
         }
     }
 }
