@@ -31,3 +31,4 @@ Here I will post links to solutions for the tasks.
 ### Day 8
 
 1. [BooksTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.08/BooksTask)
+2. [BankingTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.08/BankingTask)
