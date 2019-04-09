@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace BankingTask
 {
+    /// <summary>
+    /// A class representing an operation on a bank account's Deposit (withdrawing money and depositing money) which
+    /// also affects the account's Bonuses if applicable.
+    /// </summary>
     public class GradedMoneyTransfer : MoneyTransfer
     {
+        /// <summary>
+        /// Applies the operation on the specified account in the specified amount.
+        /// </summary>
+        /// <param name="acc">An account to apply the operation on.</param>
+        /// <param name="sum">A cost of operation.</param>
+        /// <exception cref="AccountClosedException">Thrown when the specified account is closed.</exception>
         public virtual void Apply(BonusedAccount acc, decimal sum)
         {
             Validate(acc, sum);

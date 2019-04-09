@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankingTask
 {
+    /// <summary>
+    /// An exception thrown by money transfer operations when an account passed to them is closed.
+    /// </summary>
     public class AccountClosedException : ApplicationException
     {
     }
