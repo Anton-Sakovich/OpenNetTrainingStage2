@@ -45,7 +45,7 @@ namespace BooksTask.Tests
         {
             BookList BookList1 = new BookList(BooksSample.Books);
 
-            BookList1.SortBooksByTag(Book.Tag.Price);
+            BookList1.SortBooksByTag(Book.PriceTag);
 
             Assert.That(BookList1.Books, Is.EqualTo(BooksSample.BooksSortedByPrice));
         }
@@ -56,41 +56,32 @@ namespace BooksTask.Tests
             BookList BookList1 = new BookList(BooksSample.Books);
 
             Book Expected = BooksSample.Books[0];
-            Book Actual = BookList1.FindBookByTag(Book.Tag.Isdbn, "123");
+            Book Actual = BookList1.FindBookByTag(Book.IsbnTag, "123");
             Assert.AreEqual(Actual, Expected);
 
             Expected = BooksSample.Books[1];
-            Actual = BookList1.FindBookByTag(Book.Tag.Author, "Author2");
+            Actual = BookList1.FindBookByTag(Book.AuthorTag, "Author2");
             Assert.AreEqual(Actual, Expected);
 
             Expected = BooksSample.Books[0];
-            Actual = BookList1.FindBookByTag(Book.Tag.Title, "Title1");
+            Actual = BookList1.FindBookByTag(Book.TitleTag, "Title1");
             Assert.AreEqual(Actual, Expected);
 
             Expected = BooksSample.Books[1];
-            Actual = BookList1.FindBookByTag(Book.Tag.Publisher, "Publisher2");
+            Actual = BookList1.FindBookByTag(Book.PublisherTag, "Publisher2");
             Assert.AreEqual(Actual, Expected);
 
             Expected = BooksSample.Books[0];
-            Actual = BookList1.FindBookByTag(Book.Tag.YearPublished, 1995);
+            Actual = BookList1.FindBookByTag(Book.YearPublishedTag, (uint)1995);
             Assert.AreEqual(Actual, Expected);
 
             Expected = BooksSample.Books[1];
-            Actual = BookList1.FindBookByTag(Book.Tag.Pages, 304);
+            Actual = BookList1.FindBookByTag(Book.PagesTag, (uint)304);
             Assert.AreEqual(Actual, Expected);
 
             Expected = BooksSample.Books[0];
-            Actual = BookList1.FindBookByTag(Book.Tag.Price, 102);
+            Actual = BookList1.FindBookByTag(Book.PriceTag, (uint)102);
             Assert.AreEqual(Actual, Expected);
-        }
-
-        [Test]
-        public void FindBookByTag_TagValueMismatch_ExceptionThrown()
-        {
-            BookList BookList1 = new BookList(BooksSample.Books);
-
-            Assert.That(() => BookList1.FindBookByTag(Book.Tag.Isdbn, 123), Throws.TypeOf<ArgumentException>());
-            Assert.That(() => BookList1.FindBookByTag(Book.Tag.Price, "Good damn it, it is a string!"), Throws.TypeOf<ArgumentException>());
         }
 
         [Test]
@@ -98,7 +89,7 @@ namespace BooksTask.Tests
         {
             BookList BookList1 = new BookList(BooksSample.Books);
 
-            Assert.That(() => BookList1.FindBookByTag(Book.Tag.Isdbn, "Foo"), Throws.TypeOf<BookNotFoundException>());
+            Assert.That(() => BookList1.FindBookByTag(Book.IsbnTag, "Foo"), Throws.TypeOf<BookNotFoundException>());
         }
     }
 }

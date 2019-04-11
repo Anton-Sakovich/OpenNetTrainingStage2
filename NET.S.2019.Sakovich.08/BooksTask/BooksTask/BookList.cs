@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-
-namespace BooksTask
+﻿namespace BooksTask
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class BookList
     {
         public readonly IList<Book> Books;
@@ -70,22 +70,21 @@ namespace BooksTask
             Books.Remove(removeBook);
         }
 
-        public void SortBooksByTag(Book.Tag tag)
+        public void SortBooksByTag<T>(IBookTag<T> tag)
+            where T : IComparable<T>
         {
-            IComparer<Book> SelectedComparer = Book.GetBookByTagComparer(tag);
-
             // Insertion sort
-            Book Temp;
+            Book temp;
 
-            for (int Outer = 1; Outer < Books.Count; Outer++)
+            for (int outer = 1; outer < this.Books.Count; outer++)
             {
-                for (int Inner = Outer; Inner > 0; Inner--)
+                for (int inner = outer; inner > 0; inner--)
                 {
-                    if (SelectedComparer.Compare(Books[Inner - 1], Books[Inner]) > 0)
+                    if (tag.GetTag(this.Books[inner - 1]).CompareTo(tag.GetTag(this.Books[inner])) > 0)
                     {
-                        Temp = Books[Inner - 1];
-                        Books[Inner - 1] = Books[Inner];
-                        Books[Inner] = Temp;
+                        temp = this.Books[inner - 1];
+                        this.Books[inner - 1] = this.Books[inner];
+                        this.Books[inner] = temp;
                     }
                     else
                     {
@@ -95,38 +94,12 @@ namespace BooksTask
             }
         }
 
-        public Book FindBookByTag(Book.Tag tag, string value)
+        public Book FindBookByTag<T>(IBookTag<T> tag, T value)
+            where T : IEquatable<T>
         {
-            IBookTagSelector<string> Selector = Book.GetStringTagSelector(tag);
-
-            if(Selector == null)
+            foreach (Book book in this.Books)
             {
-                throw new ArgumentException("The tag specified corresponds to a non-string tag value.");
-            }
-
-            foreach(Book book in Books)
-            {
-                if(Selector.SelectTag(book) == value)
-                {
-                    return book;
-                }
-            }
-
-            throw new BookNotFoundException();
-        }
-
-        public Book FindBookByTag(Book.Tag tag, uint value)
-        {
-            IBookTagSelector<uint> Selector = Book.GetUIntTagSelector(tag);
-
-            if (Selector == null)
-            {
-                throw new ArgumentException("The tag specified corresponds to a non-string tag value.");
-            }
-
-            foreach (Book book in Books)
-            {
-                if (Selector.SelectTag(book) == value)
+                if (tag.GetTag(book).Equals(value))
                 {
                     return book;
                 }

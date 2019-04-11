@@ -56,9 +56,7 @@
     <Compile Include="BookList.cs" />
     <Compile Include="BookNotFoundException.cs" />
     <Compile Include="BookReader.cs" />
-    <Compile Include="BookTagComaprer.cs" />
-    <Compile Include="BookTagEqualityComparer.cs" />
-    <Compile Include="IBookTagSelector.cs" />
+    <Compile Include="IBookTag.cs" />
     <Compile Include="BookWriter.cs" />
     <Compile Include="AddDuplicateBookException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
