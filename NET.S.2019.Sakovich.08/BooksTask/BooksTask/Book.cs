@@ -104,6 +104,11 @@ namespace BooksTask
                 format = @"Book(\tt by \ar)";
             }
 
+            if (provider == null)
+            {
+                provider = CultureInfo.CurrentCulture;
+            }
+
             StringBuilder result = new StringBuilder();
 
             int processedLength = 0;
