@@ -61,7 +61,7 @@ namespace BooksTask
         public override bool Equals(object obj)
         {
             var book = obj as Book;
-            return book != null &&
+            return !ReferenceEquals(book, null) &&
                    this.Isbn == book.Isbn &&
                    this.Author == book.Author &&
                    this.Title == book.Title &&
@@ -94,7 +94,7 @@ namespace BooksTask
 
         public bool Equals(Book other)
         {
-            if (other == null)
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
@@ -111,7 +111,7 @@ namespace BooksTask
 
         public int CompareTo(Book other)
         {
-            if (other == null)
+            if (ReferenceEquals(other, null))
             {
                 throw new InvalidOperationException("A Book instance has been compared with null.");
             }
