@@ -49,6 +49,7 @@
     <Compile Include="BookListTests.cs" />
     <Compile Include="BooksSample.cs" />
     <Compile Include="BookTests.cs" />
+    <Compile Include="FancyBookFormatterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
