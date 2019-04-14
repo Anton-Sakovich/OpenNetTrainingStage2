@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BooksTask
 {
-    public class Book : IEquatable<Book>, IComparable<Book>
+    public class Book : IEquatable<Book>, IComparable<Book>, IFormattable
     {
         public static readonly IBookTag<string> TitleTag = new TitleBookTag();
 
@@ -89,7 +89,93 @@ namespace BooksTask
 
         public override string ToString()
         {
-            return $"{this.GetType().Name}<{this.Title} by {this.Author}, {this.YearPublished}>";
+            return ToString("G");
+        }
+
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        public string ToString(string format, IFormatProvider provider)
+        {
+            if (string.IsNullOrEmpty(format) || format == "G")
+            {
+                format = @"Book(\tt by \ar)";
+            }
+
+            StringBuilder result = new StringBuilder();
+
+            int processedLength = 0;
+            int backslashPosition = 0;
+
+            while (processedLength < format.Length)
+            {
+                backslashPosition = format.IndexOf('\\', processedLength);
+
+                if (backslashPosition == -1)
+                {
+                    result.Append(format.Substring(processedLength));
+                    break;
+                }
+
+                result.Append(format.Substring(processedLength, backslashPosition - processedLength));
+                processedLength = backslashPosition + 1;
+
+                if (backslashPosition + 1 >= format.Length)
+                {
+                    throw new FormatException("Format string " + format + " has a backslash not followed by a valid token.");
+                }
+                else if (format[backslashPosition + 1] == '\\')
+                {
+                    result.Append("\\");
+                    processedLength += 1;
+                }
+                else if (backslashPosition + 2 >= format.Length)
+                {
+                    throw new FormatException("Format string " + format + " has a backslash not followed by a valid token.");
+                }
+                else
+                {
+                    string tag = format.Substring(backslashPosition + 1, 2);
+                    processedLength += 2;
+
+                    if (tag == "tt")
+                    {
+                        result.Append(Title.ToString(provider));
+                    }
+                    else if (tag == "ar")
+                    {
+                        result.Append(Author.ToString(provider));
+                    }
+                    else if (tag == "pu")
+                    {
+                        result.Append(Publisher.ToString(provider));
+                    }
+                    else if (tag == "yp")
+                    {
+                        result.Append(YearPublished.ToString(provider));
+                    }
+                    else if (tag == "pp")
+                    {
+                        result.Append(Pages.ToString(provider));
+                    }
+                    else if (tag == "bn")
+                    {
+                        result.Append(Isbn.ToString(provider));
+                    }
+                    else if (tag == "pr")
+                    {
+                        result.Append(Price.ToString(provider));
+                    }
+                    else
+                    {
+                        throw new FormatException("Format string " + format + " has a backslash not followed by a valid token.");
+                    }
+                }
+            }
+
+            return result.ToString();
         }
 
         public bool Equals(Book other)
