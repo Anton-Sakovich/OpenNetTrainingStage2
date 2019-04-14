@@ -10,7 +10,7 @@ namespace BooksTask.Tests
     [TestFixture]
     public class BookTests
     {
-        private static readonly Book TheArtOfTimeRewindingBook = new Book("1234", "Max Caulfield", "The Art of Time Rewinding", "Blackwell Academy", 2013, 123, 205);
+        public static readonly Book TheArtOfTimeRewindingBook = new Book("1234", "Max Caulfield", "The Art of Time Rewinding", "Blackwell Academy", 2013, 123, 205);
 
         [Test]
         public void ToString_ValidTokens_Test()
