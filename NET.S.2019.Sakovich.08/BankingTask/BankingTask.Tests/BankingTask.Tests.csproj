@@ -46,6 +46,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountIOTests.cs" />
     <Compile Include="DepositTests.cs" />
     <Compile Include="GradedMoneyTransferTests.cs" />
     <Compile Include="MoneyTransferTests.cs" />
