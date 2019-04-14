@@ -236,6 +236,16 @@ namespace BooksTask
             return 0;
         }
 
+        public T GetTagValue<T>(IBookTag<T> tag)
+        {
+            if(tag == null)
+            {
+                throw new ArgumentNullException(nameof(tag));
+            }
+
+            return tag.GetTag(this);
+        }
+
         private class IsbnBookTag : IBookTag<string>
         {
             public string GetTag(Book book)
