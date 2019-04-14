@@ -25,10 +25,10 @@ namespace BooksTask
 
         public Book(string isbn, string author, string title, string publisher, uint yearPublished, uint pages, uint price)
         {
-            this.Isbn = isbn;
-            this.Author = author;
-            this.Title = title;
-            this.Publisher = publisher;
+            this.Isbn = isbn ?? throw new ArgumentNullException(nameof(isbn));
+            this.Author = author ?? throw new ArgumentNullException(nameof(author));
+            this.Title = title ?? throw new ArgumentNullException(nameof(title));
+            this.Publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
             this.YearPublished = yearPublished;
             this.Pages = pages;
             this.Price = price;
