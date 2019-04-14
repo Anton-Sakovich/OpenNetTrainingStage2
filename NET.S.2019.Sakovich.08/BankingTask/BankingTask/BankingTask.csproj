@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="AccountClosedException.cs" />
+    <Compile Include="BinaryReaderExtensions.cs" />
     <Compile Include="BonusedAccount.cs" />
     <Compile Include="Deposit.cs" />
     <Compile Include="GradedMoneyTransfer.cs" />
