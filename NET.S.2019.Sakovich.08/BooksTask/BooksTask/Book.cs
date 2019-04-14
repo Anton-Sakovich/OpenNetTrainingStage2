@@ -1,15 +1,12 @@
-﻿// <copyright file="Book.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BooksTask
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
     public class Book : IEquatable<Book>, IComparable<Book>
     {
         public static readonly IBookTag<string> TitleTag = new TitleBookTag();
