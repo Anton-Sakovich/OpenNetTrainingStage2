@@ -89,12 +89,17 @@ namespace BooksTask
 
         public override string ToString()
         {
-            return ToString("G");
+            return ToString("G", CultureInfo.CurrentCulture);
         }
 
         public string ToString(string format)
         {
             return ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        public string ToString(IFormatProvider provider)
+        {
+            return ToString("G", provider);
         }
 
         public string ToString(string format, IFormatProvider provider)
