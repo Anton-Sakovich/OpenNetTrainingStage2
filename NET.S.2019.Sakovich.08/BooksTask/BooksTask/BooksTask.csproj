@@ -56,6 +56,7 @@
     <Compile Include="BookList.cs" />
     <Compile Include="BookNotFoundException.cs" />
     <Compile Include="BookReader.cs" />
+    <Compile Include="FancyBookFormatter.cs" />
     <Compile Include="IBookTag.cs" />
     <Compile Include="BookWriter.cs" />
     <Compile Include="AddDuplicateBookException.cs" />
