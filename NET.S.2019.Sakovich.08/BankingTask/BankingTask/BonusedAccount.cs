@@ -22,14 +22,23 @@ namespace BankingTask
         public Grades Grade { get; set; } = Grades.Base;
 
         /// <summary>
-        /// Creates a new BonusedAccount with zero bonuses and Base Grade.
+        /// Creates a new BonusedAccount.
         /// </summary>
         /// <param name="id">Account identification number.</param>
         /// <param name="holder">Account's holder.</param>
         /// <param name="money">A money deposit attached to the account.</param>
         /// <param name="opened">A flag indicating whether the account is opened for operations.</param>
-        public BonusedAccount(int id, Person holder, Deposit money = null, bool opened = true)
+        /// <param name="bonuses">Initial value of bonuses attached.</param>
+        /// <param name="grade">Initial grade of the account.</param>
+        public BonusedAccount(int id, Person holder, Deposit money = null, bool opened = true, int bonuses = 0, Grades grade = Grades.Base)
             : base(id, holder, money, opened)
+        {
+            Bonuses = bonuses;
+            Grade = grade;
+        }
+
+        public BonusedAccount(Account acc, int bonuses = 0, Grades grade = Grades.Base)
+            : this(acc.ID, acc.Holder, acc.Money, acc.IsOpened, bonuses, grade)
         {
 
         }
