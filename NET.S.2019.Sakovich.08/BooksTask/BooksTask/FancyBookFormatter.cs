@@ -10,7 +10,7 @@ namespace BooksTask
     {
         public object GetFormat(Type formatType)
         {
-            if(formatType == typeof(ICustomFormatter))
+            if (formatType == typeof(ICustomFormatter))
             {
                 return this;
             }
@@ -36,7 +36,7 @@ namespace BooksTask
             {
                 return formattable.ToString(format, provider);
             }
-            else if(arg != null)
+            else if (arg != null)
             {
                 return arg.ToString();
             }

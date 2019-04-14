@@ -248,7 +248,7 @@ namespace BooksTask
 
         public T GetTagValue<T>(IBookTag<T> tag)
         {
-            if(tag == null)
+            if (tag == null)
             {
                 throw new ArgumentNullException(nameof(tag));
             }

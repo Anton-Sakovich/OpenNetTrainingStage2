@@ -1,12 +1,12 @@
-﻿namespace BooksTask
-{
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace BooksTask
+{
     public class BookList
     {
         public readonly IList<Book> Books;
@@ -16,43 +16,43 @@
             Books = booksSource.ToList();
         }
 
-        BookList(List<Book> booksSource)
+        private BookList(List<Book> booksSource)
         {
             Books = booksSource;
         }
 
-        public void SaveToFile(string fname)
-        {
-            using (BookWriter Writer = new BookWriter(new BinaryWriter(new FileStream(fname, FileMode.Create))))
-            {
-                foreach(Book book in Books)
-                {
-                    Writer.WriteBook(book);
-                }
-            }
-        }
-
         public static BookList LoadFromFile(string fname)
         {
-            List<Book> BooksSoure = new List<Book>();
+            List<Book> booksSoure = new List<Book>();
 
-            using (FileStream FStream = new FileStream(fname, FileMode.Open, FileAccess.Read))
+            using (FileStream fstream = new FileStream(fname, FileMode.Open, FileAccess.Read))
             {
-                using (BookReader Reader = new BookReader(new BinaryReader(FStream)))
+                using (BookReader reader = new BookReader(new BinaryReader(fstream)))
                 {
-                    while (FStream.Position < FStream.Length)
+                    while (fstream.Position < fstream.Length)
                     {
-                        BooksSoure.Add(Reader.ReadBook());
+                        booksSoure.Add(reader.ReadBook());
                     }
                 }
             }
 
-            return new BookList(BooksSoure);
+            return new BookList(booksSoure);
+        }
+
+        public void SaveToFile(string fname)
+        {
+            using (BookWriter writer = new BookWriter(new BinaryWriter(new FileStream(fname, FileMode.Create))))
+            {
+                foreach (Book book in Books)
+                {
+                    writer.WriteBook(book);
+                }
+            }
         }
 
         public void AddBook(Book newBook)
         {
-            if(Books.Contains(newBook))
+            if (Books.Contains(newBook))
             {
                 throw new AddDuplicateBookException();
             }
@@ -62,7 +62,7 @@
 
         public void RemoveBook(Book removeBook)
         {
-            if(!Books.Contains(removeBook))
+            if (!Books.Contains(removeBook))
             {
                 throw new BookNotFoundException();
             }

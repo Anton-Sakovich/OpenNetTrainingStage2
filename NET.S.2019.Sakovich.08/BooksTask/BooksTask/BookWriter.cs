@@ -1,37 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace BooksTask
 {
     public class BookWriter : IDisposable
     {
-        readonly BinaryWriter _Writer;
+        private readonly BinaryWriter _writer;
 
         public BookWriter(BinaryWriter writer)
         {
-            _Writer = writer;
+            _writer = writer;
         }
 
         public void WriteBook(Book target)
         {
-            if(target == null)
+            if (target == null)
             {
                 return;
             }
 
             try
             {
-                this._Writer.Write(target.Isbn);
-                this._Writer.Write(target.Author);
-                this._Writer.Write(target.Title);
-                this._Writer.Write(target.Publisher);
-                this._Writer.Write(target.YearPublished);
-                this._Writer.Write(target.Pages);
-                this._Writer.Write(target.Price);
+                this._writer.Write(target.Isbn);
+                this._writer.Write(target.Author);
+                this._writer.Write(target.Title);
+                this._writer.Write(target.Publisher);
+                this._writer.Write(target.YearPublished);
+                this._writer.Write(target.Pages);
+                this._writer.Write(target.Price);
             }
             catch (IOException exc)
             {
@@ -46,12 +46,12 @@ namespace BooksTask
         // Because BookWriter is just an adapter we use a short form of Dispose pattern.
         public void Dispose()
         {
-            _Writer.Dispose();
+            _writer.Dispose();
         }
 
         public void Close()
         {
-            _Writer.Close();
+            _writer.Close();
         }
     }
 }
