@@ -91,5 +91,112 @@ namespace BooksTask.Tests
 
             Assert.That(() => BookList1.FindBookByTag(Book.IsbnTag, "Foo"), Throws.TypeOf<BookNotFoundException>());
         }
+
+        private void OnChangingBookBase(Action<BookList, EventHandler<BookChangedEventArgs>> subscriber, Action<BookList, Book> trigger, bool subscribe)
+        {
+            BookList expectedBookList = new BookList(BooksSample.Books);
+            Book expectedBook = BooksSample.LifeIsStrangeBook;
+
+            BookList actualBookList = null;
+            Book actualBook = null;
+
+            if (subscribe)
+            {
+                subscriber(expectedBookList, (sender, e) => { actualBookList = (BookList)sender; actualBook = e.ChangedBook; });
+            }
+
+            trigger(expectedBookList, expectedBook);
+
+            if (subscribe)
+            {
+                Assert.That(actualBookList, Is.EqualTo(expectedBookList));
+                Assert.That(actualBook, Is.EqualTo(expectedBook));
+            }
+            else
+            {
+                Assert.That(actualBookList, Is.Null);
+                Assert.That(actualBook, Is.Null);
+            }
+        }
+
+        [Test]
+        public void OnAddingBook_HasHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.AddingBook += handler,
+                (blist, book) => blist.AddBook(book),
+                true
+            );
+        }
+
+        [Test]
+        public void OnAddingBook_NoHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.AddingBook += handler,
+                (blist, book) => blist.AddBook(book),
+                false
+            );
+        }
+
+        [Test]
+        public void OnBookAdded_HasHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.BookAdded += handler,
+                (blist, book) => blist.AddBook(book),
+                true
+            );
+        }
+
+        [Test]
+        public void OnBookAdded_NoHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.BookAdded += handler,
+                (blist, book) => blist.AddBook(book),
+                false
+            );
+        }
+
+        [Test]
+        public void OnRemovingBook_HasHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.RemovingBook += handler,
+                (blist, book) => { blist.AddBook(book);  blist.RemoveBook(book); },
+                true
+            );
+        }
+
+        [Test]
+        public void OnRemovingBook_NoHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.RemovingBook += handler,
+                (blist, book) => { blist.AddBook(book); blist.RemoveBook(book); },
+                false
+            );
+        }
+
+        [Test]
+        public void OnBookRemoved_HasHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.BookRemoved += handler,
+                (blist, book) => { blist.AddBook(book); blist.RemoveBook(book); },
+                true
+            );
+        }
+
+        [Test]
+        public void OnBookRemoved_NoHandlers_Test()
+        {
+            OnChangingBookBase(
+                (blist, handler) => blist.BookRemoved += handler,
+                (blist, book) => { blist.AddBook(book); blist.RemoveBook(book); },
+                false
+            );
+        }
     }
 }
