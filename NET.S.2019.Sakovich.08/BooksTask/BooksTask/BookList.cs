@@ -39,6 +39,34 @@ namespace BooksTask
             return new BookList(booksSoure);
         }
 
+        public event EventHandler<BookChangedEventArgs> AddingBook;
+
+        public event EventHandler<BookChangedEventArgs> BookAdded;
+
+        public event EventHandler<BookChangedEventArgs> RemovingBook;
+
+        public event EventHandler<BookChangedEventArgs> BookRemoved;
+
+        private void OnAddingBook(Book addBook)
+        {
+            AddingBook?.Invoke(this, new BookChangedEventArgs(addBook));
+        }
+
+        private void OnBookAdded(Book addBook)
+        {
+            BookAdded?.Invoke(this, new BookChangedEventArgs(addBook));
+        }
+
+        private void OnRemovingBook(Book removeBook)
+        {
+            RemovingBook?.Invoke(this, new BookChangedEventArgs(removeBook));
+        }
+
+        private void OnBookRemoved(Book removeBook)
+        {
+            BookRemoved?.Invoke(this, new BookChangedEventArgs(removeBook));
+        }
+
         public IReadOnlyList<Book> Books
         {
             get
@@ -65,7 +93,11 @@ namespace BooksTask
                 throw new AddDuplicateBookException();
             }
 
+            OnAddingBook(newBook);
+
             books.Add(newBook);
+
+            OnBookAdded(newBook);
         }
 
         public void RemoveBook(Book removeBook)
@@ -75,7 +107,11 @@ namespace BooksTask
                 throw new BookNotFoundException();
             }
 
+            OnRemovingBook(removeBook);
+
             books.Remove(removeBook);
+
+            OnBookRemoved(removeBook);
         }
 
         public void SortBooksByTag<T>(IBookTag<T> tag)
