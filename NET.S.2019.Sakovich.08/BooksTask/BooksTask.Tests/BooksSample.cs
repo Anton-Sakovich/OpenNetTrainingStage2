@@ -8,6 +8,8 @@ namespace BooksTask.Tests
 {
     static class BooksSample
     {
+        public static readonly Book LifeIsStrangeBook = new Book("123", "Max Caulfield", "Life is Strange", "Blackwell Academy", 2013, 202, 47);
+
         public static Book[] Books = new Book[]
         {
             new Book("123", "Author1", "Title1", "Publisher1", 1995, 202, 102),
