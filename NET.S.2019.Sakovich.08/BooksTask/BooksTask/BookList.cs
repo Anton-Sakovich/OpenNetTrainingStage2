@@ -9,16 +9,16 @@ namespace BooksTask
 {
     public class BookList
     {
-        public readonly IList<Book> Books;
+        private IList<Book> books;
 
         public BookList(IEnumerable<Book> booksSource)
         {
-            Books = booksSource.ToList();
+            books = booksSource.ToList();
         }
 
         private BookList(List<Book> booksSource)
         {
-            Books = booksSource;
+            books = booksSource;
         }
 
         public static BookList LoadFromFile(string fname)
@@ -39,11 +39,19 @@ namespace BooksTask
             return new BookList(booksSoure);
         }
 
+        public IReadOnlyList<Book> Books
+        {
+            get
+            {
+                return (IReadOnlyList<Book>)books;
+            }
+        }
+
         public void SaveToFile(string fname)
         {
             using (BookWriter writer = new BookWriter(new BinaryWriter(new FileStream(fname, FileMode.Create))))
             {
-                foreach (Book book in Books)
+                foreach (Book book in books)
                 {
                     writer.WriteBook(book);
                 }
@@ -52,22 +60,22 @@ namespace BooksTask
 
         public void AddBook(Book newBook)
         {
-            if (Books.Contains(newBook))
+            if (books.Contains(newBook))
             {
                 throw new AddDuplicateBookException();
             }
 
-            Books.Add(newBook);
+            books.Add(newBook);
         }
 
         public void RemoveBook(Book removeBook)
         {
-            if (!Books.Contains(removeBook))
+            if (!books.Contains(removeBook))
             {
                 throw new BookNotFoundException();
             }
 
-            Books.Remove(removeBook);
+            books.Remove(removeBook);
         }
 
         public void SortBooksByTag<T>(IBookTag<T> tag)
@@ -76,15 +84,15 @@ namespace BooksTask
             // Insertion sort
             Book temp;
 
-            for (int outer = 1; outer < this.Books.Count; outer++)
+            for (int outer = 1; outer < this.books.Count; outer++)
             {
                 for (int inner = outer; inner > 0; inner--)
                 {
-                    if (tag.GetTag(this.Books[inner - 1]).CompareTo(tag.GetTag(this.Books[inner])) > 0)
+                    if (tag.GetTag(this.books[inner - 1]).CompareTo(tag.GetTag(this.books[inner])) > 0)
                     {
-                        temp = this.Books[inner - 1];
-                        this.Books[inner - 1] = this.Books[inner];
-                        this.Books[inner] = temp;
+                        temp = this.books[inner - 1];
+                        this.books[inner - 1] = this.books[inner];
+                        this.books[inner] = temp;
                     }
                     else
                     {
@@ -97,7 +105,7 @@ namespace BooksTask
         public Book FindBookByTag<T>(IBookTag<T> tag, T value)
             where T : IEquatable<T>
         {
-            foreach (Book book in this.Books)
+            foreach (Book book in this.books)
             {
                 if (tag.GetTag(book).Equals(value))
                 {
