@@ -8,57 +8,105 @@ namespace TimerTask
 {
     internal class SimpleTimer
     {
-        private TimeSpan _now;
+        // This is what SimpleTimer "displays".
+        private long _ticks;
 
+        // This is the length of one SimpleTimer's tick
+        private long _step;
+
+        // This is what tells us whether SimpleTimier is running.
         private bool _isTicking;
 
-        public SimpleTimer(TimeSpan initialTime)
+        // This is a Task in which a SimpleTimer object runs
+        private Task _tickingTask;
+
+        // This lock is used to ensure that no thread can start or stop SimpleTimer before a pending
+        // start/stop request is completed.
+        private readonly object _startStopLock = new object();
+
+        public SimpleTimer(long ticks, long step)
         {
-            _now = initialTime;
+            _ticks = ticks;
+            _step = step;
             _isTicking = false;
         }
 
-        public TimeSpan Now { get => _now; }
+        public event EventHandler<TimerEventArgs> TimeElapsed;
+
+        public event EventHandler<TimerEventArgs> CountdownInterrupted;
+
+        public long Ticks { get => _ticks < 0L ? 0L : _ticks; }
+
+        public long Step { get => _step; }
 
         public bool IsTicking { get => _isTicking; }
 
-        public SimpleTimer Set(TimeSpan newTime)
+        public SimpleTimer Set(long newTicks)
         {
-            // It is important to stop the timer before changing its state manually
-            // because it can be counting down.
-            Stop();
-            _now = newTime;
+            lock (_startStopLock)
+            {
+                Stop();
+                _ticks = newTicks;
+            }
 
             return this;
         }
 
-        public Task Start()
+        public void Start()
         {
-            Action tickingAction = () =>
+            lock (_startStopLock)
             {
-                _isTicking = true;
-
-                while (_isTicking && _now.Milliseconds > 0)
+                if (_isTicking)
                 {
-                    Tick();
+                    return;
+                }
+                else
+                {
+                    _isTicking = true;
                 }
 
-                _isTicking = false;
-            };
-
-            Task tickingTask = Task.Run(tickingAction);
-
-            return tickingTask;
+                _tickingTask = Task.Run(new Action(Tick));
+            }
         }
 
         public void Stop()
         {
-            _isTicking = false;
+            lock (_startStopLock)
+            {
+                if (_isTicking)
+                {
+                    _isTicking = false;
+
+                    _tickingTask?.Wait();
+                }
+            }
         }
 
         private void Tick()
         {
-            _now.Subtract(new TimeSpan(0, 0, 0, 0, 100));
+            while (_isTicking && _ticks > 0)
+            {
+                _ticks -= _step;
+            }
+
+            if (_isTicking)
+            {
+                 OnTimeElapsed();
+            }
+            else
+            {
+                OnCountdownInterrupted();
+            }
+        }
+
+        private void OnTimeElapsed()
+        {
+            TimeElapsed?.Invoke(this, new TimerEventArgs(_ticks));
+        }
+
+        private void OnCountdownInterrupted()
+        {
+            CountdownInterrupted?.Invoke(this, new TimerEventArgs(_ticks));
         }
     }
 }
