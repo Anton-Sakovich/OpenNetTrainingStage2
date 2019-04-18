@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TimerTask
@@ -84,14 +85,16 @@ namespace TimerTask
 
         private void Tick()
         {
-            while (_isTicking && _ticks > 0)
+            while (_isTicking && (_ticks > 0))
             {
                 _ticks -= _step;
+                Thread.Sleep((int) (_step / 10000L));
             }
 
             if (_isTicking)
             {
-                 OnTimeElapsed();
+                _isTicking = false;
+                OnTimeElapsed();
             }
             else
             {
