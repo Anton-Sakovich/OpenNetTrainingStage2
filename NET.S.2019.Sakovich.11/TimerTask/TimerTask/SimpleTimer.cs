@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TimerTask
 {
-    internal class SimpleTimer
+    internal class SimpleTimer : ITimerOutput
     {
         // This is what SimpleTimer "displays".
         private long _ticks;
