@@ -42,6 +42,8 @@ namespace TimerTask
 
         public bool IsTicking { get => _isTicking; }
 
+        public Task TickingTask { get => _tickingTask; }
+
         public SimpleTimer Set(long newTicks)
         {
             lock (_startStopLock)
