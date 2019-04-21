@@ -36,3 +36,4 @@ Here I will post links to solutions for the tasks.
 ### Day 11
 
 1. [TimerTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.11/TimerTask)
+2. [GenBinSearchTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.11/GenBinSearchTask)
