@@ -9,15 +9,20 @@ namespace FibonacciTask
 {
     public class Fibonacci : IEnumerable<int>, IEnumerable, IEnumerator<int>, IEnumerator
     {
-        // Current element, lies in range 0 (before first), 1, 1, 2, 3, ..., max, max + ... (after last)
+        // Current element, lies in range 0 (before first), 1, 1, 2, 3, ..., <=max (last), > max (after last)
         private int current = 0;
 
         // Next element
         private int next = 1;
 
-        // Maximal value which current element can take for Fibonacci to be an active enumerator
+        // Upper bound for a valid current
         private int max;
 
+        /// <summary>
+        /// Creates a new Fibonacci sequence whose last element is not greater than an upper bound.
+        /// </summary>
+        /// <param name="max">The upper bound for the given sequence.</param>
+        /// <exception cref="ArgumentException">Thrown when the upper bound provided is less than one.</exception>
         public Fibonacci(int max)
         {
             if (max < 1)
@@ -28,6 +33,12 @@ namespace FibonacciTask
             this.max = max;
         }
 
+        /// <summary>
+        /// Returns the current element of the Fibonacci sequence.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// Thrown when the Fibonacci sequence has not been started or has been completed.
+        /// </exception>
         public int Current
         {
             get
@@ -59,6 +70,13 @@ namespace FibonacciTask
             return this;
         }
 
+        /// <summary>
+        /// Moves to the next element in the Fibonacci sequence.
+        /// </summary>
+        /// <returns>
+        /// True if the move resulted in a valid sequence element and False if the
+        /// sequnce has been finished.
+        /// </returns>
         public bool MoveNext()
         {
             if (current > max)
@@ -73,6 +91,9 @@ namespace FibonacciTask
             return current <= max;
         }
 
+        /// <summary>
+        /// Resets the Fibonacci sequence.
+        /// </summary>
         public void Reset()
         {
             current = 0;
