@@ -25,29 +25,25 @@ namespace GenBinSearchTask
                 throw new ArgumentException("Data list must contain at least one element.", nameof(data));
             }
 
-            int first = 0;
+            int left = 0;
+            int right = data.Count - 1;
             int middle;
-            int half;
-            int order;
 
-            for (int count = data.Count; count > 1; count = half)
+            while (left < right)
             {
-                half = count / 2;
-                middle = first + half;
-                order = comp(value, data[middle]);
+                middle = (left + right) >> 1;
 
-                if (order == 0)
+                if (comp(value, data[middle]) > 0)
                 {
-                    return middle;
+                    left = middle + 1;
                 }
-
-                if (order > 0)
+                else
                 {
-                    first = middle;
+                    right = middle;
                 }
             }
 
-            return comp(value, data[first]) == 0 ? first : ~first;
+            return comp(value, data[left]) == 0 ? left : ~left;
         }
     }
 }
