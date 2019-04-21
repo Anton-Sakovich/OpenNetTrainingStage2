@@ -8,6 +8,17 @@ namespace GenBinSearchTask
 {
     public class GenBinSearch
     {
+        /// <summary>
+        /// Returns the position of the specified element in a sorted list using a delegate to
+        /// compare values of the list and binary search algorithm.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the list.</typeparam>
+        /// <param name="data">The sorted list to search in.</param>
+        /// <param name="value">The value to search for.</param>
+        /// <param name="comp">The delegate to use to compare different values in the list.</param>
+        /// <returns>The position of the specified element.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if either the list or the delegate is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if the list is empty.</exception>
         public static int BinarySearch<T>(IList<T> data, T value, Func<T, T, int> comp)
         {
             if (data == null)
