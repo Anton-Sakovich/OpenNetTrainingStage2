@@ -20,6 +20,11 @@ namespace FibonacciTask
 
         public Fibonacci(int max)
         {
+            if (max < 1)
+            {
+                throw new ArgumentException("The upper bound must be not less than one.", nameof(max));
+            }
+
             this.max = max;
         }
 
