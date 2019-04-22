@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LinkedListEnumerator.cs" />
     <Compile Include="SimpleQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
