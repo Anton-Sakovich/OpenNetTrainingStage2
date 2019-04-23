@@ -25,6 +25,11 @@ namespace SquareMatricesTask
 
         protected SquareMatrixBase(T[,] array)
         {
+            if (array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             int length = Math.Max(array.GetLength(0), array.GetLength(1));
 
             InitializeArray(length);
@@ -34,6 +39,11 @@ namespace SquareMatricesTask
 
         protected SquareMatrixBase(T[,] array, int length)
         {
+            if (array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             if (length < Math.Min(array.GetLength(0), array.GetLength(1)))
             {
                 throw new ArgumentException("The size provided is less than the array's minimal length.");
