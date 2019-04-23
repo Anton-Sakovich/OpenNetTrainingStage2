@@ -19,9 +19,6 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-// Open internals for unit tests
-[assembly: InternalsVisibleTo("QueueTask.Tests")]
-
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("11726304-fb19-48bb-b66d-e73291dbbe1f")]
 

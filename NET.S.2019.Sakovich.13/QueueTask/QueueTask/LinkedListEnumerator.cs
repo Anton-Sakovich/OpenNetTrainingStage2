@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QueueTask
 {
-    internal class LinkedListEnumerator<T> : IEnumerator<T>, IEnumerator
+    public class LinkedListEnumerator<T> : IEnumerator<T>, IEnumerator
     {
         /* The pair (list, current) defines the state of the iterator:
          * (null, any) = after last (enumaration completed);
