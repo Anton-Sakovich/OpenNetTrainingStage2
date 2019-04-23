@@ -9,21 +9,18 @@ namespace QueueTask
 {
     internal class LinkedListEnumerator<T> : IEnumerator<T>, IEnumerator
     {
+        /* The pair (list, current) defines the state of the iterator:
+         * (null, any) = after last (enumaration completed);
+         * (!null, null) = before first (enumeration hasn't started);
+         * (!null, !null) = active (enumeration is in progress). */
         private LinkedList<T> list;
         private LinkedListNode<T> current;
-        private bool currentNullMeansEnd;
 
         public LinkedListEnumerator(LinkedList<T> list)
         {
-            if (list == null)
-            {
-                currentNullMeansEnd = true;
-            }
-            else
-            {
-                this.list = list;
-                currentNullMeansEnd = false;
-            }
+            // It's OK to have null as list because it will simply lead
+            // to a completed (empty) enumeration.
+            this.list = list;
         }
 
         public T Current
@@ -51,29 +48,41 @@ namespace QueueTask
 
         public bool MoveNext()
         {
-            if (current == null)
+            if (list == null)
             {
-                if (currentNullMeansEnd)
-                {
-                    return false;
-                }
-                else
-                {
-                    currentNullMeansEnd = true;
-                    current = list.First;
-                    return current == null;
-                }
+                // Enumeration is completed
+                return false;
             }
             else
             {
-                current = current.Next;
-                return current == null;
+                // Enumeration is not completed
+                if (current == null)
+                {
+                    // Enumeration has not started
+                    current = list.First;
+                }
+                else
+                {
+                    // Enumeration is in progress
+                    current = current.Next;
+                }
+            }
+
+            // If current.Next turns out to be null, enumeration is completed.
+            if (current == null)
+            {
+                list = null;
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
         public void Reset()
         {
-            currentNullMeansEnd = list == null;
+            throw new NotSupportedException();
         }
 
         public void Dispose()
