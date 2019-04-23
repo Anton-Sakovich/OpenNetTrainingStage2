@@ -8,8 +8,8 @@ namespace SquareMatricesTask
 {
     public interface ISquareMatrix<T>
     {
-        T this[int row, int col] { get; set; }
-
         event EventHandler<MatrixElementChangedEventArgs> MatrixElementChanged;
+
+        T this[int row, int col] { get; set; }
     }
 }

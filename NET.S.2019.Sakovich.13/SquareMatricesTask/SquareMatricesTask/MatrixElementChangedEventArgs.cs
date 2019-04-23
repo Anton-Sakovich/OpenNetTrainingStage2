@@ -8,13 +8,14 @@ namespace SquareMatricesTask
 {
     public class MatrixElementChangedEventArgs : EventArgs
     {
-        public int Row { get; }
-        public int Col { get; }
-
         public MatrixElementChangedEventArgs(int row, int col)
         {
             Row = row;
             Col = col;
         }
+
+        public int Row { get; }
+
+        public int Col { get; }
     }
 }

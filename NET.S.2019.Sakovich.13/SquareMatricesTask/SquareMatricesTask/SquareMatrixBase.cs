@@ -69,6 +69,7 @@ namespace SquareMatricesTask
                     throw new IndexOutOfRangeException("Either row or col was ouside the bounds of the matrix.", ex);
                 }
             }
+
             set
             {
                 try
