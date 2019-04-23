@@ -39,3 +39,7 @@ Here I will post links to solutions for the tasks.
 2. [GenBinSearchTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.11/GenBinSearchTask)
 3. [FibonacciTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.11/FibonacciTask)
 
+### Day 13
+
+1. [QueueTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.13/QueueTask)
+2. [SquareMatricesTask](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.13/SquareMatricesTask)
