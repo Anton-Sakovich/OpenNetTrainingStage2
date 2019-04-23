@@ -6,92 +6,50 @@ using System.Threading.Tasks;
 
 namespace SquareMatricesTask
 {
-    public class SquareMatrix<T> : ISquareMatrix<T>
+    public class SquareMatrix<T> : SquareMatrixBase<T>
     {
-        private readonly T[,] data;
+        private T[,] data;
 
-        public SquareMatrix()
+        public SquareMatrix() : base()
         {
-            data = new T[0, 0];
         }
 
-        public SquareMatrix(int size)
+        public SquareMatrix(int length) : base(length)
         {
-            if (size < 0)
-            {
-                throw new ArgumentException("Matrix size must be non-negative.", nameof(size));
-            }
-
-            data = new T[size, size];
         }
 
-        public SquareMatrix(T[,] array)
+        public SquareMatrix(T[,] array) : base(array)
         {
-            int size = Math.Max(array.GetLength(0), array.GetLength(1));
-            data = new T[size, size];
-
-            for (int r = 0; r < size; r++)
-            {
-                for (int c = 0; c < size; c++)
-                {
-                    data[r, c] = array[r, c];
-                }
-            }
         }
 
-        public SquareMatrix(T[,] array, int size)
-            : this(size)
+        public SquareMatrix(T[,] array, int length) : base(array, length)
         {
-            try
-            {
-                for (int r = 0; r < size; r++)
-                {
-                    for (int c = 0; c < size; c++)
-                    {
-                        data[r, c] = array[r, c];
-                    }
-                }
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-                throw new ArgumentException("The size specified is less than the size of the input array.", nameof(size), ex);
-            }
-            // ArgumentException on a negative size will be thrown automatically by this(size)
         }
 
-        public event EventHandler<MatrixElementChangedEventArgs> MatrixElementChanged;
-
-        public T this[int row, int col]
+        protected override void InitializeArray(int length)
         {
-            get
-            {
-                try
-                {
-                    return data[row, col];
-                }
-                catch (IndexOutOfRangeException ex)
-                {
-                    throw new IndexOutOfRangeException("The index was outside its bounds.", ex);
-                }
-            }
-            set
-            {
-                try
-                {
-                    data[row, col] = value;
+            data = new T[length, length];
+        }
 
-                    OnMatrixElementChanged(row, col);
-                }
-                catch (IndexOutOfRangeException ex)
+        protected override void CopyArray(T[,] array, int length)
+        {
+            for (int row = 0; row < length; row++)
+            {
+                for (int col = 0; col < length; col++)
                 {
-                    throw new IndexOutOfRangeException("The index was outside its bounds.", ex);
+                    data[row, col] = array[row, col];
                 }
             }
         }
 
-        private void OnMatrixElementChanged(int row, int col)
+        protected override T GetValue(int row, int col)
         {
-            MatrixElementChanged?.Invoke(this, new MatrixElementChangedEventArgs(row, col));
+            return data[row, col];
+        }
+
+        protected override void SetValue(int row, int col, T value)
+        {
+            data[row, col] = value;
         }
     }
 }

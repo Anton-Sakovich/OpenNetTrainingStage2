@@ -41,10 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiagonalMatrix.cs" />
     <Compile Include="SquareMatrix.cs" />
     <Compile Include="ISquareMatrix.cs" />
     <Compile Include="MatrixElementChangedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SquareMatrixBase.cs" />
+    <Compile Include="SymmetricMatrix.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
