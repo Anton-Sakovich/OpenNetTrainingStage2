@@ -25,6 +25,7 @@ namespace SquareMatricesTask
             set
             {
                 Layout = Layout.SetValue(row, col, value);
+                OnMatrixElementChanged(row, col);
             }
         }
 
