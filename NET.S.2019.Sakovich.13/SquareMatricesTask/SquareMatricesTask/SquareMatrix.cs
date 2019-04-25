@@ -31,6 +31,8 @@ namespace SquareMatricesTask
 
         public event EventHandler<MatrixElementChangedEventArgs> MatrixElementChanged;
 
+        public ISquareMatrixLayout<T> Layout { get; private set; }
+
         public T this[int row, int col]
         {
             get
@@ -44,8 +46,6 @@ namespace SquareMatricesTask
                 OnMatrixElementChanged(row, col);
             }
         }
-
-        public ISquareMatrixLayout<T> Layout { get; private set; }
 
         protected virtual void OnMatrixElementChanged(int row, int col)
         {
