@@ -26,6 +26,21 @@ namespace SquareMatricesTask
         {
         }
 
+        public SymmetricSquareMatrixLayout(DiagonalSquareMatrixLayout<T> diagLayout)
+        {
+            if (diagLayout == null)
+            {
+                throw new ArgumentNullException(nameof(diagLayout));
+            }
+
+            InitializeLayout(diagLayout.Length);
+
+            for (int row = 0; row < diagLayout.Length; row++)
+            {
+                data[row][row] = diagLayout.GetValue(row, row);
+            }
+        }
+
         public int Length
         {
             get
@@ -55,7 +70,7 @@ namespace SquareMatricesTask
             }
             else
             {
-                return new SquareMatrixLayout<T>(ToArray()).SetValue(row, col, value);
+                return new SquareMatrixLayout<T>(this).SetValue(row, col, value);
             }
         }
 

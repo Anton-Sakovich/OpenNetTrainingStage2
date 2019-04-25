@@ -55,7 +55,7 @@ namespace SquareMatricesTask
             }
             else
             {
-                return new SquareMatrixLayout<T>(ToArray()).SetValue(row, col, value);
+                return new SquareMatrixLayout<T>(this).SetValue(row, col, value);
             }
         }
 
