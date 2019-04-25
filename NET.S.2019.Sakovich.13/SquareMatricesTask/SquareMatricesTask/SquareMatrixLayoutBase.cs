@@ -54,8 +54,22 @@ namespace SquareMatricesTask
             BuildLayout(array);
         }
 
+        public SquareMatrixLayoutBase(ISquareMatrixLayout<T> layout)
+        {
+            if (layout == null)
+            {
+                throw new ArgumentNullException(nameof(layout));
+            }
+
+            InitializeLayout(layout.Length);
+
+            BuildLayout(layout);
+        }
+
         protected abstract void InitializeLayout(int length);
 
         protected abstract void BuildLayout(T[,] array);
+
+        protected abstract void BuildLayout(ISquareMatrixLayout<T> layout);
     }
 }

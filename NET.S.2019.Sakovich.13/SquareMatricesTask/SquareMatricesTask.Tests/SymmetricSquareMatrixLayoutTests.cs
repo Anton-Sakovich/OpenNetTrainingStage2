@@ -66,6 +66,34 @@ namespace SquareMatricesTask.Tests
             TestTransitions(initArray, points, setValues, getValues, types);
         }
 
+        [Test]
+        public void Combine_WithSelf_Test()
+        {
+            SymmetricSquareMatrixLayout<int> sym1 =
+                new SymmetricSquareMatrixLayout<int>(new int[,] { { 1, 2 }, { 2, 3 } });
+
+            SymmetricSquareMatrixLayout<int> sym2 =
+                new SymmetricSquareMatrixLayout<int>(new int[,] { { 4, 5 }, { 5, 6 } });
+
+            SymmetricSquareMatrixLayout<int> result = sym1.CombineWith(sym2, (x, y) => x + y);
+
+            Assert.That(result.ToArray(), Is.EqualTo(new int[,] { { 5, 7 }, { 7, 9 } }));
+        }
+
+        [Test]
+        public void Combine_WithInterface_Test()
+        {
+            SymmetricSquareMatrixLayout<int> sym =
+                new SymmetricSquareMatrixLayout<int>(new int[,] { { 1, 2 }, { 2, 3 } });
+
+            DiagonalSquareMatrixLayout<int> diag =
+                new DiagonalSquareMatrixLayout<int>(new int[,] { { 4, 5 }, { 6, 7 } });
+
+            ISquareMatrixLayout<int> result = sym.CombineWith<int, int>(diag, (x, y) => x + y);
+
+            Assert.That(result.ToArray(), Is.EqualTo(new int[,] { { 5, 2 }, { 2, 10 } }));
+        }
+
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout()
         {
             return new SymmetricSquareMatrixLayout<int>();

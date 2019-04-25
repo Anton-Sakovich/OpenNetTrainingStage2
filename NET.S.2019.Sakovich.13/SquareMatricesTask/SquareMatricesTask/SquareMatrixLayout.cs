@@ -26,6 +26,25 @@ namespace SquareMatricesTask
         {
         }
 
+        public SquareMatrixLayout(ISquareMatrixLayout<T> layout) : base(layout)
+        {
+        }
+
+        public SquareMatrixLayout(DiagonalSquareMatrixLayout<T> diagLayout)
+        {
+            if (diagLayout == null)
+            {
+                throw new ArgumentNullException(nameof(diagLayout));
+            }
+
+            InitializeLayout(diagLayout.Length);
+
+            for (int row = 0; row < diagLayout.Length; row++)
+            {
+                data[row, row] = diagLayout.GetValue(row, row);
+            }
+        }
+
         public SquareMatrixLayout(SymmetricSquareMatrixLayout<T> symLayout)
         {
             if (symLayout == null)
@@ -49,19 +68,30 @@ namespace SquareMatricesTask
             }
         }
 
-        public SquareMatrixLayout(DiagonalSquareMatrixLayout<T> diagLayout)
+        public static implicit operator SquareMatrixLayout<T>(SymmetricSquareMatrixLayout<T> symLayout)
         {
-            if (diagLayout == null)
+            return new SquareMatrixLayout<T>(symLayout);
+        }
+
+        public static implicit operator SquareMatrixLayout<T>(DiagonalSquareMatrixLayout<T> diagLayout)
+        {
+            return new SquareMatrixLayout<T>(diagLayout);
+        }
+
+        public SquareMatrixLayout<V> CombineWith<U, V>(SquareMatrixLayout<U> other, Func<T, U, V> func)
+        {
+            SquareMatrixLayout<V> result =
+                new SquareMatrixLayout<V>(Math.Min(this.Length, other.Length));
+
+            for (int row = 0; row < result.Length; row++)
             {
-                throw new ArgumentNullException(nameof(diagLayout));
+                for (int col = 0; col < result.Length; col++)
+                {
+                    result.data[row, col] = func(this.data[row, col], other.data[row, col]);
+                }
             }
 
-            InitializeLayout(diagLayout.Length);
-
-            for (int row = 0; row < diagLayout.Length; row++)
-            {
-                data[row, row] = diagLayout.GetValue(row, row);
-            }
+            return result;
         }
 
         public int Length
@@ -100,6 +130,17 @@ namespace SquareMatricesTask
                 for (int col = 0; col < Length; col++)
                 {
                     data[row, col] = array[row, col];
+                }
+            }
+        }
+
+        protected override void BuildLayout(ISquareMatrixLayout<T> layout)
+        {
+            for (int row = 0; row < Length; row++)
+            {
+                for (int col = 0; col < Length; col++)
+                {
+                    data[row, col] = layout.GetValue(row, col);
                 }
             }
         }

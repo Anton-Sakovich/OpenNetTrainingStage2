@@ -26,6 +26,33 @@ namespace SquareMatricesTask
         {
         }
 
+        public DiagonalSquareMatrixLayout(ISquareMatrixLayout<T> layout) : base(layout)
+        {
+        }
+
+        public static explicit operator DiagonalSquareMatrixLayout<T>(SquareMatrixLayout<T> squareLayout)
+        {
+            return new DiagonalSquareMatrixLayout<T>(squareLayout);
+        }
+
+        public static explicit operator DiagonalSquareMatrixLayout<T>(SymmetricSquareMatrixLayout<T> symLayout)
+        {
+            return new DiagonalSquareMatrixLayout<T>(symLayout);
+        }
+
+        public DiagonalSquareMatrixLayout<V> CombineWith<U, V>(DiagonalSquareMatrixLayout<U> other, Func<T, U, V> func)
+        {
+            DiagonalSquareMatrixLayout<V> result =
+                new DiagonalSquareMatrixLayout<V>(Math.Min(this.Length, other.Length));
+
+            for (int row = 0; row < result.Length; row++)
+            {
+                result.data[row] = func(this.data[row], other.data[row]);
+            }
+
+            return result;
+        }
+
         public int Length
         {
             get
@@ -81,6 +108,14 @@ namespace SquareMatricesTask
             for (int i = 0; i < Length; i++)
             {
                 data[i] = array[i, i];
+            }
+        }
+
+        protected override void BuildLayout(ISquareMatrixLayout<T> layout)
+        {
+            for (int row = 0; row < Length; row++)
+            {
+                data[row] = layout.GetValue(row, row);
             }
         }
     }
