@@ -45,6 +45,11 @@ namespace SquareMatricesTask
             return this;
         }
 
+        public T[,] ToArray()
+        {
+            return (T[,])data.Clone();
+        }
+
         protected override void InitializeLayout(int length)
         {
             data = new T[length, length];

@@ -55,25 +55,28 @@ namespace SquareMatricesTask
             }
             else
             {
-                T[,] newData = new T[data.Length, data.Length];
-
-                for (int i = 0; i < data.Length; i++)
-                {
-                    newData[i, i] = data[i][i];
-                }
-
-                for (int r = 0; r < data.Length; r++)
-                {
-                    for (int c = 0; c < r; c++)
-                    {
-                        newData[r, c] = newData[c, r] = data[r][c];
-                    }
-                }
-
-                newData[row, col] = newData[col, row] = value;
-
-                return new SquareMatrixLayout<T>(newData);
+                return new SquareMatrixLayout<T>(ToArray()).SetValue(row, col, value);
             }
+        }
+
+        public T[,] ToArray()
+        {
+            T[,] array = new T[Length, Length];
+
+            for (int i = 0; i < Length; i++)
+            {
+                array[i, i] = data[i][i];
+            }
+
+            for (int r = 0; r < Length; r++)
+            {
+                for (int c = 0; c < r; c++)
+                {
+                    array[r, c] = array[c, r] = data[r][c];
+                }
+            }
+
+            return array;
         }
 
         protected override void InitializeLayout(int length)

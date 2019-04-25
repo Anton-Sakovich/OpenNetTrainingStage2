@@ -10,6 +10,8 @@ namespace SquareMatricesTask
     {
         int Length { get; }
 
+        T[,] ToArray();
+
         T GetValue(int row, int col);
 
         ISquareMatrixLayout<T> SetValue(int row, int col, T value);
