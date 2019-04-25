@@ -107,9 +107,7 @@ namespace SquareMatricesTask
         {
             for (int row = 0; row < Length; row++)
             {
-                data[row][row] = array[row, row];
-
-                for (int col = 0; col < row; col++)
+                for (int col = 0; col <= row; col++)
                 {
                     data[row][col] = array[row, col];
                 }
