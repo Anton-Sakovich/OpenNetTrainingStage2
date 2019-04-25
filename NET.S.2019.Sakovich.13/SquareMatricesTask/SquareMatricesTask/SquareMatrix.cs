@@ -6,50 +6,33 @@ using System.Threading.Tasks;
 
 namespace SquareMatricesTask
 {
-    public class SquareMatrix<T> : SquareMatrixBase<T>
+    public class SquareMatrix<T>
     {
-        private T[,] data;
-
-        public SquareMatrix() : base()
+        public SquareMatrix(ISquareMatrixLayout<T> layout)
         {
+            Layout = layout;
         }
 
-        public SquareMatrix(int length) : base(length)
-        {
-        }
+        public event EventHandler<MatrixElementChangedEventArgs> MatrixElementChanged;
 
-        public SquareMatrix(T[,] array) : base(array)
+        public T this[int row, int col]
         {
-        }
-
-        public SquareMatrix(T[,] array, int length) : base(array, length)
-        {
-        }
-
-        protected override void InitializeArray(int length)
-        {
-            data = new T[length, length];
-        }
-
-        protected override void CopyArray(T[,] array, int length)
-        {
-            for (int row = 0; row < length; row++)
+            get
             {
-                for (int col = 0; col < length; col++)
-                {
-                    data[row, col] = array[row, col];
-                }
+                return Layout.GetValue(row, col);
+            }
+
+            set
+            {
+                Layout = Layout.SetValue(row, col, value);
             }
         }
 
-        protected override T GetValue(int row, int col)
-        {
-            return data[row, col];
-        }
+        public ISquareMatrixLayout<T> Layout { get; private set; }
 
-        protected override void SetValue(int row, int col, T value)
+        protected virtual void OnMatrixElementChanged(int row, int col)
         {
-            data[row, col] = value;
+            MatrixElementChanged?.Invoke(this, new MatrixElementChangedEventArgs(row, col));
         }
     }
 }
