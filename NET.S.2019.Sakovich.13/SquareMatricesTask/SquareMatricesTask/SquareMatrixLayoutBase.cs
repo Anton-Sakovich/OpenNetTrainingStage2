@@ -44,7 +44,7 @@ namespace SquareMatricesTask
                 throw new ArgumentNullException(nameof(array), "The array provided for SquareMatrixLayout was null.");
             }
 
-            if (length < Math.Min(array.GetLength(0), array.GetLength(1)))
+            if (length > Math.Min(array.GetLength(0), array.GetLength(1)))
             {
                 throw new ArgumentException("The length of SquareMatrixLayout was less than the length of the input array.", nameof(length));
             }
