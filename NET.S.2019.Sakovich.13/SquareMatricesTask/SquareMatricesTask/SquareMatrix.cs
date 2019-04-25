@@ -8,6 +8,22 @@ namespace SquareMatricesTask
 {
     public class SquareMatrix<T>
     {
+        public SquareMatrix() : this(new SquareMatrixLayout<T>())
+        {
+        }
+
+        public SquareMatrix(int length) : this(new SquareMatrixLayout<T>(length))
+        {
+        }
+
+        public SquareMatrix(T[,] array) : this(new SquareMatrixLayout<T>(array))
+        {
+        }
+
+        public SquareMatrix(T[,] array, int length) : this(new SquareMatrixLayout<T>(array, length))
+        {
+        }
+
         public SquareMatrix(ISquareMatrixLayout<T> layout)
         {
             Layout = layout;
