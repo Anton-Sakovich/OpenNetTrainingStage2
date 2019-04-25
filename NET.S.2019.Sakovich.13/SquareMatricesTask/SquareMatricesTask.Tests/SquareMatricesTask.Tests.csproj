@@ -50,6 +50,7 @@
     <Compile Include="ISquareMatrixLayoutTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SquareMatrixLayoutTests.cs" />
+    <Compile Include="SquareMatrixTests.cs" />
     <Compile Include="SymmetricSquareMatrixLayoutTests.cs" />
   </ItemGroup>
   <ItemGroup>
