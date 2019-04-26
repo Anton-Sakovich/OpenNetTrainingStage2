@@ -30,7 +30,7 @@ namespace SquareMatricesTask
         {
         }
 
-        public SquareMatrixLayout(DiagonalSquareMatrixLayout<T> diagLayout)
+        public SquareMatrixLayout(DiagonalMatrixLayout<T> diagLayout)
         {
             if (diagLayout == null)
             {
@@ -45,7 +45,7 @@ namespace SquareMatricesTask
             }
         }
 
-        public SquareMatrixLayout(SymmetricSquareMatrixLayout<T> symLayout)
+        public SquareMatrixLayout(SymmetricMatrixLayout<T> symLayout)
         {
             if (symLayout == null)
             {
@@ -68,12 +68,12 @@ namespace SquareMatricesTask
             }
         }
 
-        public static implicit operator SquareMatrixLayout<T>(SymmetricSquareMatrixLayout<T> symLayout)
+        public static implicit operator SquareMatrixLayout<T>(SymmetricMatrixLayout<T> symLayout)
         {
             return new SquareMatrixLayout<T>(symLayout);
         }
 
-        public static implicit operator SquareMatrixLayout<T>(DiagonalSquareMatrixLayout<T> diagLayout)
+        public static implicit operator SquareMatrixLayout<T>(DiagonalMatrixLayout<T> diagLayout)
         {
             return new SquareMatrixLayout<T>(diagLayout);
         }

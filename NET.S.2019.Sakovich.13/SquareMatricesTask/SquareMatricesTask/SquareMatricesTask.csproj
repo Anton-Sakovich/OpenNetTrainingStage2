@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiagonalSquareMatrixLayout.cs" />
-    <Compile Include="SymmetricSquareMatrixLayout.cs" />
+    <Compile Include="DiagonalMatrixLayout.cs" />
+    <Compile Include="SymmetricMatrixLayout.cs" />
     <Compile Include="ISquareMatrixLayout.cs" />
     <Compile Include="SquareMatrix.cs" />
     <Compile Include="SquareMatrixLayoutBase.cs" />

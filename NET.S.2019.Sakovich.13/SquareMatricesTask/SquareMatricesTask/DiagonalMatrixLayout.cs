@@ -6,45 +6,45 @@ using System.Threading.Tasks;
 
 namespace SquareMatricesTask
 {
-    public class DiagonalSquareMatrixLayout<T> : SquareMatrixLayoutBase<T>, ISquareMatrixLayout<T>
+    public class DiagonalMatrixLayout<T> : SquareMatrixLayoutBase<T>, ISquareMatrixLayout<T>
     {
         private T[] data;
 
-        public DiagonalSquareMatrixLayout() : base()
+        public DiagonalMatrixLayout() : base()
         {
         }
 
-        public DiagonalSquareMatrixLayout(int length) : base(length)
+        public DiagonalMatrixLayout(int length) : base(length)
         {
         }
 
-        public DiagonalSquareMatrixLayout(T[,] array) : base(array)
+        public DiagonalMatrixLayout(T[,] array) : base(array)
         {
         }
 
-        public DiagonalSquareMatrixLayout(T[,] array, int length) : base(array, length)
+        public DiagonalMatrixLayout(T[,] array, int length) : base(array, length)
         {
         }
 
-        public DiagonalSquareMatrixLayout(ISquareMatrixLayout<T> layout) : base(layout)
+        public DiagonalMatrixLayout(ISquareMatrixLayout<T> layout) : base(layout)
         {
         }
 
-        public static explicit operator DiagonalSquareMatrixLayout<T>(SquareMatrixLayout<T> squareLayout)
+        public static explicit operator DiagonalMatrixLayout<T>(SquareMatrixLayout<T> squareLayout)
         {
-            return new DiagonalSquareMatrixLayout<T>(squareLayout);
+            return new DiagonalMatrixLayout<T>(squareLayout);
         }
 
-        public static explicit operator DiagonalSquareMatrixLayout<T>(SymmetricSquareMatrixLayout<T> symLayout)
+        public static explicit operator DiagonalMatrixLayout<T>(SymmetricMatrixLayout<T> symLayout)
         {
-            return new DiagonalSquareMatrixLayout<T>(symLayout);
+            return new DiagonalMatrixLayout<T>(symLayout);
         }
 
-        public DiagonalSquareMatrixLayout<V> CombineWith<U, V>(DiagonalSquareMatrixLayout<U> other, Func<T, U, V> func)
+        public DiagonalMatrixLayout<V> CombineWith<U, V>(DiagonalMatrixLayout<U> other, Func<T, U, V> func)
         {
             int length = Math.Min(this.Length, other.Length);
 
-            DiagonalSquareMatrixLayout<V> result = new DiagonalSquareMatrixLayout<V>(length);
+            DiagonalMatrixLayout<V> result = new DiagonalMatrixLayout<V>(length);
 
             for (int row = 0; row < length; row++)
             {

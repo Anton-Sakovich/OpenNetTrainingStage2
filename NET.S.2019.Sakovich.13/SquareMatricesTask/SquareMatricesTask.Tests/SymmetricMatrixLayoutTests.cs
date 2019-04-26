@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SquareMatricesTask.Tests
 {
-    public class SymmetricSquareMatrixLayoutTests : ISquareMatrixLayoutTests<int>
+    public class SymmetricMatrixLayoutTests : ISquareMatrixLayoutTests<int>
     {
         [Test]
         public void Ctor_Empty_Test()
@@ -57,10 +57,10 @@ namespace SquareMatricesTask.Tests
 
             Type[] types = new Type[]
             {
-                typeof(SymmetricSquareMatrixLayout<int>),
+                typeof(SymmetricMatrixLayout<int>),
                 typeof(SquareMatrixLayout<int>),
                 typeof(SquareMatrixLayout<int>),
-                typeof(SymmetricSquareMatrixLayout<int>)
+                typeof(SymmetricMatrixLayout<int>)
             };
 
             TestTransitions(initArray, points, setValues, getValues, types);
@@ -69,13 +69,13 @@ namespace SquareMatricesTask.Tests
         [Test]
         public void Combine_WithSelf_Test()
         {
-            SymmetricSquareMatrixLayout<int> sym1 =
-                new SymmetricSquareMatrixLayout<int>(new int[,] { { 1, 2 }, { 2, 3 } });
+            SymmetricMatrixLayout<int> sym1 =
+                new SymmetricMatrixLayout<int>(new int[,] { { 1, 2 }, { 2, 3 } });
 
-            SymmetricSquareMatrixLayout<int> sym2 =
-                new SymmetricSquareMatrixLayout<int>(new int[,] { { 4, 5 }, { 5, 6 } });
+            SymmetricMatrixLayout<int> sym2 =
+                new SymmetricMatrixLayout<int>(new int[,] { { 4, 5 }, { 5, 6 } });
 
-            SymmetricSquareMatrixLayout<int> result = sym1.CombineWith(sym2, (x, y) => x + y);
+            SymmetricMatrixLayout<int> result = sym1.CombineWith(sym2, (x, y) => x + y);
 
             Assert.That(result.ToArray(), Is.EqualTo(new int[,] { { 5, 7 }, { 7, 9 } }));
         }
@@ -83,11 +83,11 @@ namespace SquareMatricesTask.Tests
         [Test]
         public void Combine_WithInterface_Test()
         {
-            SymmetricSquareMatrixLayout<int> sym =
-                new SymmetricSquareMatrixLayout<int>(new int[,] { { 1, 2 }, { 2, 3 } });
+            SymmetricMatrixLayout<int> sym =
+                new SymmetricMatrixLayout<int>(new int[,] { { 1, 2 }, { 2, 3 } });
 
-            DiagonalSquareMatrixLayout<int> diag =
-                new DiagonalSquareMatrixLayout<int>(new int[,] { { 4, 5 }, { 6, 7 } });
+            DiagonalMatrixLayout<int> diag =
+                new DiagonalMatrixLayout<int>(new int[,] { { 4, 5 }, { 6, 7 } });
 
             ISquareMatrixLayout<int> result = sym.CombineWith<int, int>(diag, (x, y) => x + y);
 
@@ -96,22 +96,22 @@ namespace SquareMatricesTask.Tests
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout()
         {
-            return new SymmetricSquareMatrixLayout<int>();
+            return new SymmetricMatrixLayout<int>();
         }
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout(int length)
         {
-            return new SymmetricSquareMatrixLayout<int>(length);
+            return new SymmetricMatrixLayout<int>(length);
         }
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout(int[,] array)
         {
-            return new SymmetricSquareMatrixLayout<int>(array);
+            return new SymmetricMatrixLayout<int>(array);
         }
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout(int[,] array, int length)
         {
-            return new SymmetricSquareMatrixLayout<int>(array, length);
+            return new SymmetricMatrixLayout<int>(array, length);
         }
     }
 }

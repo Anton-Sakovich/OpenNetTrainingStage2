@@ -14,13 +14,13 @@ namespace SquareMatricesTask.Tests
         public void Item_Test()
         {
             SquareMatrix<int> matrix =
-                new SquareMatrix<int>(new DiagonalSquareMatrixLayout<int>(2));
+                new SquareMatrix<int>(new DiagonalMatrixLayout<int>(2));
 
             Assert.That(matrix[0, 0], Is.EqualTo(0));
             Assert.That(matrix[0, 1], Is.EqualTo(0));
             Assert.That(matrix[1, 0], Is.EqualTo(0));
             Assert.That(matrix[1, 1], Is.EqualTo(0));
-            Assert.That(matrix.Layout, Is.TypeOf<DiagonalSquareMatrixLayout<int>>());
+            Assert.That(matrix.Layout, Is.TypeOf<DiagonalMatrixLayout<int>>());
 
             matrix[0, 0] = 1;
             matrix[1, 1] = 2;
@@ -29,7 +29,7 @@ namespace SquareMatricesTask.Tests
             Assert.That(matrix[0, 1], Is.EqualTo(0));
             Assert.That(matrix[1, 0], Is.EqualTo(0));
             Assert.That(matrix[1, 1], Is.EqualTo(2));
-            Assert.That(matrix.Layout, Is.TypeOf<DiagonalSquareMatrixLayout<int>>());
+            Assert.That(matrix.Layout, Is.TypeOf<DiagonalMatrixLayout<int>>());
 
             matrix[0, 1] = 100;
 

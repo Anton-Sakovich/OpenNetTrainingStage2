@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SquareMatricesTask.Tests
 {
-    public class DiagonalSquareMatrixLayoutTests : ISquareMatrixLayoutTests<int>
+    public class DiagonalMatrixLayoutTests : ISquareMatrixLayoutTests<int>
     {
         [Test]
         public void Ctor_Empty_Test()
@@ -57,10 +57,10 @@ namespace SquareMatricesTask.Tests
 
             Type[] types = new Type[]
             {
-                typeof(DiagonalSquareMatrixLayout<int>),
+                typeof(DiagonalMatrixLayout<int>),
                 typeof(SquareMatrixLayout<int>),
                 typeof(SquareMatrixLayout<int>),
-                typeof(DiagonalSquareMatrixLayout<int>)
+                typeof(DiagonalMatrixLayout<int>)
             };
 
             TestTransitions(initArray, points, setValues, getValues, types);
@@ -68,22 +68,22 @@ namespace SquareMatricesTask.Tests
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout()
         {
-            return new DiagonalSquareMatrixLayout<int>();
+            return new DiagonalMatrixLayout<int>();
         }
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout(int length)
         {
-            return new DiagonalSquareMatrixLayout<int>(length);
+            return new DiagonalMatrixLayout<int>(length);
         }
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout(int[,] array)
         {
-            return new DiagonalSquareMatrixLayout<int>(array);
+            return new DiagonalMatrixLayout<int>(array);
         }
 
         protected override ISquareMatrixLayout<int> CreateSquareMatrixLayout(int[,] array, int length)
         {
-            return new DiagonalSquareMatrixLayout<int>(array, length);
+            return new DiagonalMatrixLayout<int>(array, length);
         }
     }
 }

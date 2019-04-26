@@ -6,31 +6,31 @@ using System.Threading.Tasks;
 
 namespace SquareMatricesTask
 {
-    public class SymmetricSquareMatrixLayout<T> : SquareMatrixLayoutBase<T>, ISquareMatrixLayout<T>
+    public class SymmetricMatrixLayout<T> : SquareMatrixLayoutBase<T>, ISquareMatrixLayout<T>
     {
         private T[][] data;
 
-        public SymmetricSquareMatrixLayout() : base()
+        public SymmetricMatrixLayout() : base()
         {
         }
 
-        public SymmetricSquareMatrixLayout(int length) : base(length)
+        public SymmetricMatrixLayout(int length) : base(length)
         {
         }
 
-        public SymmetricSquareMatrixLayout(T[,] array) : base(array)
+        public SymmetricMatrixLayout(T[,] array) : base(array)
         {
         }
 
-        public SymmetricSquareMatrixLayout(T[,] array, int length) : base(array, length)
+        public SymmetricMatrixLayout(T[,] array, int length) : base(array, length)
         {
         }
 
-        public SymmetricSquareMatrixLayout(ISquareMatrixLayout<T> layout) : base(layout)
+        public SymmetricMatrixLayout(ISquareMatrixLayout<T> layout) : base(layout)
         {
         }
 
-        public SymmetricSquareMatrixLayout(DiagonalSquareMatrixLayout<T> diagLayout)
+        public SymmetricMatrixLayout(DiagonalMatrixLayout<T> diagLayout)
         {
             if (diagLayout == null)
             {
@@ -45,21 +45,21 @@ namespace SquareMatricesTask
             }
         }
 
-        public static implicit operator SymmetricSquareMatrixLayout<T>(DiagonalSquareMatrixLayout<T> diagLayout)
+        public static implicit operator SymmetricMatrixLayout<T>(DiagonalMatrixLayout<T> diagLayout)
         {
-            return new SymmetricSquareMatrixLayout<T>(diagLayout);
+            return new SymmetricMatrixLayout<T>(diagLayout);
         }
 
-        public static explicit operator SymmetricSquareMatrixLayout<T>(SquareMatrixLayout<T> squareLayout)
+        public static explicit operator SymmetricMatrixLayout<T>(SquareMatrixLayout<T> squareLayout)
         {
-            return new SymmetricSquareMatrixLayout<T>(squareLayout);
+            return new SymmetricMatrixLayout<T>(squareLayout);
         }
 
-        public SymmetricSquareMatrixLayout<V> CombineWith<U, V>(SymmetricSquareMatrixLayout<U> other, Func<T, U, V> func)
+        public SymmetricMatrixLayout<V> CombineWith<U, V>(SymmetricMatrixLayout<U> other, Func<T, U, V> func)
         {
             int length = Math.Min(this.Length, other.Length);
 
-            SymmetricSquareMatrixLayout<V> result = new SymmetricSquareMatrixLayout<V>(length);
+            SymmetricMatrixLayout<V> result = new SymmetricMatrixLayout<V>(length);
 
             for (int row = 0; row < length; row++)
             {
