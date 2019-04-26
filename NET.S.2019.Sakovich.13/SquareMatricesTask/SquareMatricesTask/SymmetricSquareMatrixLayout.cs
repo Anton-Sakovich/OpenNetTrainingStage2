@@ -57,14 +57,38 @@ namespace SquareMatricesTask
 
         public SymmetricSquareMatrixLayout<V> CombineWith<U, V>(SymmetricSquareMatrixLayout<U> other, Func<T, U, V> func)
         {
-            SymmetricSquareMatrixLayout<V> result =
-                new SymmetricSquareMatrixLayout<V>(Math.Min(this.Length, other.Length));
+            int length = Math.Min(this.Length, other.Length);
 
-            for (int row = 0; row < result.Length; row++)
+            SymmetricSquareMatrixLayout<V> result = new SymmetricSquareMatrixLayout<V>(length);
+
+            for (int row = 0; row < length; row++)
             {
                 for (int col = 0; col <= row; col++)
                 {
                     result.data[row][col] = func(this.data[row][col], other.data[row][col]);
+                }
+            }
+
+            return result;
+        }
+
+        ISquareMatrixLayout<V> ISquareMatrixLayout<T>.CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func)
+        {
+            int length = Math.Min(this.Length, other.Length);
+
+            SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);
+
+            for (int row = 0; row < length; row++)
+            {
+                result.SetValue(row, row, func(data[row][row], other.GetValue(row, row)));
+            }
+
+            for (int row = 0; row < length; row++)
+            {
+                for (int col = 0; col < row; col++)
+                {
+                    result.SetValue(row, col, func(data[row][col], other.GetValue(row, col)));
+                    result.SetValue(col, row, func(data[row][col], other.GetValue(col, row)));
                 }
             }
 

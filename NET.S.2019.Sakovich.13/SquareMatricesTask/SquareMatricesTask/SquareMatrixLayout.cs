@@ -80,14 +80,32 @@ namespace SquareMatricesTask
 
         public SquareMatrixLayout<V> CombineWith<U, V>(SquareMatrixLayout<U> other, Func<T, U, V> func)
         {
-            SquareMatrixLayout<V> result =
-                new SquareMatrixLayout<V>(Math.Min(this.Length, other.Length));
+            int length = Math.Min(this.Length, other.Length);
 
-            for (int row = 0; row < result.Length; row++)
+            SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);
+
+            for (int row = 0; row < length; row++)
             {
-                for (int col = 0; col < result.Length; col++)
+                for (int col = 0; col < length; col++)
                 {
                     result.data[row, col] = func(this.data[row, col], other.data[row, col]);
+                }
+            }
+
+            return result;
+        }
+
+        ISquareMatrixLayout<V> ISquareMatrixLayout<T>.CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func)
+        {
+            int length = Math.Min(this.Length, other.Length);
+
+            SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);
+
+            for (int row = 0; row < length; row++)
+            {
+                for (int col = 0; col < length; col++)
+                {
+                    result.data[row, col] = func(this.data[row, col], other.GetValue(row, col));
                 }
             }
 
