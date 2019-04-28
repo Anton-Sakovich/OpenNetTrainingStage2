@@ -93,5 +93,10 @@ namespace BSTTask
                 return this;
             }
         }
+
+        public override string ToString()
+        {
+            return $"BSTNode(Key = {this.Key}, Value = {this.Value})";
+        }
     }
 }
