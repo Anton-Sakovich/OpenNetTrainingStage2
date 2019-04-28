@@ -54,7 +54,7 @@ namespace BSTTask
 
             while (currentNode != null)
             {
-                compareResult = this.Comparer.Compare(key, this.Key);
+                compareResult = this.Comparer.Compare(key, currentNode.Key);
 
                 if (compareResult == 0)
                 {
