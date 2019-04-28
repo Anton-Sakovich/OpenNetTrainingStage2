@@ -45,5 +45,23 @@ namespace BSTTask.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void PostorderTraversal_Test()
+        {
+            int[] keys = new int[] { 9, 4, 15, 2, 6, 11, 17 };
+            string[] values = new string[] { "9", "4", "15", "2", "6", "11", "17" };
+
+            BSTNode<int, string> root = new BSTNode<int, string>(keys[0], values[0]);
+            for (int i = 1; i < keys.Length; i++)
+            {
+                root.Add(keys[i], values[i]);
+            }
+
+            int[] expected = new int[] { 2, 6, 4, 11, 17, 15, 9 };
+            int[] actual = root.EnumeratePostorder().Select(n => n.Key).ToArray();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
