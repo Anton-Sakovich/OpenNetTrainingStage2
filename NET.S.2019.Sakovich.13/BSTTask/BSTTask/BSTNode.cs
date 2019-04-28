@@ -8,16 +8,6 @@ namespace BSTTask
 {
     public class BSTNode<TKey, TValue>
     {
-        private BSTNode()
-            : this(Comparer<TKey>.Default)
-        {
-        }
-
-        private BSTNode(IComparer<TKey> comparer)
-        {
-            this.Comparer = comparer ?? throw new ArgumentNullException(nameof(comparer), "The comparer provided is null.");
-        }
-
         public BSTNode(TKey key, TValue value)
             : this(Comparer<TKey>.Default)
         {
@@ -32,6 +22,16 @@ namespace BSTTask
             this.Value = value;
         }
 
+        private BSTNode()
+            : this(Comparer<TKey>.Default)
+        {
+        }
+
+        private BSTNode(IComparer<TKey> comparer)
+        {
+            this.Comparer = comparer ?? throw new ArgumentNullException(nameof(comparer), "The comparer provided is null.");
+        }
+
         private BSTNode(TKey key, TValue value, BSTNode<TKey, TValue> parent)
             : this(parent.Comparer)
         {
@@ -42,9 +42,11 @@ namespace BSTTask
         public IComparer<TKey> Comparer { get; }
 
         public TKey Key { get; }
+
         public TValue Value { get; set; }
 
         public BSTNode<TKey, TValue> Left { get; private set; }
+
         public BSTNode<TKey, TValue> Right { get; private set; }
 
         public BSTNode<TKey, TValue> Lookup(TKey key)
