@@ -8,30 +8,24 @@ namespace BSTTask
 {
     public static class BSTTraversals
     {
-        public static IEnumerator<BSTNode<TKey, TValue>> EnumerateInorder<TKey, TValue>(this BSTNode<TKey, TValue> root)
+        public static IEnumerable<BSTNode<TKey, TValue>> EnumerateInorder<TKey, TValue>(this BSTNode<TKey, TValue> root)
         {
             Stack<BSTNode<TKey, TValue>> stack = new Stack<BSTNode<TKey, TValue>>();
             BSTNode<TKey, TValue> current = root;
 
             while (current != null || stack.Count > 0)
             {
-                if (current.Left != null)
+                if (current == null)
+                {
+                    current = stack.Pop();
+                    yield return current;
+                    current = current.Right;
+                }
+                else
                 {
                     stack.Push(current);
                     current = current.Left;
-                    continue;
                 }
-
-                yield return current;
-
-                if (current.Right != null)
-                {
-                    stack.Push(current);
-                    current = current.Right;
-                    continue;
-                }
-
-                current = stack.Pop();
             }
         }
     }
