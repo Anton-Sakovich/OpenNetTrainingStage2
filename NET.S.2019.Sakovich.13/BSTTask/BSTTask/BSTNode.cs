@@ -8,12 +8,12 @@ namespace BSTTask
 {
     public class BSTNode<TKey, TValue>
     {
-        public BSTNode()
+        private BSTNode()
             : this(Comparer<TKey>.Default)
         {
         }
 
-        public BSTNode(IComparer<TKey> comparer)
+        private BSTNode(IComparer<TKey> comparer)
         {
             this.Comparer = comparer ?? throw new ArgumentNullException(nameof(comparer), "The comparer provided is null.");
         }
