@@ -15,7 +15,7 @@ namespace BSTTask
 
         public BSTNode(IComparer<TKey> comparer)
         {
-            this.Comparer = comparer;
+            this.Comparer = comparer ?? throw new ArgumentNullException(nameof(comparer), "The comparer provided is null.");
         }
 
         public BSTNode(TKey key, TValue value)
