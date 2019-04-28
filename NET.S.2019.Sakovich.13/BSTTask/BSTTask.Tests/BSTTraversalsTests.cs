@@ -13,55 +13,76 @@ namespace BSTTask.Tests
         [Test]
         public void InorderTraversal_Test()
         {
-            int[] keys = new int[] { 9, 4, 15, 2, 6, 11, 17 };
-            string[] values = new string[] { "9", "4", "15", "2", "6", "11", "17" };
+            BSTNode<int, int> root = new BSTNode<int, int>(9, 9);
+            Assert.That(root.EnumerateInorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9 }));
 
-            BSTNode<int, string> root = new BSTNode<int, string>(keys[0], values[0]);
-            for (int i = 1; i < keys.Length; i++)
-            {
-                root.Add(keys[i], values[i]);
-            }
+            root.Add(15, 15);
+            Assert.That(root.EnumerateInorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9, 15 }));
 
-            int[] expected = new int[] { 2, 4, 6, 9, 11, 15, 17 };
-            int[] actual = root.EnumerateInorder().Select(n => n.Key).ToArray();
+            root.Add(4, 4);
+            Assert.That(root.EnumerateInorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 4, 9, 15 }));
 
-            Assert.That(actual, Is.EqualTo(expected));
+            root.Add(2, 2);
+            Assert.That(root.EnumerateInorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 4, 9, 15 }));
+
+            root.Add(6, 6);
+            Assert.That(root.EnumerateInorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 4, 6, 9, 15 }));
+
+            root.Add(17, 17);
+            Assert.That(root.EnumerateInorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 4, 6, 9, 15, 17 }));
+
+            root.Add(11, 11);
+            Assert.That(root.EnumerateInorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 4, 6, 9, 11, 15, 17 }));
         }
 
         [Test]
         public void PreorderTraversal_Test()
         {
-            int[] keys = new int[] { 9, 4, 15, 2, 6, 11, 17 };
-            string[] values = new string[] { "9", "4", "15", "2", "6", "11", "17" };
+            BSTNode<int, int> root = new BSTNode<int, int>(9, 9);
+            Assert.That(root.EnumeratePreorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9 }));
 
-            BSTNode<int, string> root = new BSTNode<int, string>(keys[0], values[0]);
-            for (int i = 1; i < keys.Length; i++)
-            {
-                root.Add(keys[i], values[i]);
-            }
+            root.Add(15, 15);
+            Assert.That(root.EnumeratePreorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9, 15 }));
 
-            int[] expected = new int[] { 9, 4, 2, 6, 15, 11, 17 };
-            int[] actual = root.EnumeratePreorder().Select(n => n.Key).ToArray();
+            root.Add(4, 4);
+            Assert.That(root.EnumeratePreorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9, 4, 15 }));
 
-            Assert.That(actual, Is.EqualTo(expected));
+            root.Add(2, 2);
+            Assert.That(root.EnumeratePreorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9, 4, 2, 15 }));
+
+            root.Add(6, 6);
+            Assert.That(root.EnumeratePreorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9, 4, 2, 6, 15 }));
+
+            root.Add(17, 17);
+            Assert.That(root.EnumeratePreorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9, 4, 2, 6, 15, 17 }));
+
+            root.Add(11, 11);
+            Assert.That(root.EnumeratePreorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9, 4, 2, 6, 15, 11, 17 }));
         }
 
         [Test]
         public void PostorderTraversal_Test()
         {
-            int[] keys = new int[] { 9, 4, 15, 2, 6, 11, 17 };
-            string[] values = new string[] { "9", "4", "15", "2", "6", "11", "17" };
+            BSTNode<int, int> root = new BSTNode<int, int>(9, 9);
+            Assert.That(root.EnumeratePostorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 9 }));
 
-            BSTNode<int, string> root = new BSTNode<int, string>(keys[0], values[0]);
-            for (int i = 1; i < keys.Length; i++)
-            {
-                root.Add(keys[i], values[i]);
-            }
+            root.Add(15, 15);
+            Assert.That(root.EnumeratePostorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 15, 9 }));
 
-            int[] expected = new int[] { 2, 6, 4, 11, 17, 15, 9 };
-            int[] actual = root.EnumeratePostorder().Select(n => n.Key).ToArray();
+            root.Add(4, 4);
+            Assert.That(root.EnumeratePostorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 4, 15, 9 }));
 
-            Assert.That(actual, Is.EqualTo(expected));
+            root.Add(2, 2);
+            Assert.That(root.EnumeratePostorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 4, 15, 9 }));
+
+            root.Add(6, 6);
+            Assert.That(root.EnumeratePostorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 6, 4, 15, 9 }));
+
+            root.Add(17, 17);
+            Assert.That(root.EnumeratePostorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 6, 4, 17, 15, 9 }));
+
+            root.Add(11, 11);
+            Assert.That(root.EnumeratePostorder().Select(n => n.Key).ToArray(), Is.EqualTo(new int[] { 2, 6, 4, 11, 17, 15, 9 }));
         }
     }
 }
