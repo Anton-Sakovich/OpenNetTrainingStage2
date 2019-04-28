@@ -28,5 +28,25 @@ namespace BSTTask
                 }
             }
         }
+
+        public static IEnumerable<BSTNode<TKey, TValue>> EnumeratePreorder<TKey, TValue>(this BSTNode<TKey, TValue> root)
+        {
+            Stack<BSTNode<TKey, TValue>> stack = new Stack<BSTNode<TKey, TValue>>();
+            BSTNode<TKey, TValue> current = root;
+
+            while (current != null || stack.Count > 0)
+            {
+                if (current == null)
+                {
+                    current = stack.Pop();
+                }
+                else
+                {
+                    yield return current;
+                    stack.Push(current.Right);
+                    current = current.Left;
+                }
+            }
+        }
     }
 }
