@@ -48,5 +48,35 @@ namespace BSTTask
                 }
             }
         }
+
+        public static IEnumerable<BSTNode<TKey, TValue>> EnumeratePostorder<TKey, TValue>(this BSTNode<TKey, TValue> root)
+        {
+            Stack<BSTNode<TKey, TValue>> stack = new Stack<BSTNode<TKey, TValue>>();
+            BSTNode<TKey, TValue> current = root;
+
+            while (current != null || stack.Count > 0)
+            {
+                if (current == null)
+                {
+                    current = stack.Pop();
+
+                    if ((stack.Count > 0) && (current == stack.Peek()))
+                    {
+                        current = current.Right;
+                    }
+                    else
+                    {
+                        yield return current;
+                        current = null;
+                    }
+                }
+                else
+                {
+                    stack.Push(current);
+                    stack.Push(current);
+                    current = current.Left;
+                }
+            }
+        }
     }
 }
