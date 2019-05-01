@@ -19,5 +19,7 @@ namespace MonkeyBanker.Entities
         public int Bonuses { get; set; }
 
         public AccountType Type { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
