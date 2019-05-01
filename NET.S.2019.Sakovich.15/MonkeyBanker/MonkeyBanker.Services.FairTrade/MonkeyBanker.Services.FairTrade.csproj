@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FairMoneyTransfer.cs" />
+    <Compile Include="FairTradeDepositManager.cs" />
+    <Compile Include="FairTradeWithdrawalManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

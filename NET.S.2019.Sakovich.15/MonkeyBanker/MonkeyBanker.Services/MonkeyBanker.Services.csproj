@@ -41,8 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MoneyTransferer.cs" />
+    <Compile Include="BalanceManager.cs" />
+    <Compile Include="BalanceUpdateException.cs" />
+    <Compile Include="DepositManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WithdrawalManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonkeyBanker.Entities\MonkeyBanker.Entities.csproj">
