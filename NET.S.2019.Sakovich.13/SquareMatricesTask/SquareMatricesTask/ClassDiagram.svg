@@ -1,0 +1,912 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="411.13388mm"
+   height="213.50008mm"
+   viewBox="0 0 411.13388 213.50008"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="ClassDiagram.svg">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="EmptyDiamondLend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="EmptyDiamondLend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5391"
+         d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,-5.6,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5288"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5276"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="EmptyTriangleOutL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker5583"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path5581"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(0.8,0,0,0.8,-4.8,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="919.051"
+     inkscape:cy="290.64321"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-left="5"
+     fit-margin-top="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-0.36856879,-87.427014)">
+    <g
+       id="g4564"
+       transform="translate(50.024467,12.887038)"
+       inkscape:label="SquareMatrixLayoutBase&lt;T&gt;">
+      <text
+         id="text4522"
+         y="148.44072"
+         x="100.88734"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="148.44072"
+           x="100.88734"
+           id="tspan4520"
+           sodipodi:role="line">SquareMatrixLayoutBase&lt;T&gt;</tspan></text>
+      <text
+         id="text4526"
+         y="157.09515"
+         x="101.02789"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="157.09515"
+           x="101.02789"
+           id="tspan4524"
+           sodipodi:role="line">#InitializeLayout(int) : void</tspan></text>
+      <text
+         id="text4530"
+         y="163.50964"
+         x="101.02789"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="163.50964"
+           x="101.02789"
+           id="tspan4528"
+           sodipodi:role="line">#BuildLayout(T[,]) : void</tspan></text>
+      <text
+         id="text4530-2"
+         y="169.55896"
+         x="101.02789"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="169.55896"
+           x="101.02789"
+           id="tspan4528-1"
+           sodipodi:role="line">#BuildLayout(ISquareMatrixLayout) : void</tspan></text>
+      <rect
+         style="fill:none;stroke:#000000;stroke-width:0.61343217;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         y="143.37875"
+         x="98.679161"
+         height="8.0382872"
+         width="96.688881"
+         id="rect4550" />
+      <rect
+         y="151.46481"
+         x="98.676895"
+         height="20.697575"
+         width="96.725121"
+         id="rect4552"
+         style="fill:none;stroke:#000000;stroke-width:0.54549855;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g5263"
+       transform="translate(68.413691,0.37797616)">
+      <text
+         id="text4576"
+         y="96.632217"
+         x="183.62094"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="96.632217"
+           x="183.62094"
+           id="tspan4574"
+           sodipodi:role="line">ISquareMatrixLayout&lt;T&gt;</tspan></text>
+      <text
+         id="text4580"
+         y="102.11864"
+         x="183.49486"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="102.11864"
+           x="183.49486"
+           id="tspan4578"
+           sodipodi:role="line">Length: int</tspan></text>
+      <text
+         id="text4584"
+         y="109.33754"
+         x="183.79871"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="109.33754"
+           x="183.79871"
+           id="tspan4582"
+           sodipodi:role="line">ToArray() : T[,]</tspan></text>
+      <text
+         id="text4592"
+         y="116.02728"
+         x="183.84004"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="116.02728"
+           x="183.84004"
+           id="tspan4590"
+           sodipodi:role="line">GetValue(int, int) : T</tspan></text>
+      <text
+         id="text4596"
+         y="122.71703"
+         x="183.74702"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="122.71703"
+           x="183.74702"
+           id="tspan4594"
+           sodipodi:role="line">SetValue(int, int, T) : ISquareMatrixLayout&lt;T&gt;</tspan></text>
+      <text
+         id="text4600"
+         y="129.40678"
+         x="183.7863"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="129.40678"
+           x="183.7863"
+           id="tspan4598"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(ISquareMatrixLayout&lt;U&gt;,</tspan><tspan
+           id="tspan4602"
+           style="stroke-width:0.26458332"
+           y="134.69846"
+           x="183.7863"
+           sodipodi:role="line">Func&lt;T,U,V&gt;, bool) : ISquareMatrixLayout&lt;V&gt; </tspan></text>
+      <rect
+         y="92.642502"
+         x="181.41338"
+         height="5.5517077"
+         width="110.12867"
+         id="rect4604"
+         style="fill:none;stroke:#000000;stroke-width:0.43098071;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="98.194214"
+         x="181.41338"
+         height="5.5517077"
+         width="110.12867"
+         id="rect4604-8"
+         style="fill:none;stroke:#000000;stroke-width:0.43098071;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="103.59494"
+         x="181.41338"
+         height="34.635822"
+         width="110.04203"
+         id="rect4621"
+         style="fill:none;stroke:#000000;stroke-width:0.50273299;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4767"
+       transform="translate(17.9038,-65.416743)">
+      <text
+         id="text4655"
+         y="162.8307"
+         x="19.310781"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="162.8307"
+           x="19.310781"
+           id="tspan4653"
+           sodipodi:role="line">SquareMatrix&lt;T&gt;</tspan></text>
+      <text
+         id="text4659"
+         y="170.02472"
+         x="19.058599"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="170.02472"
+           x="19.058599"
+           id="tspan4657"
+           sodipodi:role="line">Layout : ISquareMatrixLayout&lt;T&gt;</tspan></text>
+      <text
+         id="text4663"
+         y="179.54129"
+         x="19.18469"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="179.54129"
+           x="19.18469"
+           id="tspan4661"
+           sodipodi:role="line">Item[int, int] : T</tspan></text>
+      <text
+         id="text4667"
+         y="187.67007"
+         x="19.540224"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan4669"
+           style="stroke-width:0.26458332"
+           y="187.67007"
+           x="19.540224"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(SquareMatrix&lt;U&gt;, Func&lt;T, U, V&gt;) :</tspan><tspan
+           id="tspan4734"
+           style="stroke-width:0.26458332"
+           y="192.96175"
+           x="19.540224"
+           sodipodi:role="line">  SquareMatrix&lt;V&gt;</tspan></text>
+      <rect
+         y="158.01257"
+         x="17.872686"
+         height="7.3439159"
+         width="118.84689"
+         id="rect4736"
+         style="fill:none;stroke:#000000;stroke-width:0.33763179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="165.35649"
+         x="17.872686"
+         height="7.3439159"
+         width="118.84689"
+         id="rect4736-9"
+         style="fill:none;stroke:#000000;stroke-width:0.33763179;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="172.70041"
+         x="17.872686"
+         height="22.60354"
+         width="118.70204"
+         id="rect4753"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4820"
+       transform="translate(2.1381562,-6.1471991)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="13.425836"
+         y="142.74335"
+         id="text4704"><tspan
+           sodipodi:role="line"
+           id="tspan4702"
+           x="13.425836"
+           y="142.74335"
+           style="stroke-width:0.26458332">get</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="148.03502"
+           style="stroke-width:0.26458332"
+           id="tspan4706">{</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="153.32668"
+           style="stroke-width:0.26458332"
+           id="tspan4710">  return this.Layout.GetValue(row, col);</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="158.61835"
+           style="stroke-width:0.26458332"
+           id="tspan4708">}</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="163.91002"
+           style="stroke-width:0.26458332"
+           id="tspan4712">set</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="169.20168"
+           style="stroke-width:0.26458332"
+           id="tspan4714">{</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="174.49335"
+           style="stroke-width:0.26458332"
+           id="tspan4716">  this.Layout = this.Layout.SetValue(row,</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="179.78502"
+           style="stroke-width:0.26458332"
+           id="tspan4718">    col, value);</tspan><tspan
+           sodipodi:role="line"
+           x="13.425836"
+           y="185.07668"
+           style="stroke-width:0.26458332"
+           id="tspan4720">}</tspan></text>
+      <rect
+         y="138.50917"
+         x="11.22532"
+         height="48.91032"
+         width="99.156998"
+         id="rect4799"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4807"
+       transform="translate(110.11505,-56.928409)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="13.593252"
+         y="195.61771"
+         id="text4724"><tspan
+           sodipodi:role="line"
+           x="13.593252"
+           y="195.61771"
+           style="stroke-width:0.26458332"
+           id="tspan4726">return new SquareMatrix&lt;V&gt;(</tspan><tspan
+           sodipodi:role="line"
+           x="13.593252"
+           y="200.90938"
+           style="stroke-width:0.26458332"
+           id="tspan4730">this.Layout.CombineWith(other, func, true))</tspan></text>
+      <rect
+         y="189.00697"
+         x="11.22532"
+         height="16.303444"
+         width="104.50238"
+         id="rect4801"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <circle
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4822"
+       cx="32.473244"
+       cy="112.98492"
+       r="1.4699824" />
+    <circle
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path4822-0"
+       cx="155.81813"
+       cy="121.13665"
+       r="1.4699824" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.46021062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.92042125, 0.92042125;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 30.883895,112.82597 H 5.5986741 v 44.44263 l 7.3591219,-0.0945"
+       id="path4841"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccc" />
+    <g
+       id="g5245">
+      <text
+         id="text4847"
+         y="213.49564"
+         x="8.5336313"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="213.49564"
+           x="8.5336313"
+           id="tspan4845"
+           sodipodi:role="line">SquareMatrixLayout&lt;T&gt;</tspan></text>
+      <text
+         id="text4851"
+         y="234.48044"
+         x="8.5729055"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="234.48044"
+           x="8.5729055"
+           id="tspan4849"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(DiagonalMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853"
+           style="stroke-width:0.26458332"
+           y="239.77211"
+           x="8.5729055"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4851-0"
+         y="245.51727"
+         x="8.5729055"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="245.51727"
+           x="8.5729055"
+           id="tspan4849-5"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(SymmetricMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-1"
+           style="stroke-width:0.26458332"
+           y="250.80894"
+           x="8.5729055"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4851-0-9"
+         y="256.48941"
+         x="8.5729055"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="256.48941"
+           x="8.5729055"
+           id="tspan4849-5-2"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(SquareMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-1-1"
+           style="stroke-width:0.26458332"
+           y="261.78107"
+           x="8.5729055"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4851-0-9-2"
+         y="267.71127"
+         x="8.5729055"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="267.71127"
+           x="8.5729055"
+           id="tspan4849-5-2-2"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(ISquareMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-1-1-6"
+           style="stroke-width:0.26458332"
+           y="273.00293"
+           x="8.5729055"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4920"
+         y="220.81984"
+         x="8.5377655"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="220.81984"
+           x="8.5377655"
+           id="tspan4918"
+           sodipodi:role="line">data : T[,]</tspan></text>
+      <text
+         id="text4580-1"
+         y="226.58044"
+         x="8.2814503"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="226.58044"
+           x="8.2814503"
+           id="tspan4578-2"
+           sodipodi:role="line">Length: int</tspan></text>
+      <text
+         id="text4584-2"
+         y="281.29639"
+         x="8.5853081"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="281.29639"
+           x="8.5853081"
+           id="tspan4582-8"
+           sodipodi:role="line">ToArray() : T[,]</tspan></text>
+      <text
+         id="text4592-3"
+         y="287.98615"
+         x="8.6266489"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="287.98615"
+           x="8.6266489"
+           id="tspan4590-3"
+           sodipodi:role="line">GetValue(int, int) : T</tspan></text>
+      <text
+         id="text4596-8"
+         y="293.08835"
+         x="8.5336313"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="293.08835"
+           x="8.5336313"
+           id="tspan4594-9"
+           sodipodi:role="line">SetValue(int, int, T) : ISquareMatrixLayout&lt;T&gt;</tspan></text>
+      <rect
+         y="209.49852"
+         x="6.4255953"
+         height="6.614583"
+         width="123.97619"
+         id="rect4986"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="216.1131"
+         x="6.4255953"
+         height="13.418157"
+         width="123.97619"
+         id="rect4988"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="229.52219"
+         x="6.4165273"
+         height="66.163979"
+         width="123.99432"
+         id="rect4990"
+         style="fill:none;stroke:#000000;stroke-width:0.48186418;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <g
+       id="g5216">
+      <text
+         id="text4847-8"
+         y="213.27382"
+         x="139.77028"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="213.27382"
+           x="139.77028"
+           id="tspan4845-3"
+           sodipodi:role="line">SymmetricMatrixLayout&lt;T&gt;</tspan></text>
+      <text
+         id="text4851-08"
+         y="234.25862"
+         x="139.80956"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="234.25862"
+           x="139.80956"
+           id="tspan4849-3"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(DiagonalMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-2"
+           style="stroke-width:0.26458332"
+           y="239.55029"
+           x="139.80956"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4851-0-7"
+         y="245.29546"
+         x="139.80956"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="245.29546"
+           x="139.80956"
+           id="tspan4849-5-9"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(SymmetricMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-1-6"
+           style="stroke-width:0.26458332"
+           y="250.58713"
+           x="139.80956"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4851-0-9-2-0"
+         y="255.84761"
+         x="139.80956"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="255.84761"
+           x="139.80956"
+           id="tspan4849-5-2-2-8"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(ISquareMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-1-1-6-7"
+           style="stroke-width:0.26458332"
+           y="261.13928"
+           x="139.80956"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4920-1"
+         y="220.59802"
+         x="139.77441"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="220.59802"
+           x="139.77441"
+           id="tspan4918-9"
+           sodipodi:role="line">data : T[][]</tspan></text>
+      <text
+         id="text4580-1-1"
+         y="226.35863"
+         x="139.5181"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="226.35863"
+           x="139.5181"
+           id="tspan4578-2-8"
+           sodipodi:role="line">Length: int</tspan></text>
+      <text
+         id="text4584-2-4"
+         y="268.90353"
+         x="139.82195"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="268.90353"
+           x="139.82195"
+           id="tspan4582-8-5"
+           sodipodi:role="line">ToArray() : T[,]</tspan></text>
+      <text
+         id="text4592-3-3"
+         y="275.59329"
+         x="139.8633"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="275.59329"
+           x="139.8633"
+           id="tspan4590-3-6"
+           sodipodi:role="line">GetValue(int, int) : T</tspan></text>
+      <text
+         id="text4596-8-0"
+         y="280.6955"
+         x="139.77028"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="280.6955"
+           x="139.77028"
+           id="tspan4594-9-6"
+           sodipodi:role="line">SetValue(int, int, T) : ISquareMatrixLayout&lt;T&gt;</tspan></text>
+      <rect
+         y="209.2767"
+         x="137.66223"
+         height="6.6145835"
+         width="123.9762"
+         id="rect4986-8"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="215.89128"
+         x="137.66223"
+         height="13.418157"
+         width="123.9762"
+         id="rect4988-1"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="229.27699"
+         x="137.62979"
+         height="53.92651"
+         width="124.04108"
+         id="rect4990-6"
+         style="fill:none;stroke:#000000;stroke-width:0.4351078;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <g
+       id="g5190">
+      <text
+         id="text4847-8-8"
+         y="213.27382"
+         x="284.38428"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="213.27382"
+           x="284.38428"
+           id="tspan4845-3-4"
+           sodipodi:role="line">DiagonalMatrixLayout&lt;T&gt;</tspan></text>
+      <text
+         id="text4851-08-0"
+         y="234.25862"
+         x="284.42358"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="234.25862"
+           x="284.42358"
+           id="tspan4849-3-0"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(DiagonalMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-2-5"
+           style="stroke-width:0.26458332"
+           y="239.55029"
+           x="284.42358"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4851-0-9-2-0-9"
+         y="245.26442"
+         x="284.42358"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="245.26442"
+           x="284.42358"
+           id="tspan4849-5-2-2-8-9"
+           sodipodi:role="line">CombineWith&lt;U,V&gt;(ISquareMatrixLayout, Func&lt;T,U,V&gt;,</tspan><tspan
+           id="tspan4853-1-1-6-7-0"
+           style="stroke-width:0.26458332"
+           y="250.55609"
+           x="284.42358"
+           sodipodi:role="line">bool) : SquareMatrixLayout&lt;V&gt;</tspan></text>
+      <text
+         id="text4920-1-5"
+         y="220.59802"
+         x="284.38843"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="220.59802"
+           x="284.38843"
+           id="tspan4918-9-6"
+           sodipodi:role="line">data : T[]</tspan></text>
+      <text
+         id="text4580-1-1-4"
+         y="226.35861"
+         x="284.13211"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="226.35861"
+           x="284.13211"
+           id="tspan4578-2-8-8"
+           sodipodi:role="line">Length: int</tspan></text>
+      <text
+         id="text4584-2-4-6"
+         y="257.79086"
+         x="284.43597"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="257.79086"
+           x="284.43597"
+           id="tspan4582-8-5-9"
+           sodipodi:role="line">ToArray() : T[,]</tspan></text>
+      <text
+         id="text4592-3-3-8"
+         y="264.48062"
+         x="284.47729"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="264.48062"
+           x="284.47729"
+           id="tspan4590-3-6-3"
+           sodipodi:role="line">GetValue(int, int) : T</tspan></text>
+      <text
+         id="text4596-8-0-7"
+         y="269.58282"
+         x="284.38428"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:1.25;font-family:Consolas;-inkscape-font-specification:Consolas;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="269.58282"
+           x="284.38428"
+           id="tspan4594-9-6-2"
+           sodipodi:role="line">SetValue(int, int, T) : ISquareMatrixLayout&lt;T&gt;</tspan></text>
+      <rect
+         y="209.2767"
+         x="282.27625"
+         height="6.6145835"
+         width="123.9762"
+         id="rect4986-8-0"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="215.89128"
+         x="282.27625"
+         height="13.418157"
+         width="123.9762"
+         id="rect4988-1-6"
+         style="fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <rect
+         y="229.25462"
+         x="282.22144"
+         height="43.387932"
+         width="124.08583"
+         id="rect4990-6-2"
+         style="fill:none;stroke:#000000;stroke-width:0.39035389;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker5583)"
+       d="M 200.13839,209.49852 V 185.30804"
+       id="path5265"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 121.51934,209.6875 v -9.82738 h 184.07441 v 9.26042"
+       id="path5615"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.49436468;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.98872936, 0.49436468;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Arrow1Mend)"
+       d="M 255.50966,208.80106 V 139.82343"
+       id="path5617"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 126.68576,209.20196 V 194.36851 H 334.35417 V 209.3356"
+       id="path5699"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.47949156;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#EmptyDiamondLend);marker-end:url(#Arrow2Lend)"
+       d="m 160.21785,104.03141 h 87.2569"
+       id="path5701"
+       inkscape:connector-curvature="0" />
+    <circle
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path6019"
+       cx="248.83827"
+       cy="103.96047"
+       r="0.60239953" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 0.5;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 157.42175,121.13666 h 11.89349 v 10.82441"
+       id="path6021"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
