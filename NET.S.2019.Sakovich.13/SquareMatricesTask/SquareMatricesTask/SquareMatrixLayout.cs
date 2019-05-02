@@ -78,6 +78,44 @@ namespace SquareMatricesTask
             return new SquareMatrixLayout<T>(diagLayout);
         }
 
+        public SquareMatrixLayout<V> CombineWith<U, V>(DiagonalMatrixLayout<U> other, Func<T, U, V> func)
+        {
+            int length = Math.Min(this.Length, other.Length);
+
+            SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);
+
+            for (int row = 0; row < length; row++)
+            {
+                result.data[row, row] = func(this.data[row, row], other.GetValue(row, row));
+            }
+
+            return result;
+        }
+
+        public SquareMatrixLayout<V> CombineWith<U, V>(SymmetricMatrixLayout<U> other, Func<T, U, V> func)
+        {
+            int length = Math.Min(this.Length, other.Length);
+
+            SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);
+
+            for (int row = 0; row < length; row++)
+            {
+                result.data[row, row] = func(this.data[row, row], other.GetValue(row, row));
+            }
+
+            for (int row = 1; row < length; row++)
+            {
+                for (int col = 0; col < row; col++)
+                {
+                    U otherVal = other.GetValue(row, col);
+                    result.data[row, col] = func(this.data[row, col], otherVal);
+                    result.data[col, row] = func(this.data[col, row], otherVal);
+                }
+            }
+
+            return result;
+        }
+
         public SquareMatrixLayout<V> CombineWith<U, V>(SquareMatrixLayout<U> other, Func<T, U, V> func)
         {
             int length = Math.Min(this.Length, other.Length);
@@ -95,8 +133,28 @@ namespace SquareMatricesTask
             return result;
         }
 
-        ISquareMatrixLayout<V> ISquareMatrixLayout<T>.CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func)
+        public ISquareMatrixLayout<V> CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func, bool tryOther)
         {
+            if (other is DiagonalMatrixLayout<U> diagLayout)
+            {
+                return this.CombineWith(diagLayout, func);
+            }
+
+            if (other is SymmetricMatrixLayout<U> symLayout)
+            {
+                return this.CombineWith(symLayout, func);
+            }
+
+            if (other is SquareMatrixLayout<U> squareLayout)
+            {
+                return this.CombineWith(squareLayout, func);
+            }
+
+            if (tryOther)
+            {
+                return other.CombineWith(this, (his, my) => func(my, his), false);
+            }
+
             int length = Math.Min(this.Length, other.Length);
 
             SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);

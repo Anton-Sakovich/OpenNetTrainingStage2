@@ -47,6 +47,11 @@ namespace SquareMatricesTask
             }
         }
 
+        public SquareMatrix<V> CombineWith<U, V>(SquareMatrix<U> other, Func<T, U, V> func)
+        {
+            return new SquareMatrix<V>(this.Layout.CombineWith(other.Layout, func, true));
+        }
+
         protected virtual void OnMatrixElementChanged(int row, int col)
         {
             MatrixElementChanged?.Invoke(this, new MatrixElementChangedEventArgs(row, col));

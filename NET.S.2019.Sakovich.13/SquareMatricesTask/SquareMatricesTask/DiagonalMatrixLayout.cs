@@ -54,18 +54,28 @@ namespace SquareMatricesTask
             return result;
         }
 
-        ISquareMatrixLayout<V> ISquareMatrixLayout<T>.CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func)
+        public ISquareMatrixLayout<V> CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func, bool tryOther)
         {
+            if (other is DiagonalMatrixLayout<U> diagLayout)
+            {
+                return this.CombineWith(diagLayout, func);
+            }
+
+            if (tryOther)
+            {
+                return other.CombineWith(this, (his, my) => func(my, his), false);
+            }
+
             int length = Math.Min(this.Length, other.Length);
 
             SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);
 
             for (int row = 0; row < length; row++)
             {
-                result.SetValue(row, row, func(data[row], other.GetValue(row, row)));
+                result.SetValue(row, row, func(this.data[row], other.GetValue(row, row)));
             }
 
-            for (int row = 0; row < length; row++)
+            for (int row = 1; row < length; row++)
             {
                 for (int col = 0; col < row; col++)
                 {

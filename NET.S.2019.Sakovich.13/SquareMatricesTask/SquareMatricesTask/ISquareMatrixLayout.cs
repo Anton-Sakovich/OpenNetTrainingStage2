@@ -16,6 +16,6 @@ namespace SquareMatricesTask
 
         ISquareMatrixLayout<T> SetValue(int row, int col, T value);
 
-        ISquareMatrixLayout<V> CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func);
+        ISquareMatrixLayout<V> CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func, bool askOther);
     }
 }

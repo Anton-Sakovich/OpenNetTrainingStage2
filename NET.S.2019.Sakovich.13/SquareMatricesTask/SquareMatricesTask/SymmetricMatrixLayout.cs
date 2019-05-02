@@ -55,6 +55,20 @@ namespace SquareMatricesTask
             return new SymmetricMatrixLayout<T>(squareLayout);
         }
 
+        public SymmetricMatrixLayout<V> CombineWith<U, V>(DiagonalMatrixLayout<U> other, Func<T, U, V> func)
+        {
+            int length = Math.Min(this.Length, other.Length);
+
+            SymmetricMatrixLayout<V> result = new SymmetricMatrixLayout<V>(length);
+
+            for (int row = 0; row < length; row++)
+            {
+                result.data[row][row] = func(this.data[row][row], other.GetValue(row, row));
+            }
+
+            return result;
+        }
+
         public SymmetricMatrixLayout<V> CombineWith<U, V>(SymmetricMatrixLayout<U> other, Func<T, U, V> func)
         {
             int length = Math.Min(this.Length, other.Length);
@@ -72,23 +86,38 @@ namespace SquareMatricesTask
             return result;
         }
 
-        ISquareMatrixLayout<V> ISquareMatrixLayout<T>.CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func)
+        public ISquareMatrixLayout<V> CombineWith<U, V>(ISquareMatrixLayout<U> other, Func<T, U, V> func, bool tryOther)
         {
+            if (other is DiagonalMatrixLayout<U> diagLayout)
+            {
+                return this.CombineWith(diagLayout, func);
+            }
+
+            if (other is SymmetricMatrixLayout<U> symLayout)
+            {
+                return this.CombineWith(symLayout, func);
+            }
+
+            if (tryOther)
+            {
+                return other.CombineWith(this, (his, my) => func(my, his), false);
+            }
+
             int length = Math.Min(this.Length, other.Length);
 
             SquareMatrixLayout<V> result = new SquareMatrixLayout<V>(length);
 
             for (int row = 0; row < length; row++)
             {
-                result.SetValue(row, row, func(data[row][row], other.GetValue(row, row)));
+                result.SetValue(row, row, func(this.data[row][row], other.GetValue(row, row)));
             }
 
-            for (int row = 0; row < length; row++)
+            for (int row = 1; row < length; row++)
             {
                 for (int col = 0; col < row; col++)
                 {
-                    result.SetValue(row, col, func(data[row][col], other.GetValue(row, col)));
-                    result.SetValue(col, row, func(data[row][col], other.GetValue(col, row)));
+                    result.SetValue(row, col, func(this.data[row][col], other.GetValue(row, col)));
+                    result.SetValue(col, row, func(this.data[row][col], other.GetValue(col, row)));
                 }
             }
 
