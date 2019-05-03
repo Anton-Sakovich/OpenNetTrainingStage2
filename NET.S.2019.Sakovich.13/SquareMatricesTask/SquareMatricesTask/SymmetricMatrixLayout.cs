@@ -66,6 +66,14 @@ namespace SquareMatricesTask
                 result.data[row][row] = func(this.data[row][row], other.GetValue(row, row));
             }
 
+            for (int row = 1; row < length; row++)
+            {
+                for (int col = 0; col < row; col++)
+                {
+                    result.data[row][col] = func(this.data[row][col], default(U));
+                }
+            }
+
             return result;
         }
 
