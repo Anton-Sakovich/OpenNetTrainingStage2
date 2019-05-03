@@ -89,7 +89,7 @@ namespace SquareMatricesTask.Tests
             DiagonalMatrixLayout<int> diag =
                 new DiagonalMatrixLayout<int>(new int[,] { { 4, 5 }, { 6, 7 } });
 
-            ISquareMatrixLayout<int> result = sym.CombineWith<int, int>(diag, (x, y) => x + y);
+            ISquareMatrixLayout<int> result = diag.CombineWith<int, int>(sym, (x, y) => x + y, true);
 
             Assert.That(result.ToArray(), Is.EqualTo(new int[,] { { 5, 2 }, { 2, 10 } }));
         }
