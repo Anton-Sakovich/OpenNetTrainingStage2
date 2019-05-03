@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MonkeyBanker.Repository")]
+[assembly: AssemblyTitle("MonkeyBanker.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MonkeyBanker.Repository")]
+[assembly: AssemblyProduct("MonkeyBanker.Data")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c27b3b95-29ef-454b-b1d1-21987c13b776")]
+[assembly: Guid("f203cf79-67f6-4a01-904a-3542898d8362")]
 
 // Version information for an assembly consists of the following four values:
 //
