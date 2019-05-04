@@ -8,13 +8,13 @@ namespace MonkeyBanker.Data
 {
     public interface ICrudable<T>
     {
-        void Create(T entity);
+        int Create(T entity);
 
         T Read(int id);
 
-        void Update(T entity);
+        int Update(T entity);
 
-        void Delete(int id);
+        int Delete(int id);
 
         IEnumerable<T> ReadAll();
     }
