@@ -59,7 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersonAdoNetExtensions.cs" />
+    <Compile Include="AdoNetCrudable.cs" />
+    <Compile Include="PeopleAdoNetAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

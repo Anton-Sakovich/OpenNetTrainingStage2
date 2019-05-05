@@ -76,9 +76,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonkeyBanker.Data.AdoNet.SQLite\MonkeyBanker.Data.AdoNet.SQLite.csproj">
-      <Project>{8a12a912-5a04-4ef1-a1db-8b110d4a9eab}</Project>
-      <Name>MonkeyBanker.Data.AdoNet.SQLite</Name>
+    <ProjectReference Include="..\MonkeyBanker.Data.AdoNet\MonkeyBanker.Data.AdoNet.csproj">
+      <Project>{34851dd8-8e9a-4da9-8578-4e2a780032f1}</Project>
+      <Name>MonkeyBanker.Data.AdoNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\MonkeyBanker.Data\MonkeyBanker.Data.csproj">
       <Project>{f203cf79-67f6-4a01-904a-3542898d8362}</Project>

@@ -12,10 +12,10 @@ namespace MonkeyBanker.Data
 
         T Read(int id);
 
+        IEnumerable<T> Read();
+
         int Update(T entity);
 
         int Delete(int id);
-
-        IEnumerable<T> ReadAll();
     }
 }
