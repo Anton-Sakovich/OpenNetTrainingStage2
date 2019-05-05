@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountsAdoNetCrudable.cs" />
     <Compile Include="AdoNetCrudable.cs" />
     <Compile Include="PeopleAdoNetAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
