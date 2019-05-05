@@ -4,9 +4,12 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using MonkeyBanker.Data;
 using MonkeyBanker.Entities;
-using MonkeyBanker.Data.AdoNet;
+using MonkeyBanker.Services;
+using MonkeyBanker.ServiceResolver;
+using Ninject;
 
 namespace MonkeyBanker
 {
@@ -14,9 +17,9 @@ namespace MonkeyBanker
     {
         static void Main(string[] args)
         {
-            ICrudable<Person> peopleRepo = new PeopleAdoNetCrudable(
-                SQLiteFactory.Instance,
-                @"Data Source = W:\ph.nerd.anton\EpamTraining\OpenNetTrainingStage2\NET.S.2019.Sakovich.15\MonkeyBanker\MonkeyBanker.db");
+            IKernel kernel = new StandardKernel().CnfigureKernel();
+
+            ICrudable<Person> peopleRepo = kernel.Get<ICrudable<Person>>();
 
             foreach (Person person in peopleRepo.Read())
             {
@@ -27,18 +30,31 @@ namespace MonkeyBanker
             max.GivenName = "Maxine";
             peopleRepo.Update(max);
 
-            ICrudable<Account> accsRepo = new AccountsAdoNetCrudable(
-                SQLiteFactory.Instance,
-                @"Data Source = W:\ph.nerd.anton\EpamTraining\OpenNetTrainingStage2\NET.S.2019.Sakovich.15\MonkeyBanker\MonkeyBanker.db");
+            ICrudable<Account> accsRepo = kernel.Get<ICrudable<Account>>();
 
             foreach (Account acc in accsRepo.Read())
             {
                 Console.WriteLine("{0} {1}", acc.Balance, acc.Bonuses);
             }
 
+            DepositManager depoManager = kernel.Get<DepositManager>();
+
             Account maxsAccount = accsRepo.Read(1);
-            maxsAccount.Bonuses = 42;
-            accsRepo.Update(maxsAccount);
+
+            Console.WriteLine(maxsAccount.Balance);
+            Console.WriteLine(maxsAccount.Bonuses);
+
+            depoManager.UpdateBalance(maxsAccount, 100);
+
+            Console.WriteLine(maxsAccount.Balance);
+            Console.WriteLine(maxsAccount.Bonuses);
+
+            WithdrawalManager withdrawalManager = kernel.Get<WithdrawalManager>();
+
+            withdrawalManager.UpdateBalance(maxsAccount, 20);
+
+            Console.WriteLine(maxsAccount.Balance);
+            Console.WriteLine(maxsAccount.Bonuses);
 
             Console.ReadKey();
         }
