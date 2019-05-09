@@ -9,16 +9,7 @@ namespace URLParser
 {
     public class URLData
     {
-        public static readonly Regex SchemeRegex = new Regex(@"[a-zA-Z][a-zA-Z0-9\+\.\-]+", RegexOptions.Compiled);
-        
-        // Taken from https://stackoverflow.com/a/3824105
-        public static readonly Regex HostRegex = new Regex(@"([a-zA-Z0-9]|([a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]))(\.([a-zA-Z0-9]|([a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])))*", RegexOptions.Compiled);
-
-        public static readonly Regex PathRegex = new Regex(@"(/[a-zA-Z0-9\-\._~%]*)*", RegexOptions.Compiled);
-
-        public static readonly Regex QueryRegex = new Regex(@"\?([^=&]+=[^=&]+)(&[^=&]+=[^=&]+)*", RegexOptions.Compiled);
-
-        public static readonly Regex URLRegex = new Regex("^" + SchemeRegex.ToString() + "://" + HostRegex.ToString() + PathRegex.ToString() + QueryRegex.ToString() + "$", RegexOptions.Compiled);
+        public static readonly Regex URLRegex = new Regex(@"^[a-zA-Z][a-zA-Z0-9\+\.\-]+://([a-zA-Z0-9]|([a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9]))(\.([a-zA-Z0-9]|([a-zA-Z0-9][a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])))*(/[a-zA-Z0-9\-\._~%]*)*(\?([^=&]+=[^=&]+)(&[^=&]+=[^=&]+)*)?$", RegexOptions.Compiled);
 
         private static readonly string[] splitters = new string[] { "://", "/", "?" };
 
