@@ -47,3 +47,7 @@ Here I will post links to solutions for the tasks.
 
 ### Day 15
 1. [MonkeyBanker](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.15/MonkeyBanker)
+
+### Day 18
+1. [URLParser](https://github.com/Anton-Sakovich/OpenNetTrainingStage2/tree/master/NET.S.2019.Sakovich.18/URLParser)
+
