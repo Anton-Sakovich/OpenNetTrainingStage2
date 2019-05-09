@@ -5,11 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using NLog;
 
 namespace URLParser
 {
     public class URLParser
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly Func<string, URLData> parser;
         private readonly Func<URLData, XElement> xbuilder;
 
@@ -32,6 +35,10 @@ namespace URLParser
                 if (url != null)
                 {
                     xroot.Add(xbuilder(url));
+                }
+                else
+                {
+                    logger.Warn("Failed to parse \"{0}\" (skipped it).", line);
                 }
 
                 line = reader.ReadLine();
