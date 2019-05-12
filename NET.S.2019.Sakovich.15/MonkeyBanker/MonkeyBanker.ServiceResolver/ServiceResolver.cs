@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonkeyBanker.Data;
-using MonkeyBanker.Data.AdoNet;
+//using MonkeyBanker.Data.AdoNet;
+using MonkeyBanker.Data.EF6;
 using MonkeyBanker.Entities;
 using MonkeyBanker.Services;
 using MonkeyBanker.Services.FairTrade;
@@ -19,15 +20,22 @@ namespace MonkeyBanker.ServiceResolver
     {
         public static IKernel CnfigureKernel(this IKernel kernel)
         {
-            kernel.Bind<DbProviderFactory>().ToMethod((context) => SQLiteFactory.Instance);
+            //kernel.Bind<DbProviderFactory>().ToMethod((context) => SQLiteFactory.Instance);
 
-            kernel.Bind<ICrudable<Person>>().To<PeopleAdoNetCrudable>()
-                .InSingletonScope()
-                .WithConstructorArgument(typeof(string), (context) => ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString);
+            kernel.Bind<MonkeyBankerContext>().ToSelf()
+                .WithConstructorArgument("TestDatabaseEF6");
 
-            kernel.Bind<ICrudable<Account>>().To<AccountsAdoNetCrudable>()
-                .InSingletonScope()
-                .WithConstructorArgument(typeof(string), (context) => ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString);
+            kernel.Bind<ICrudable<Person>>().To<PeopleEF6Crudable>();
+
+            kernel.Bind<ICrudable<Account>>().To<AccountsEF6Crudable>();
+
+            //kernel.Bind<ICrudable<Person>>().To<PeopleAdoNetCrudable>()
+            //    .InSingletonScope()
+            //    .WithConstructorArgument(typeof(string), (context) => ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString);
+
+            //kernel.Bind<ICrudable<Account>>().To<AccountsAdoNetCrudable>()
+            //    .InSingletonScope()
+            //    .WithConstructorArgument(typeof(string), (context) => ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString);
 
             kernel.Bind<DepositManager>().To<FairTradeDepositManager>()
                 .InSingletonScope();
