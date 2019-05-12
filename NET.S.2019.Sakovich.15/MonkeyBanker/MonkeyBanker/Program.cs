@@ -56,6 +56,16 @@ namespace MonkeyBanker
             Console.WriteLine(maxsAccount.Balance);
             Console.WriteLine(maxsAccount.Bonuses);
 
+            Console.WriteLine(maxsAccount.IsActive);
+            maxsAccount.IsActive = false;
+            accsRepo.Update(maxsAccount);
+            maxsAccount = accsRepo.Read(maxsAccount.ID);
+            Console.WriteLine(maxsAccount.IsActive);
+            maxsAccount.IsActive = true;
+            accsRepo.Update(maxsAccount);
+            maxsAccount = accsRepo.Read(maxsAccount.ID);
+            Console.WriteLine(maxsAccount.IsActive);
+
             Console.ReadKey();
         }
     }
