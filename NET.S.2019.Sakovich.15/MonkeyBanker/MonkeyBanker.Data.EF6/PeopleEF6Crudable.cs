@@ -7,7 +7,7 @@ using MonkeyBanker.Entities;
 
 namespace MonkeyBanker.Data.EF6
 {
-    class PeopleEF6Crudable : ICrudable<Person>, IDisposable
+    public class PeopleEF6Crudable : ICrudable<Person>, IDisposable
     {
         private readonly MonkeyBankerContext context;
 
