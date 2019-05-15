@@ -1,0 +1,28 @@
+﻿@model MonkeyBanker.Web.Models.People.IndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>People</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.People.First().ID)</th>
+            <th>@Html.DisplayNameFor(m => m.People.First().GivenName)</th>
+            <th>@Html.DisplayNameFor(m => m.People.First().FamilyName)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var person in Model.People)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => person.ID)</td>
+                <td>@Html.DisplayFor(m => person.GivenName)</td>
+                <td>@Html.DisplayFor(m => person.FamilyName)</td>
+            </tr>
+        }
+    </tbody>
+</table> 
+
