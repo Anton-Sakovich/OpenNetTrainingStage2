@@ -6,12 +6,14 @@
 
 <h2>People</h2>
 
+@Html.ActionLink("Create", "Create")
 <table class="table">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(m => m.People.First().ID)</th>
             <th>@Html.DisplayNameFor(m => m.People.First().GivenName)</th>
             <th>@Html.DisplayNameFor(m => m.People.First().FamilyName)</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -21,6 +23,10 @@
                 <td>@Html.DisplayFor(m => person.ID)</td>
                 <td>@Html.DisplayFor(m => person.GivenName)</td>
                 <td>@Html.DisplayFor(m => person.FamilyName)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { ID = person.ID}) |
+                    @Html.ActionLink("Delete", "Delete", new { ID = person.ID})
+                </td>
             </tr>
         }
     </tbody>
