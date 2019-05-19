@@ -1,0 +1,43 @@
+﻿@using MonkeyBanker.Entities
+@using MonkeyBanker.Web.Models
+@model CrudIndexViewModel<Account>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().ID)</th>
+            <th>
+                @Html.DisplayNameFor(m => m.Entitites.First().Holder.GivenName)
+                @Html.DisplayNameFor(m => m.Entitites.First().Holder.FamilyName)
+            </th>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().Balance)</th>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().Bonuses)</th>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().Type)</th>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().IsActive)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Account acc in Model.Entitites)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => acc.ID)</td>
+                <td>
+                    @Html.DisplayFor(m => acc.Holder.GivenName)
+                    @Html.DisplayFor(m => acc.Holder.FamilyName)
+                </td>
+                <td>@Html.DisplayFor(m => acc.Balance)</td>
+                <td>@Html.DisplayFor(m => acc.Bonuses)</td>
+                <td>@Html.DisplayFor(m => acc.Type)</td>
+                <td>@Html.DisplayFor(m => acc.IsActive)</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
