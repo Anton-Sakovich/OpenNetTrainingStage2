@@ -28,7 +28,8 @@ namespace MonkeyBanker.ServiceResolver
 
             kernel.Bind<ICrudable<Person>>().To<PeopleEF6Crudable>();
 
-            kernel.Bind<ICrudable<Account>>().To<AccountsEF6Crudable>();
+            kernel.Bind<ICrudable<Account>>().To<AccountsEF6Crudable>()
+                .WithConstructorArgument(typeof(bool), true);
 
             //kernel.Bind<ICrudable<Person>>().To<PeopleAdoNetCrudable>()
             //    .InSingletonScope()
