@@ -12,7 +12,7 @@ namespace MonkeyBanker.Web.Controllers
     public class CrudController<T> : Controller
         where T : IIdentifiable<int>, new()
     {
-        private readonly ICrudable<T> crud;
+        protected ICrudable<T> crud;
 
         public CrudController(ICrudable<T> crud)
         {
