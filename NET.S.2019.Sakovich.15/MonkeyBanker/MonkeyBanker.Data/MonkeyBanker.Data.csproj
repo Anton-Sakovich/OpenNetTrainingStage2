@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrudableDecorator.cs" />
     <Compile Include="ICrudable.cs" />
     <Compile Include="IRelatedCrudable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
