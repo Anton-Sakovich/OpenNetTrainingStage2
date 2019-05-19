@@ -1,4 +1,6 @@
-﻿@model MonkeyBanker.Web.Models.People.IndexViewModel
+﻿@using MonkeyBanker.Entities;
+@using MonkeyBanker.Web.Models;
+@model CrudIndexViewModel<Person>
 
 @{
     ViewBag.Title = "Index";
@@ -10,14 +12,14 @@
 <table class="table">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(m => m.People.First().ID)</th>
-            <th>@Html.DisplayNameFor(m => m.People.First().GivenName)</th>
-            <th>@Html.DisplayNameFor(m => m.People.First().FamilyName)</th>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().ID)</th>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().GivenName)</th>
+            <th>@Html.DisplayNameFor(m => m.Entitites.First().FamilyName)</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var person in Model.People)
+        @foreach(var person in Model.Entitites)
         {
             <tr>
                 <td>@Html.DisplayFor(m => person.ID)</td>
