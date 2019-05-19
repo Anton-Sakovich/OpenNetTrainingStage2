@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MonkeyBanker.Entities
 {
-    public class Account
+    public class Account : IIdentifiable<int>
     {
         public int ID { get; set; }
 
