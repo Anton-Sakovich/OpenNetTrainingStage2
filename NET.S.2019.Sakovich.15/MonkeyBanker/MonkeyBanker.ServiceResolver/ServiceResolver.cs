@@ -12,6 +12,7 @@ using MonkeyBanker.Data.EF6;
 using MonkeyBanker.Entities;
 using MonkeyBanker.Services;
 using MonkeyBanker.Services.FairTrade;
+using MonkeyBanker.Services.IdFactories;
 using Ninject;
 
 namespace MonkeyBanker.ServiceResolver
@@ -41,6 +42,9 @@ namespace MonkeyBanker.ServiceResolver
                 .InSingletonScope();
 
             kernel.Bind<WithdrawalManager>().To<FairTradeWithdrawalManager>()
+                .InSingletonScope();
+
+            kernel.Bind<IIdFactory<Account>>().To<IncrementAccountIdFactory>()
                 .InSingletonScope();
 
             return kernel;

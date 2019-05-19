@@ -83,6 +83,10 @@
       <Project>{7e468105-8272-4a16-811e-b1a1351fc9b3}</Project>
       <Name>MonkeyBanker.Services.FairTrade</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MonkeyBanker.Services.IdFactories\MonkeyBanker.Services.IdFactories.csproj">
+      <Project>{2f3dd1f4-2888-46f2-af1b-c142c9beafcc}</Project>
+      <Name>MonkeyBanker.Services.IdFactories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonkeyBanker.Services\MonkeyBanker.Services.csproj">
       <Project>{c87feb8a-958c-4b2e-a410-591063811263}</Project>
       <Name>MonkeyBanker.Services</Name>
