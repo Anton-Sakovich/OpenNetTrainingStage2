@@ -48,6 +48,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonkeyBanker.Data\MonkeyBanker.Data.csproj">
+      <Project>{f203cf79-67f6-4a01-904a-3542898d8362}</Project>
+      <Name>MonkeyBanker.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonkeyBanker.Entities\MonkeyBanker.Entities.csproj">
       <Project>{73566560-cf33-40c2-806d-ea001f075451}</Project>
       <Name>MonkeyBanker.Entities</Name>
