@@ -51,9 +51,15 @@ namespace MonkeyBanker.Web.Controllers
                 return this.View(editedEntity);
             }
 
-            this.crud.Update(editedEntity);
-
-            return this.RedirectToAction("Index");
+            if (this.crud.Update(editedEntity) == 1)
+            {
+                return this.RedirectToAction("Index");
+            }
+            else
+            {
+                // Handling concurrency problems in future
+                return this.RedirectToAction("Index");
+            }
         }
 
         public ActionResult Create()
@@ -77,6 +83,7 @@ namespace MonkeyBanker.Web.Controllers
             }
             else
             {
+                // Handling concurrency problems in future
                 return this.RedirectToAction("Index");
             }
         }
