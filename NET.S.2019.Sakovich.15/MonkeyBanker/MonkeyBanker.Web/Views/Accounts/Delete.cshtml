@@ -1,0 +1,79 @@
+﻿@model MonkeyBanker.Entities.Account
+
+@{
+    ViewBag.Title = "Delete an account";
+}
+
+<h2>Delete an account</h2>
+
+<div>
+    Are you sure you want to delete the following account?
+</div>
+<div class="container">
+    <div class="row">
+        <!--ID-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.ID)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(m => m.ID)
+        </div>
+    </div>
+    <div class="row">
+        <!--Holder-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.Holder)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(m => m.Holder.GivenName)
+            @Html.DisplayFor(m => m.Holder.FamilyName)
+        </div>
+    </div>
+    <div class="row">
+        <!--Balance-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.Balance)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(m => m.Balance)
+        </div>
+    </div>
+    <div class="row">
+        <!--Balance-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.Bonuses)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(m => m.Bonuses)
+        </div>
+    </div>
+    <div class="row">
+        <!--Balance-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.Type)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(m => m.Type)
+        </div>
+    </div>
+    <div class="row">
+        <!--Balance-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.IsActive)
+        </div>
+        <div class="col-md-3">
+            @if (Model.IsActive)
+            {
+                <text>True</text>
+            }
+            else
+            {
+                <text>False</text>
+            }
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    <button type="submit" class="btn btn-default">Delete</button>
+}

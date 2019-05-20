@@ -164,6 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Accounts\AccountFormViewModel.cs" />
     <Compile Include="Models\CrudIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -208,7 +209,11 @@
     <Content Include="Views\People\Edit.cshtml" />
     <Content Include="Views\People\Create.cshtml" />
     <Content Include="Views\People\Delete.cshtml" />
+    <Content Include="Views\Accounts\AccountForm.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -238,6 +243,10 @@
     <ProjectReference Include="..\MonkeyBanker.ServiceResolver\MonkeyBanker.ServiceResolver.csproj">
       <Project>{6f1b2da0-54bf-441d-84a2-90926e21ddb0}</Project>
       <Name>MonkeyBanker.ServiceResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonkeyBanker.Services\MonkeyBanker.Services.csproj">
+      <Project>{c87feb8a-958c-4b2e-a410-591063811263}</Project>
+      <Name>MonkeyBanker.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -3,19 +3,19 @@
 @model CrudIndexViewModel<Account>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Accounts";
 }
 
-<h2>Index</h2>
+<h2>Accounts</h2>
 
+<div>
+    @Html.ActionLink("Create new", "Create")
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(m => m.Entitites.First().ID)</th>
-            <th>
-                @Html.DisplayNameFor(m => m.Entitites.First().Holder.GivenName)
-                @Html.DisplayNameFor(m => m.Entitites.First().Holder.FamilyName)
-            </th>
+            <th>Holder</th>
             <th>@Html.DisplayNameFor(m => m.Entitites.First().Balance)</th>
             <th>@Html.DisplayNameFor(m => m.Entitites.First().Bonuses)</th>
             <th>@Html.DisplayNameFor(m => m.Entitites.First().Type)</th>
@@ -36,7 +36,10 @@
                 <td>@Html.DisplayFor(m => acc.Bonuses)</td>
                 <td>@Html.DisplayFor(m => acc.Type)</td>
                 <td>@Html.DisplayFor(m => acc.IsActive)</td>
-                <td></td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { ID = acc.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { ID = acc.ID })
+                </td>
             </tr>
         }
     </tbody>
