@@ -9,6 +9,6 @@ namespace MonkeyBanker.Services
 {
     public interface IIdFactory<T>
     {
-        void GenerateId(T acc);
+        void GenerateId(T entity);
     }
 }
