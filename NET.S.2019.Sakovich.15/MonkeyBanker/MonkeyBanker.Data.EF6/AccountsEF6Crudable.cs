@@ -38,16 +38,26 @@ namespace MonkeyBanker.Data.EF6
 
         public Account Read(int id)
         {
-            var accounts = this.IsEager ? this.context.Accounts.Include(acc => acc.Holder) : this.context.Accounts;
-
-            return this.context.Accounts.FirstOrDefault(acc => acc.ID == id);
+            if (this.IsEager)
+            {
+                return this.context.Accounts.Include(acc => acc.Holder).FirstOrDefault(acc => acc.ID == id);
+            }
+            else
+            {
+                return this.context.Accounts.FirstOrDefault(acc => acc.ID == id);
+            }
         }
 
         public IEnumerable<Account> Read()
         {
-            var accounts = this.IsEager ? this.context.Accounts.Include(acc => acc.Holder) : this.context.Accounts;
-
-            return accounts.ToList();
+            if (this.IsEager)
+            {
+                return this.context.Accounts.Include(acc => acc.Holder).ToList();
+            }
+            else
+            {
+                return this.context.Accounts.ToList();
+            }
         }
 
         public int Update(Account entity)
