@@ -5,8 +5,8 @@ using System.Web;
 
 namespace MonkeyBanker.Web.Models
 {
-    public class CrudIndexViewModel<T>
+    public class CrudIndexViewModel<TEntity>
     {
-        public IEnumerable<T> Entitites;
+        public IEnumerable<TEntity> Entitites;
     }
 }
