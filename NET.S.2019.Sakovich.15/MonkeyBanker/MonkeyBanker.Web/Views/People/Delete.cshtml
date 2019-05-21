@@ -1,4 +1,6 @@
-﻿@model MonkeyBanker.Entities.Person
+﻿@using MonkeyBanker.Entities
+@using MonkeyBanker.Web.Models
+@model CrudDetailsViewModel<Person>
 
 @{
     ViewBag.Title = "Delete a person";
@@ -12,26 +14,26 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.ID)
+            @Html.DisplayNameFor(m => m.Entity.ID)
         </div>
         <div class="col-md-3">
-            @Html.DisplayFor(m => m.ID)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.GivenName)
-        </div>
-        <div class="col-md-3">
-            @Html.DisplayFor(m => m.GivenName)
+            @Html.DisplayFor(m => m.Entity.ID)
         </div>
     </div>
     <div class="row">
         <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.FamilyName)
+            @Html.DisplayNameFor(m => m.Entity.GivenName)
         </div>
         <div class="col-md-3">
-            @Html.DisplayFor(m => m.FamilyName)
+            @Html.DisplayFor(m => m.Entity.GivenName)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.Entity.FamilyName)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(m => m.Entity.FamilyName)
         </div>
     </div>
 </div>
