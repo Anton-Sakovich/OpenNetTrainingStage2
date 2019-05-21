@@ -1,31 +1,31 @@
-﻿@model MonkeyBanker.Web.Models.Accounts.AccountFormViewModel
+﻿@model MonkeyBanker.Web.Models.Accounts.AccountsFormViewModel
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(m => m.Account.ID)
+    @Html.HiddenFor(m => m.Entity.ID)
     <div class="form-group">
-        @Html.LabelFor(m => m.Account.Holder)
-        @Html.DropDownListFor(m => m.Account.PersonID, Model.Holders, new { @class = "form-control"})
+        @Html.LabelFor(m => m.Entity.Holder)
+        @Html.DropDownListFor(m => m.Entity.PersonID, Model.Holders, new { @class = "form-control"})
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Account.Balance)
-        @Html.TextBoxFor(m => m.Account.Balance, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Account.Balance)
+        @Html.LabelFor(m => m.Entity.Balance)
+        @Html.TextBoxFor(m => m.Entity.Balance, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Entity.Balance)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Account.Bonuses)
-        @Html.TextBoxFor(m => m.Account.Bonuses, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Account.Bonuses)
+        @Html.LabelFor(m => m.Entity.Bonuses)
+        @Html.TextBoxFor(m => m.Entity.Bonuses, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Entity.Bonuses)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Account.Type)
-        @Html.EnumDropDownListFor(m => m.Account.Type, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Entity.Type)
+        @Html.EnumDropDownListFor(m => m.Entity.Type, new { @class = "form-control" })
     </div>
     <div class="form-check">
-        @Html.LabelFor(m => m.Account.IsActive)
-        @Html.CheckBoxFor(m => m.Account.IsActive, new { @class = "form-check" })
+        @Html.LabelFor(m => m.Entity.IsActive)
+        @Html.CheckBoxFor(m => m.Entity.IsActive, new { @class = "form-check" })
     </div>
     <div>
-        <button class="btn btn-default" type="submit">@Model.ButtonTitle</button>
+        <button class="btn btn-default" type="submit">@Model.ButtonLabel</button>
     </div>
 }

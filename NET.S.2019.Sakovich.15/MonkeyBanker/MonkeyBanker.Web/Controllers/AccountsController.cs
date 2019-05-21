@@ -11,7 +11,7 @@ using MonkeyBanker.Web.Models.Accounts;
 
 namespace MonkeyBanker.Web.Controllers
 {
-    public class AccountsController : Controller
+    public class AccountsController : CrudController<Account>
     {
         protected ICrudable<Account> crudToAccounts;
 
@@ -20,6 +20,7 @@ namespace MonkeyBanker.Web.Controllers
         protected IIdFactory<Account> idFactory;
 
         public AccountsController(ICrudable<Account> crudToAccounts, ICrudable<Person> crudToPeople, IIdFactory<Account> idFactory)
+            : base(crudToAccounts)
         {
             this.crudToAccounts = crudToAccounts;
 
@@ -40,19 +41,19 @@ namespace MonkeyBanker.Web.Controllers
             }
         }
 
-        public ActionResult Index()
+        protected override CrudFormViewModel<Account> LoadFormViewModel()
         {
-            CrudIndexViewModel<Account> model = new CrudIndexViewModel<Account>
-            {
-                Entitites = this.crudToAccounts.Read()
-            };
-
-            return View(model);
+            return new AccountsFormViewModel(base.LoadFormViewModel());
         }
 
-        public ActionResult Create()
+        protected override CrudFormViewModel<Account> LoadFormViewModel(int id)
         {
-            Account newEntity = new Account();
+            return new AccountsFormViewModel(base.LoadFormViewModel(id));
+        }
+
+        protected override void InitializeFormViewModelOnCreate(CrudFormViewModel<Account> model)
+        {
+            base.InitializeFormViewModelOnCreate(model);
 
             SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
                 .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
@@ -60,50 +61,12 @@ namespace MonkeyBanker.Web.Controllers
 
             SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
 
-            AccountFormViewModel model = new AccountFormViewModel()
-            {
-                Account = newEntity,
-                Holders = holders,
-                ButtonTitle = "Create"
-            };
-
-            return this.View(model);
+            ((AccountsFormViewModel)model).Holders = holders;
         }
 
-        [HttpPost]
-        public ActionResult Create(AccountFormViewModel model)
+        protected override void InitializeFormViewModelOnEdit(CrudFormViewModel<Account> model)
         {
-            if (!this.ModelState.IsValid)
-            {
-                SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
-                .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
-                .ToArray();
-
-                SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
-
-                model.Holders = holders;
-
-                model.ButtonTitle = "Create";
-
-                return this.View(model);
-            }
-
-            this.idFactory.GenerateId(model.Account);
-
-            if (this.crudToAccounts.Create(model.Account) == 1)
-            {
-                return this.RedirectToAction("Index");
-            }
-            else
-            {
-                // Handling concurrency problems in future
-                return this.RedirectToAction("Index");
-            }
-        }
-
-        public ActionResult Edit(int id)
-        {
-            Account editingEntity = this.crudToAccounts.Read(id);
+            base.InitializeFormViewModelOnEdit(model);
 
             SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
                 .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
@@ -111,64 +74,7 @@ namespace MonkeyBanker.Web.Controllers
 
             SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
 
-            AccountFormViewModel model = new AccountFormViewModel()
-            {
-                Account = editingEntity,
-                Holders = holders,
-                ButtonTitle = "Apply"
-            };
-
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(AccountFormViewModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
-                .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
-                .ToArray();
-
-                SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
-
-                model.Holders = holders;
-
-                model.ButtonTitle = "Apply";
-
-                return this.View(model);
-            }
-
-            if (this.crudToAccounts.Update(model.Account) == 1)
-            {
-                return this.RedirectToAction("Index");
-            }
-            else
-            {
-                // Handling concurrency problems in future
-                return this.RedirectToAction("Index");
-            }
-        }
-
-        public ActionResult Delete(int id)
-        {
-            Account model = this.crudToAccounts.Read(id);
-
-            return this.View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Delete(Account entity)
-        {
-            if (this.crudToAccounts.Delete(entity.ID) == 1)
-            {
-                return this.RedirectToAction("Index");
-            }
-            else
-            {
-                // Handling concurrency problems in future
-                return this.RedirectToAction("Index");
-            }
+            ((AccountsFormViewModel)model).Holders = holders;
         }
     }
 }

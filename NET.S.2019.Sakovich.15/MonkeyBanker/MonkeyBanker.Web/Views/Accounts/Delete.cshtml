@@ -1,5 +1,6 @@
-﻿@model MonkeyBanker.Entities.Account
-
+﻿@using MonkeyBanker.Entities
+@using MonkeyBanker.Web.Models
+@model CrudDetailsViewModel<Account>
 @{
     ViewBag.Title = "Delete an account";
 }
@@ -13,56 +14,56 @@
     <div class="row">
         <!--ID-->
         <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.ID)
+            @Html.DisplayNameFor(m => m.Entity.ID)
         </div>
         <div class="col-md-3">
-            @Html.DisplayFor(m => m.ID)
+            @Html.DisplayFor(m => m.Entity.ID)
         </div>
     </div>
     <div class="row">
         <!--Holder-->
         <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.Holder)
+            @Html.DisplayNameFor(m => m.Entity.Holder)
         </div>
         <div class="col-md-3">
-            @Html.DisplayFor(m => m.Holder.GivenName)
-            @Html.DisplayFor(m => m.Holder.FamilyName)
-        </div>
-    </div>
-    <div class="row">
-        <!--Balance-->
-        <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.Balance)
-        </div>
-        <div class="col-md-3">
-            @Html.DisplayFor(m => m.Balance)
+            @Html.DisplayFor(m => m.Entity.Holder.GivenName)
+            @Html.DisplayFor(m => m.Entity.Holder.FamilyName)
         </div>
     </div>
     <div class="row">
         <!--Balance-->
         <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.Bonuses)
+            @Html.DisplayNameFor(m => m.Entity.Balance)
         </div>
         <div class="col-md-3">
-            @Html.DisplayFor(m => m.Bonuses)
-        </div>
-    </div>
-    <div class="row">
-        <!--Balance-->
-        <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.Type)
-        </div>
-        <div class="col-md-3">
-            @Html.DisplayFor(m => m.Type)
+            @Html.DisplayFor(m => m.Entity.Balance)
         </div>
     </div>
     <div class="row">
         <!--Balance-->
         <div class="col-md-3">
-            @Html.DisplayNameFor(m => m.IsActive)
+            @Html.DisplayNameFor(m => m.Entity.Bonuses)
         </div>
         <div class="col-md-3">
-            @if (Model.IsActive)
+            @Html.DisplayFor(m => m.Entity.Bonuses)
+        </div>
+    </div>
+    <div class="row">
+        <!--Balance-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.Entity.Type)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayFor(m => m.Entity.Type)
+        </div>
+    </div>
+    <div class="row">
+        <!--Balance-->
+        <div class="col-md-3">
+            @Html.DisplayNameFor(m => m.Entity.IsActive)
+        </div>
+        <div class="col-md-3">
+            @if (Model.Entity.IsActive)
             {
                 <text>True</text>
             }

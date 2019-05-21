@@ -7,12 +7,20 @@ using MonkeyBanker.Entities;
 
 namespace MonkeyBanker.Web.Models.Accounts
 {
-    public class AccountFormViewModel
+    public class AccountsFormViewModel : CrudFormViewModel<Account>
     {
-        public Account Account { get; set; }
-
         public SelectList Holders { get; set; }
 
-        public string ButtonTitle { get; set; }
+        public AccountsFormViewModel()
+            : base()
+        {
+        }
+
+        public AccountsFormViewModel(CrudFormViewModel<Account> model)
+        {
+            this.Entity = model.Entity;
+
+            this.ButtonLabel = model.ButtonLabel;
+        }
     }
 }
