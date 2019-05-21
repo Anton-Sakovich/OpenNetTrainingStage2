@@ -9,33 +9,32 @@ using MonkeyBanker.Web.Models;
 
 namespace MonkeyBanker.Web.Controllers
 {
-    public class CrudController<T> : Controller
-        where T : IIdentifiable<int>, new()
+    public class CrudController<TEntity> : Controller
+        where TEntity : IIdentifiable<int>, new()
     {
-        protected ICrudable<T> crud;
+        protected ICrudable<TEntity> crud;
 
-        public CrudController(ICrudable<T> crud)
+        public CrudController(ICrudable<TEntity> crud)
         {
             this.crud = crud;
         }
 
         public ActionResult Index()
         {
-            CrudIndexViewModel<T> model = new CrudIndexViewModel<T>
-            {
-                Entitites = this.crud.Read()
-            };
+            CrudIndexViewModel<TEntity> model = this.LoadIndexViewModel();
 
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            T retrievedEntity = this.crud.Read(id);
+            CrudFormViewModel<TEntity> model = this.LoadFormViewModel(id);
 
-            if (retrievedEntity != null)
+            this.InitializeFormViewModelOnEdit(model);
+
+            if (model.Entity != null)
             {
-                return View(retrievedEntity);
+                return View(model);
             }
             else
             {
@@ -44,14 +43,16 @@ namespace MonkeyBanker.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(T editedEntity)
+        public ActionResult Edit(CrudFormViewModel<TEntity> model)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(editedEntity);
+                this.InitializeFormViewModelOnEdit(model);
+
+                return this.View(model);
             }
 
-            if (this.crud.Update(editedEntity) == 1)
+            if (this.crud.Update(model.Entity) == 1)
             {
                 return this.RedirectToAction("Index");
             }
@@ -64,20 +65,24 @@ namespace MonkeyBanker.Web.Controllers
 
         public ActionResult Create()
         {
-            T newEntity = new T();
+            CrudFormViewModel<TEntity> model = this.LoadFormViewModel();
 
-            return this.View(newEntity);
+            this.InitializeFormViewModelOnCreate(model);
+
+            return this.View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(T newEntity)
+        public ActionResult Create(CrudFormViewModel<TEntity> model)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(newEntity);
+                this.InitializeFormViewModelOnCreate(model);
+
+                return this.View(model);
             }
 
-            if (this.crud.Create(newEntity) == 1)
+            if (this.crud.Create(model.Entity) == 1)
             {
                 return this.RedirectToAction("Index");
             }
@@ -90,27 +95,64 @@ namespace MonkeyBanker.Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            T delEntity = this.crud.Read(id);
+            CrudDetailsViewModel<TEntity> model = this.LoadDetailsViewModel(id);
 
-            if (delEntity == null)
+            if (model.Entity == null)
             {
                 return this.RedirectToAction("Index");
             }
 
-            return this.View(delEntity);
+            return this.View(model);
         }
 
         [HttpPost]
-        public ActionResult Delete(T delEntity)
+        public ActionResult Delete(int id, object post)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(delEntity);
-            }
-
-            this.crud.Delete(delEntity.ID);
+            this.crud.Delete(id);
 
             return this.RedirectToAction("Index");
+        }
+
+        protected virtual CrudIndexViewModel<TEntity> LoadIndexViewModel()
+        {
+            return new CrudIndexViewModel<TEntity>
+            {
+                Entitites = this.crud.Read()
+            };
+        }
+
+        protected virtual CrudFormViewModel<TEntity> LoadFormViewModel()
+        {
+            return new CrudFormViewModel<TEntity>
+            {
+                Entity = new TEntity()
+            };
+        }
+
+        protected virtual CrudFormViewModel<TEntity> LoadFormViewModel(int id)
+        {
+            return new CrudFormViewModel<TEntity>
+            {
+                Entity = this.crud.Read(id)
+            };
+        }
+
+        protected virtual void InitializeFormViewModelOnCreate(CrudFormViewModel<TEntity> model)
+        {
+            model.ButtonLabel = "Create";
+        }
+
+        protected virtual void InitializeFormViewModelOnEdit(CrudFormViewModel<TEntity> model)
+        {
+            model.ButtonLabel = "Apply";
+        }
+
+        protected virtual CrudDetailsViewModel<TEntity> LoadDetailsViewModel(int id)
+        {
+            return new CrudDetailsViewModel<TEntity>
+            {
+                Entity = this.crud.Read(id)
+            };
         }
     }
 }
