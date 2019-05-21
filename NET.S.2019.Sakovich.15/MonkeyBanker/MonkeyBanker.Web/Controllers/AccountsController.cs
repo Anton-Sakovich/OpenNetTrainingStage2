@@ -75,6 +75,16 @@ namespace MonkeyBanker.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
+                .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
+                .ToArray();
+
+                SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
+
+                model.Holders = holders;
+
+                model.ButtonTitle = "Create";
+
                 return this.View(model);
             }
 
@@ -116,6 +126,16 @@ namespace MonkeyBanker.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
+                .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
+                .ToArray();
+
+                SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
+
+                model.Holders = holders;
+
+                model.ButtonTitle = "Apply";
+
                 return this.View(model);
             }
 
