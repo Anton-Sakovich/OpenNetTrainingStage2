@@ -165,6 +165,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Accounts\AccountFormViewModel.cs" />
+    <Compile Include="Models\CrudDetailsViewModel.cs" />
     <Compile Include="Models\CrudFormViewModel.cs" />
     <Compile Include="Models\CrudIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
