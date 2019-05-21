@@ -26,6 +26,7 @@ namespace MonkeyBanker.Entities
         public AccountType Type { get; set; }
 
         [DefaultValue(true)]
+        [Display(Name = "Active")]
         public bool IsActive { get; set; }
     }
 }
