@@ -46,7 +46,8 @@ namespace MonkeyBanker.ServiceResolver
                 .InSingletonScope();
 
             kernel.Bind<IIdFactory<Account>>().To<IncrementAccountIdFactory>()
-                .InSingletonScope();
+                .InSingletonScope()
+                .WithConstructorArgument(typeof(IEnumerable<int>), (context) => kernel.Get<MonkeyBankerContext>().Accounts.Select(acc => acc.ID));
 
             return kernel;
         }

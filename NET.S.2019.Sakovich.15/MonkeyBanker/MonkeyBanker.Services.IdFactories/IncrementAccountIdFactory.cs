@@ -10,16 +10,16 @@ namespace MonkeyBanker.Services.IdFactories
 {
     public class IncrementAccountIdFactory : IIdFactory<Account>
     {
-        private readonly ICrudable<Account> entities;
+        private readonly IEnumerable<int> ids;
 
-        public IncrementAccountIdFactory(ICrudable<Account> entities)
+        public IncrementAccountIdFactory(IEnumerable<int> ids)
         {
-            this.entities = entities;
+            this.ids = ids;
         }
 
         public void GenerateId(Account acc)
         {
-            acc.ID = this.entities.Read().Select(a => a.ID).Max() + 1;
+            acc.ID = this.ids.Max() + 1;
         }
     }
 }
