@@ -35,7 +35,16 @@
                 <td>@Html.DisplayFor(m => acc.Balance)</td>
                 <td>@Html.DisplayFor(m => acc.Bonuses)</td>
                 <td>@Html.DisplayFor(m => acc.Type)</td>
-                <td>@Html.DisplayFor(m => acc.IsActive)</td>
+                <td>
+                    @if (acc.IsActive)
+                    {
+                        <text>True</text>
+                    }
+                    else
+                    {
+                        <text>False</text>
+                    }
+                </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { ID = acc.ID }) |
                     @Html.ActionLink("Delete", "Delete", new { ID = acc.ID })
