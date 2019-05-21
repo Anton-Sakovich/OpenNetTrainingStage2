@@ -36,7 +36,7 @@ namespace MonkeyBanker.Web.Controllers
 
             if (needReadPeopleManually)
             {
-                this.crudToAccounts = new ManualEagerCrudableAccounts(this.crudToAccounts, this.crudToPeople, true);
+                this.crudToAccounts = new ManualRelatedCrudableAccounts(this.crudToAccounts, this.crudToPeople, true);
             }
         }
 

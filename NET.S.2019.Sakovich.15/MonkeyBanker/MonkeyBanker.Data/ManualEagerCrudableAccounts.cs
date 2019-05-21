@@ -7,11 +7,11 @@ using MonkeyBanker.Entities;
 
 namespace MonkeyBanker.Data
 {
-    public class ManualEagerCrudableAccounts : CrudableDecorator<Account>, IRelatedCrudable<Account>
+    public class ManualRelatedCrudableAccounts : CrudableDecorator<Account>, IRelatedCrudable<Account>
     {
         private readonly ICrudable<Person> crudablePeople;
 
-        public ManualEagerCrudableAccounts(ICrudable<Account> crudableAccounts, ICrudable<Person> crudablePeople, bool isEager)
+        public ManualRelatedCrudableAccounts(ICrudable<Account> crudableAccounts, ICrudable<Person> crudablePeople, bool isEager)
             : base(crudableAccounts)
         {
             this.crudablePeople = crudablePeople;
