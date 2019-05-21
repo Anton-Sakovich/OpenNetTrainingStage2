@@ -55,7 +55,7 @@ namespace MonkeyBanker.Web.Controllers
             Account newEntity = new Account();
 
             SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
-                .Select(p => new SelectListItem() { Text = p.GivenName + p.FamilyName, Value = p.ID.ToString() })
+                .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
                 .ToArray();
 
             SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
@@ -96,7 +96,7 @@ namespace MonkeyBanker.Web.Controllers
             Account editingEntity = this.crudToAccounts.Read(id);
 
             SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
-                .Select(p => new SelectListItem() { Text = p.GivenName + p.FamilyName, Value = p.ID.ToString() })
+                .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
                 .ToArray();
 
             SelectList holders = new SelectList(holdersSelectListItems, "Value", "Text", holdersSelectListItems[0]);
