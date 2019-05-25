@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Makes a bootstrap button look like a simple link */
+.btn-baseline {
+    vertical-align: baseline;
+    display: inline;
+    border: 0;
+    padding: 0;
+}
