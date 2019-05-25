@@ -55,6 +55,8 @@ namespace MonkeyBanker.Web.Controllers
         {
             base.InitializeFormViewModelOnCreate(model);
 
+            this.idFactory.GenerateId(model.Entity);
+
             SelectListItem[] holdersSelectListItems = this.crudToPeople.Read()
                 .Select(p => new SelectListItem() { Text = p.GivenName + " " + p.FamilyName, Value = p.ID.ToString() })
                 .ToArray();
