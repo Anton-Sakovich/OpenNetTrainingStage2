@@ -47,9 +47,54 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { ID = acc.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { ID = acc.ID })
+                    @Html.ActionLink("Delete", "Delete", new { ID = acc.ID }) |
+                    <span class="btn btn-link btn-baseline" data-toggle="modal" data-target="#DWModal">Deposit</span>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<!-- Deposit/Withdrawal modal -->
+<div class="modal fade" id="DWModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Ajax.BeginForm(
+                "Deposit", "Transactions",
+                new AjaxOptions()
+                {
+                    UpdateTargetId = "Deposit_Status",
+                    OnBegin = "Deposit_OnBegin"
+                }))
+            {
+            <div class="modal-body">
+                <div class="form-group row">
+                    <div class="col-sm-1">
+                        <label for="Deposit_Sum" class="col-form-label">Sum:</label>
+                    </div>
+                    <div class="col-sm-11">
+                        <input id="Deposit_Sum" name="sum" class="form-control" type="text" value="" />
+                    </div>
+                </div>
+                <p id="Deposit_Status" style="visibility: hidden">Loading...</p>
+            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="Deposit_SubmitButton">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $("#DWModal").on("hide.bs.modal", function () {
+            $("#Deposit_Sum").val("");
+            $("#Deposit_Status").css("visibility", "hidden");
+            $("#Deposit_SubmitButton").removeAttr("disabled");
+        })
+        function Deposit_OnBegin() {
+            $("#Deposit_Status").css("visibility", "visible");
+            $("#Deposit_SubmitButton").attr("disabled", "disabled");
+        }
+    </script>
+}
