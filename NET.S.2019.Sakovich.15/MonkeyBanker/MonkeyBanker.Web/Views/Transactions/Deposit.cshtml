@@ -1,3 +1,23 @@
 ﻿@model MonkeyBanker.Web.Models.Transactions.DepositViewModel
 
 @Html.DisplayFor(m => m.Message)
+<span id="Deposit_Success" style="display: none;">@Model.IsSuccessString()</span>
+@if (Model.Account != null)
+{
+    <span id="New_Account" style="display: none;">
+        <span id="New_Account_ID">@Html.DisplayFor(m => m.Account.ID)</span>
+        <span id="New_Account_PersonID">@Html.DisplayFor(m => m.Account.PersonID)</span>
+        <span id="New_Account_Balance">@Html.DisplayFor(m => m.Account.Balance)</span>
+        <span id="New_Account_Bonuses">@Html.DisplayFor(m => m.Account.Bonuses)</span>
+        <span id="New_Account_IsActive">
+            @if (Model.Account.IsActive)
+            {
+                <text>True</text>
+            }
+            else
+            {
+                <text>False</text>
+            }
+        </span>
+    </span>
+}

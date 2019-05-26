@@ -26,7 +26,7 @@
     <tbody>
         @foreach (Account acc in Model.Entitites)
         {
-            <tr>
+            <tr id="Account_@acc.ID">
                 <td>@Html.DisplayFor(m => acc.ID)</td>
                 <td>
                     @Html.DisplayFor(m => acc.Holder.GivenName)
@@ -48,7 +48,9 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { ID = acc.ID }) |
                     @Html.ActionLink("Delete", "Delete", new { ID = acc.ID }) |
-                    <span class="btn btn-link btn-baseline" data-toggle="modal" data-target="#DWModal">Deposit</span>
+                    <span class="btn btn-link btn-baseline" data-toggle="modal" data-target="#DWModal">
+                        <span onclick="deposit(this)"><span style="display: none;">@acc.ID</span>Deposit</span>
+                    </span>
                 </td>
             </tr>
         }
@@ -63,11 +65,13 @@
                 new AjaxOptions()
                 {
                     UpdateTargetId = "Deposit_Status",
-                    OnBegin = "Deposit_OnBegin"
+                    OnBegin = "Deposit_OnBegin",
+                    OnSuccess = "Deposit_OnSuccess"
                 }))
             {
             <div class="modal-body">
                 <div class="form-group row">
+                    <input type="hidden" name="id" value="0" id="DepositID" />
                     <div class="col-sm-1">
                         <label for="Deposit_Sum" class="col-form-label">Sum:</label>
                     </div>
@@ -87,14 +91,31 @@
 </div>
 @section Scripts{
     <script>
+        function deposit(sender) {
+            $("#DepositID").val(sender.firstChild.innerText);
+        }
         $("#DWModal").on("hide.bs.modal", function () {
             $("#Deposit_Sum").val("");
+            $("#DepositID").val("0");
             $("#Deposit_Status").css("visibility", "hidden");
             $("#Deposit_SubmitButton").removeAttr("disabled");
         })
         function Deposit_OnBegin() {
             $("#Deposit_Status").css("visibility", "visible");
             $("#Deposit_SubmitButton").attr("disabled", "disabled");
+        }
+        function Deposit_OnSuccess() {
+            // If an account has been successfuly updated, we need to update its row in the table
+            if ($("#Deposit_Success").text() == "true") {
+                // Retrive information about which account has been updated
+                var updatedAccountIdString = "#Account_" + $("#New_Account_ID").text();
+
+                // Update its balance
+                $(updatedAccountIdString).children()[2].innerText = $("#New_Account_Balance").text();
+
+                // Update its bonuses
+                $(updatedAccountIdString).children()[3].innerText = $("#New_Account_Bonuses").text();
+            }
         }
     </script>
 }
