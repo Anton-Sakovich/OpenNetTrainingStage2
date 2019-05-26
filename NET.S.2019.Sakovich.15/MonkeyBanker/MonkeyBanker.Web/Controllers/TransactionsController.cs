@@ -28,20 +28,60 @@ namespace MonkeyBanker.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Deposit(int id, decimal sum)
+        public ActionResult Deposit(int? id, decimal? sum)
         {
-            Account accountToUpdate = this.Accounts.Read(id);
-
-            this.DepositManager.UpdateBalance(accountToUpdate, sum);
-
-            this.Accounts.Update(accountToUpdate);
+            Account accountToUpdate = null;
 
             DepositViewModel model = new DepositViewModel()
             {
-                IsSuccess = true,
-                Message = "Success",
-                Account = accountToUpdate
+                IsSuccess = false
             };
+
+            if (id == null || sum == null)
+            {
+                model.Message = "Invalid input";
+                return this.PartialView(model);
+            }
+
+            try
+            {
+                accountToUpdate = this.Accounts.Read(id.Value);
+            }
+            catch (Exception)
+            {
+                model.Message = "Account loading error.";
+                return this.PartialView(model);
+            }
+
+            if (accountToUpdate == null)
+            {
+                model.Message = "Account not found.";
+                return this.PartialView(model);
+            }
+
+            try
+            {
+                this.DepositManager.UpdateBalance(accountToUpdate, sum.Value);
+            }
+            catch (Exception)
+            {
+                model.Message = "UpdateBalance error.";
+                return this.PartialView(model);
+            }
+
+            try
+            {
+                this.Accounts.Update(accountToUpdate);
+            }
+            catch (Exception)
+            {
+                model.Message = "UpdateAccount error.";
+                return this.PartialView(model);
+            }
+
+            model.Account = accountToUpdate;
+            model.Message = "Success";
+            model.IsSuccess = true;
 
             return this.PartialView(model);
         }
