@@ -91,19 +91,37 @@
 </div>
 @section Scripts{
     <script>
+        // This function initiates the window state
         function deposit(sender) {
+            // Set the value of hidden field "id"
             $("#DepositID").val(sender.firstChild.innerText);
         }
+
+        // This function is called when the user dismisses the Deposit window
         $("#DWModal").on("hide.bs.modal", function () {
+            // Reset form fields to their defaults
             $("#Deposit_Sum").val("");
             $("#DepositID").val("0");
+
+            // Reset the state of the status text
             $("#Deposit_Status").css("visibility", "hidden");
+            $("#Deposit_Status").text("Loading...");
+
+            // Enable "Save" button
             $("#Deposit_SubmitButton").removeAttr("disabled");
         })
+
+        // This function is called when the user clicks "Save" button and initiates an ajax request
         function Deposit_OnBegin() {
+            // Show a hidden "Loading..." element
             $("#Deposit_Status").css("visibility", "visible");
+            $("#Deposit_Status").text("Loading...");
+
+            // Disable "Save" button
             $("#Deposit_SubmitButton").attr("disabled", "disabled");
         }
+
+        // This function is called when the browser successfuly gets ajax response
         function Deposit_OnSuccess() {
             // If an account has been successfuly updated, we need to update its row in the table
             if ($("#Deposit_Success").text() == "true") {
@@ -116,6 +134,14 @@
                 // Update its bonuses
                 $(updatedAccountIdString).children()[3].innerText = $("#New_Account_Bonuses").text();
             }
+
+            // After we have updated the row, we should clean auxiliary elements returned by the ajax request,
+            // just in case
+            $("#Deposit_Success").remove();
+            $("#New_Account").remove();
+
+            // And activate the "Save" button
+            $("#Deposit_SubmitButton").removeAttr("disabled");
         }
     </script>
 }
