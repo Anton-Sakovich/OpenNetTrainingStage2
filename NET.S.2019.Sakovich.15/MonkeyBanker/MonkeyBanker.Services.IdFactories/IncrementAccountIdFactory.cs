@@ -14,7 +14,12 @@ namespace MonkeyBanker.Services.IdFactories
 
         public IncrementAccountIdFactory(IEnumerable<int> ids)
         {
-            this.ids = ids.DefaultIfEmpty(default);
+            if (ids is null)
+            {
+                throw new ArgumentNullException($"{nameof(ids)} is null.");
+            }
+
+            this.ids = ids.Any() ? ids : throw new ArgumentException($"{nameof(ids)} is empty.");
         }
 
         public void GenerateId(Account acc)
