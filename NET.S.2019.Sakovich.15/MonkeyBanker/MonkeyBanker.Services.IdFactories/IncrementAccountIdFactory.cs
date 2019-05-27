@@ -14,12 +14,12 @@ namespace MonkeyBanker.Services.IdFactories
 
         public IncrementAccountIdFactory(IEnumerable<int> ids)
         {
-            this.ids = ids;
+            this.ids = ids ?? Enumerable.Empty<int>();
         }
 
         public void GenerateId(Account acc)
         {
-            acc.ID = this.ids.Max() + 1;
+            acc.ID = this.ids.Any() ? this.ids.Max() + 1 : default;
         }
     }
 }
