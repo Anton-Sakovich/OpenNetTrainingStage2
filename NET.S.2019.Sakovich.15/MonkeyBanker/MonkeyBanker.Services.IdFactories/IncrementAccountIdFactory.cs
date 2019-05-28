@@ -12,14 +12,18 @@ namespace MonkeyBanker.Services.IdFactories
     {
         private readonly IEnumerable<int> ids;
 
-        public IncrementAccountIdFactory(IEnumerable<int> ids)
+        private readonly int init;
+
+        public IncrementAccountIdFactory(IEnumerable<int> ids, int init = 0)
         {
-            this.ids = ids;
+            this.ids = ids ?? throw new ArgumentNullException(nameof(ids));
+
+            this.init = init;
         }
 
         public void GenerateId(Account acc)
         {
-            acc.ID = this.ids.Max() + 1;
+            acc.ID = this.ids.Any() ? this.ids.Max() + 1 : this.init;
         }
     }
 }
