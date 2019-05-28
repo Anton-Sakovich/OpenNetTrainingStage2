@@ -48,8 +48,25 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { ID = acc.ID }) |
                     @Html.ActionLink("Delete", "Delete", new { ID = acc.ID }) |
+                    <!--Deposit button-->
                     <span class="btn btn-link btn-baseline" data-toggle="modal" data-target="#DWModal">
-                        <span onclick="deposit(this)"><span style="display: none;">@acc.ID</span>Deposit</span>
+                        <span onclick="deposit(this)">
+                            <!--This sends the ID to js handler-->
+                            <span style="display: none;">@acc.ID</span>
+                            <!--This sends the action type "Deposit" to js handler-->
+                            <span style="display: none">D</span>
+                            Deposit
+                        </span>
+                    </span>|
+                    <!--Withdraw button-->
+                    <span class="btn btn-link btn-baseline" data-toggle="modal" data-target="#DWModal">
+                        <span onclick="deposit(this)">
+                            <!--This sends the ID to js handler-->
+                            <span style="display: none;">@acc.ID</span>
+                            <!--This sends the action type "Withdraw" to js handler-->
+                            <span style="display: none">W</span>
+                            Withdraw
+                        </span>
                     </span>
                 </td>
             </tr>
@@ -69,9 +86,14 @@
                     OnSuccess = "Deposit_OnSuccess"
                 }))
             {
+            <div class="modal-header">
+                <span id="Deposit_Action_Header"></span>
+                <span id="Deposit_Target_Name"></span>
+            </div>
             <div class="modal-body">
                 <div class="form-group row">
                     <input type="hidden" name="id" value="0" id="DepositID" />
+                    <input type="hidden" name="act" value="D" id="DepositAct" />
                     <div class="col-sm-1">
                         <label for="Deposit_Sum" class="col-form-label">Sum:</label>
                     </div>
@@ -93,15 +115,41 @@
     <script>
         // This function initiates the window state
         function deposit(sender) {
-            // Set the value of hidden field "id"
-            $("#DepositID").val(sender.firstChild.innerText);
+            // Retrive the target Account's ID
+            var targetAccountId = sender.children[0].innerText;
+
+            // Resolve the action (deposit or withdrawal)
+            var depositAction = sender.children[1].innerText;
+
+            // Inject the ID in the ajax form's id
+            $("#DepositID").val(targetAccountId);
+
+            // Inject the deposit action in the ajax form's act
+            $("#DepositAct").val(depositAction);
+
+            // Set the action header
+            if (depositAction == "D") {
+                $("#Deposit_Action_Header").text("Deposit money to");
+            }
+            else {
+                $("#Deposit_Action_Header").text("Withdraw money from");
+            }
+
+            // Set the full name of the target account
+            $("#Deposit_Target_Name").text(
+                $("#Account_" + targetAccountId).children()[1].innerText);
         }
 
         // This function is called when the user dismisses the Deposit window
-        $("#DWModal").on("hide.bs.modal", function () {
+        function dismiss() {
             // Reset form fields to their defaults
             $("#Deposit_Sum").val("");
             $("#DepositID").val("0");
+            $("#DepositAct").val("D");
+
+            // Reset the window's make up
+            $("#Deposit_Action_Header").empty();
+            $("#Deposit_Target_Name").empty();
 
             // Reset the state of the status text
             $("#Deposit_Status").css("visibility", "hidden");
@@ -109,7 +157,10 @@
 
             // Enable "Save" button
             $("#Deposit_SubmitButton").removeAttr("disabled");
-        })
+        }
+
+        // Register dismiss function
+        $("#DWModal").on("hide.bs.modal", dismiss);
 
         // This function is called when the user clicks "Save" button and initiates an ajax request
         function Deposit_OnBegin() {

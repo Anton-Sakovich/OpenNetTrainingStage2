@@ -28,7 +28,7 @@ namespace MonkeyBanker.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Deposit(int? id, decimal? sum)
+        public ActionResult Deposit(int? id, decimal? sum, string act)
         {
             Account accountToUpdate = null;
 
@@ -59,9 +59,27 @@ namespace MonkeyBanker.Web.Controllers
                 return this.PartialView(model);
             }
 
+            BalanceManager balanceManager = null;
+
+            switch (act)
+            {
+                case "D":
+                    balanceManager = this.DepositManager;
+                    break;
+                case "W":
+                    balanceManager = this.WithdrawalManager;
+                    break;
+            }
+
+            if (balanceManager == null)
+            {
+                model.Message = "Deposit action error.";
+                return this.PartialView(model);
+            }
+
             try
             {
-                this.DepositManager.UpdateBalance(accountToUpdate, sum.Value);
+                balanceManager.UpdateBalance(accountToUpdate, sum.Value);
             }
             catch (Exception)
             {
