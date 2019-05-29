@@ -67,6 +67,10 @@
     <Compile Include="ServiceResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonkeyBanker.Data.AdoNet\MonkeyBanker.Data.AdoNet.csproj">
+      <Project>{34851dd8-8e9a-4da9-8578-4e2a780032f1}</Project>
+      <Name>MonkeyBanker.Data.AdoNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonkeyBanker.Data.EF6\MonkeyBanker.Data.EF6.csproj">
       <Project>{d1a41f1e-294a-4314-8e86-b790fbe282cc}</Project>
       <Name>MonkeyBanker.Data.EF6</Name>
