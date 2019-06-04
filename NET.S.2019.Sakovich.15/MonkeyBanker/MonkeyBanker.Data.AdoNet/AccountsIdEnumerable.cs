@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
@@ -10,31 +11,31 @@ namespace MonkeyBanker.Data.AdoNet
 {
     public class AccountsIdEnumerable : IEnumerable<int>
     {
-        protected DbProviderFactory Factory;
+        protected IDbEntryPoint DataEntryPoint;
 
         protected string ConnectionString;
 
-        public AccountsIdEnumerable(DbProviderFactory factory, string connectionString)
+        public AccountsIdEnumerable(IDbEntryPoint factory, string connectionString)
         {
-            this.Factory = factory;
+            this.DataEntryPoint = factory;
 
             this.ConnectionString = connectionString;
         }
 
         public IEnumerator<int> GetEnumerator()
         {
-            using (DbConnection connection = this.Factory.CreateConnection())
+            using (IDbConnectionWrapper connection = this.DataEntryPoint.CreateConnection())
             {
                 connection.ConnectionString = this.ConnectionString;
 
-                using (DbCommand command = this.Factory.CreateCommand())
+                using (IDbCommand command = this.DataEntryPoint.CreateCommand())
                 {
                     command.CommandText = "SELECT ID FROM Accounts;";
-                    command.Connection = connection;
+                    command.Connection = connection.ConnectionBase;
 
                     connection.Open();
 
-                    using (DbDataReader reader = command.ExecuteReader())
+                    using (IDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {

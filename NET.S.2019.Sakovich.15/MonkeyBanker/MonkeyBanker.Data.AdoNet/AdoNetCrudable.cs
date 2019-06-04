@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +10,11 @@ namespace MonkeyBanker.Data.AdoNet
     public abstract class AdoNetCrudable<T> : ICrudable<T>
         where T : class
     {
-        protected readonly DbProviderFactory factory;
+        protected readonly IDbEntryPoint factory;
 
         protected readonly string connectionString;
 
-        protected AdoNetCrudable(DbProviderFactory factory, string connectionString)
+        protected AdoNetCrudable(IDbEntryPoint factory, string connectionString)
         {
             this.factory = factory;
             this.connectionString = connectionString;
@@ -45,29 +45,29 @@ namespace MonkeyBanker.Data.AdoNet
             return this.ExecuteNonQuery(this.DeleteCommand(id));
         }
 
-        protected abstract DbCommand InsertCommand(T entity);
+        protected abstract IDbCommand InsertCommand(T entity);
 
-        protected abstract DbCommand SelectCommand();
+        protected abstract IDbCommand SelectCommand();
 
-        protected abstract DbCommand SelectCommand(int id);
+        protected abstract IDbCommand SelectCommand(int id);
 
-        protected abstract DbCommand UpdateCommand(T entity);
+        protected abstract IDbCommand UpdateCommand(T entity);
 
-        protected abstract DbCommand DeleteCommand(int id);
+        protected abstract IDbCommand DeleteCommand(int id);
 
-        protected abstract T GetEntity(DbDataReader reader);
+        protected abstract T GetEntity(IDataReader reader);
 
-        private int ExecuteNonQuery(DbCommand command)
+        private int ExecuteNonQuery(IDbCommand command)
         {
             int rowsAffected;
 
-            using (DbConnection connection = this.factory.CreateConnection())
+            using (IDbConnectionWrapper connection = this.factory.CreateConnection())
             {
                 connection.ConnectionString = this.connectionString;
 
                 using (command)
                 {
-                    command.Connection = connection;
+                    command.Connection = connection.ConnectionBase;
 
                     connection.Open();
 
@@ -78,21 +78,21 @@ namespace MonkeyBanker.Data.AdoNet
             return rowsAffected;
         }
 
-        private T ExecuteSelect(DbCommand command)
+        private T ExecuteSelect(IDbCommand command)
         {
             T readEntity = null;
 
-            using (DbConnection connection = this.factory.CreateConnection())
+            using (IDbConnectionWrapper connection = this.factory.CreateConnection())
             {
                 connection.ConnectionString = this.connectionString;
 
                 using (command)
                 {
-                    command.Connection = connection;
+                    command.Connection = connection.ConnectionBase;
 
                     connection.Open();
 
-                    using (DbDataReader reader = command.ExecuteReader())
+                    using (IDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
                         {
@@ -105,21 +105,21 @@ namespace MonkeyBanker.Data.AdoNet
             return readEntity;
         }
 
-        private List<T> ExecuteSelectAll(DbCommand command)
+        private List<T> ExecuteSelectAll(IDbCommand command)
         {
             List<T> entities = new List<T>();
 
-            using (DbConnection connection = this.factory.CreateConnection())
+            using (IDbConnectionWrapper connection = this.factory.CreateConnection())
             {
                 connection.ConnectionString = this.connectionString;
 
                 using (command)
                 {
-                    command.Connection = connection;
+                    command.Connection = connection.ConnectionBase;
 
                     connection.Open();
 
-                    using (DbDataReader reader = command.ExecuteReader())
+                    using (IDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {

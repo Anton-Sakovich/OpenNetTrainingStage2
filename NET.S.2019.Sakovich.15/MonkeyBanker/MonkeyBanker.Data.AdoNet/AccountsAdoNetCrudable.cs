@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +10,19 @@ namespace MonkeyBanker.Data.AdoNet
 {
     public class AccountsAdoNetCrudable : AdoNetCrudable<Account>
     {
-        public AccountsAdoNetCrudable(DbProviderFactory factory, string connectionString)
+        public AccountsAdoNetCrudable(IDbEntryPoint factory, string connectionString)
             : base(factory, connectionString)
         {
         }
 
-        protected override DbCommand SelectCommand(int id)
+        protected override IDbCommand SelectCommand(int id)
         {
-            DbCommand command = this.factory.CreateCommand();
+            IDbCommand command = this.factory.CreateCommand();
 
             command.CommandText = "SELECT * FROM Accounts " +
                 "WHERE ID=@ID;";
 
-            DbParameter idParameter = this.factory.CreateParameter();
+            IDbDataParameter idParameter = this.factory.CreateParameter();
             idParameter.ParameterName = "@ID";
             idParameter.Value = id;
             command.Parameters.Add(idParameter);
@@ -30,43 +30,43 @@ namespace MonkeyBanker.Data.AdoNet
             return command;
         }
 
-        protected override DbCommand SelectCommand()
+        protected override IDbCommand SelectCommand()
         {
-            DbCommand command = this.factory.CreateCommand();
+            IDbCommand command = this.factory.CreateCommand();
 
             command.CommandText = "SELECT * FROM Accounts;";
 
             return command;
         }
 
-        protected override DbCommand InsertCommand(Account entity)
+        protected override IDbCommand InsertCommand(Account entity)
         {
-            DbCommand command = this.factory.CreateCommand();
+            IDbCommand command = this.factory.CreateCommand();
 
             command.CommandText = "INSERT INTO Accounts (PersonID, Balance, Bonuses, Type, IsActive) " +
                 "VALUES (@PersonID, @Balance, @Bonuses, @Type, @IsActive);";
 
-            DbParameter personIDParameter = this.factory.CreateParameter();
+            IDbDataParameter personIDParameter = this.factory.CreateParameter();
             personIDParameter.ParameterName = "@PersonID";
             personIDParameter.Value = entity.PersonID;
             command.Parameters.Add(personIDParameter);
 
-            DbParameter balanceParameter = this.factory.CreateParameter();
+            IDbDataParameter balanceParameter = this.factory.CreateParameter();
             balanceParameter.ParameterName = "@Balance";
             balanceParameter.Value = entity.Balance;
             command.Parameters.Add(balanceParameter);
 
-            DbParameter bonusesParameter = this.factory.CreateParameter();
+            IDbDataParameter bonusesParameter = this.factory.CreateParameter();
             bonusesParameter.ParameterName = "@Bonuses";
             bonusesParameter.Value = entity.Bonuses;
             command.Parameters.Add(bonusesParameter);
 
-            DbParameter typeParameter = this.factory.CreateParameter();
+            IDbDataParameter typeParameter = this.factory.CreateParameter();
             typeParameter.ParameterName = "@Type";
             typeParameter.Value = entity.Type;
             command.Parameters.Add(typeParameter);
 
-            DbParameter isActiveParameter = this.factory.CreateParameter();
+            IDbDataParameter isActiveParameter = this.factory.CreateParameter();
             isActiveParameter.ParameterName = "@IsActive";
             isActiveParameter.Value = entity.IsActive ? 0 : 1;
             command.Parameters.Add(isActiveParameter);
@@ -74,13 +74,13 @@ namespace MonkeyBanker.Data.AdoNet
             return command;
         }
 
-        protected override DbCommand DeleteCommand(int id)
+        protected override IDbCommand DeleteCommand(int id)
         {
-            DbCommand command = this.factory.CreateCommand();
+            IDbCommand command = this.factory.CreateCommand();
 
             command.CommandText = "DELETE FROM Accounts WHERE ID=@ID;";
 
-            DbParameter idParameter = this.factory.CreateParameter();
+            IDbDataParameter idParameter = this.factory.CreateParameter();
             idParameter.ParameterName = "@ID";
             idParameter.Value = id;
             command.Parameters.Add(idParameter);
@@ -88,40 +88,40 @@ namespace MonkeyBanker.Data.AdoNet
             return command;
         }
 
-        protected override DbCommand UpdateCommand(Account entity)
+        protected override IDbCommand UpdateCommand(Account entity)
         {
-            DbCommand command = this.factory.CreateCommand();
+            IDbCommand command = this.factory.CreateCommand();
 
             command.CommandText = "UPDATE Accounts " +
                 "SET PersonID=@PersonID, Balance=@Balance, Bonuses=@Bonuses, Type=@Type, IsActive=@IsActive " +
                 "WHERE ID=@ID;";
 
-            DbParameter idParameter = this.factory.CreateParameter();
+            IDbDataParameter idParameter = this.factory.CreateParameter();
             idParameter.ParameterName = "@ID";
             idParameter.Value = entity.ID;
             command.Parameters.Add(idParameter);
 
-            DbParameter personIDParameter = this.factory.CreateParameter();
+            IDbDataParameter personIDParameter = this.factory.CreateParameter();
             personIDParameter.ParameterName = "@PersonID";
             personIDParameter.Value = entity.PersonID;
             command.Parameters.Add(personIDParameter);
 
-            DbParameter balanceParameter = this.factory.CreateParameter();
+            IDbDataParameter balanceParameter = this.factory.CreateParameter();
             balanceParameter.ParameterName = "@Balance";
             balanceParameter.Value = entity.Balance;
             command.Parameters.Add(balanceParameter);
 
-            DbParameter bonusesParameter = this.factory.CreateParameter();
+            IDbDataParameter bonusesParameter = this.factory.CreateParameter();
             bonusesParameter.ParameterName = "@Bonuses";
             bonusesParameter.Value = entity.Bonuses;
             command.Parameters.Add(bonusesParameter);
 
-            DbParameter typeParameter = this.factory.CreateParameter();
+            IDbDataParameter typeParameter = this.factory.CreateParameter();
             typeParameter.ParameterName = "@Type";
             typeParameter.Value = entity.Type;
             command.Parameters.Add(typeParameter);
 
-            DbParameter isActiveParameter = this.factory.CreateParameter();
+            IDbDataParameter isActiveParameter = this.factory.CreateParameter();
             isActiveParameter.ParameterName = "@IsActive";
             isActiveParameter.Value = entity.IsActive ? 0 : 1;
             command.Parameters.Add(isActiveParameter);
@@ -129,7 +129,7 @@ namespace MonkeyBanker.Data.AdoNet
             return command;
         }
 
-        protected override Account GetEntity(DbDataReader reader)
+        protected override Account GetEntity(IDataReader reader)
         {
             return new Account()
             {
