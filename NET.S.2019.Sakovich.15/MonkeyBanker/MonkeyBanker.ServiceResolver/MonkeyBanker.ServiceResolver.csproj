@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceResolver.cs" />
     <Compile Include="SQLite\SQLiteConnectionHooked.cs" />
+    <Compile Include="SQLite\SQLiteEntryPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonkeyBanker.Data.AdoNet\MonkeyBanker.Data.AdoNet.csproj">
