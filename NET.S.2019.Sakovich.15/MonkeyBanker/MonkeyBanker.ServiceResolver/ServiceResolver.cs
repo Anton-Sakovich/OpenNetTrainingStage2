@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 using MonkeyBanker.Data;
 #if USE_ADONET
 using MonkeyBanker.Data.AdoNet;
+using MonkeyBanker.ServiceResolver.SQLite;
 #else
 using MonkeyBanker.Data.EF6;
 #endif
@@ -36,7 +37,8 @@ namespace MonkeyBanker.ServiceResolver
         public static IKernel CnfigureKernel(this IKernel kernel)
         {
 #if USE_ADONET
-            kernel.Bind<DbProviderFactory>().ToMethod((context) => SQLiteFactory.Instance);
+            kernel.Bind<IDbEntryPoint>().To<SQLiteEntryPoint>()
+                .InSingletonScope();
 
             kernel.Bind<ICrudable<Person>>().To<PeopleAdoNetCrudable>()
                 .InSingletonScope()
@@ -51,7 +53,7 @@ namespace MonkeyBanker.ServiceResolver
                 .WithConstructorArgument(
                     typeof(IEnumerable<int>),
                     (context) => 
-                        new AccountsIdEnumerable(SQLiteFactory.Instance, ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString)
+                        new AccountsIdEnumerable(kernel.Get<IDbEntryPoint>(), ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString)
                 );
 #endif
 
