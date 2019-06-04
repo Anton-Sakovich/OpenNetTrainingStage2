@@ -62,6 +62,7 @@
     <Compile Include="AccountsAdoNetCrudable.cs" />
     <Compile Include="AccountsIdEnumerable.cs" />
     <Compile Include="AdoNetCrudable.cs" />
+    <Compile Include="IDbConnectionWrapper.cs" />
     <Compile Include="PeopleAdoNetCrudable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
