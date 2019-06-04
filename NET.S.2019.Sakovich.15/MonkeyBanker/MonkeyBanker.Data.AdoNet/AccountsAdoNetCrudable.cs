@@ -68,7 +68,7 @@ namespace MonkeyBanker.Data.AdoNet
 
             IDbDataParameter isActiveParameter = this.factory.CreateParameter();
             isActiveParameter.ParameterName = "@IsActive";
-            isActiveParameter.Value = entity.IsActive ? 0 : 1;
+            isActiveParameter.Value = entity.IsActive ? 1 : 0;
             command.Parameters.Add(isActiveParameter);
 
             return command;
@@ -123,7 +123,7 @@ namespace MonkeyBanker.Data.AdoNet
 
             IDbDataParameter isActiveParameter = this.factory.CreateParameter();
             isActiveParameter.ParameterName = "@IsActive";
-            isActiveParameter.Value = entity.IsActive ? 0 : 1;
+            isActiveParameter.Value = entity.IsActive ? 1 : 0;
             command.Parameters.Add(isActiveParameter);
 
             return command;
