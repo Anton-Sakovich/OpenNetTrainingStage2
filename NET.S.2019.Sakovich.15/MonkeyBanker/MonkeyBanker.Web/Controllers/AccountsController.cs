@@ -13,8 +13,6 @@ namespace MonkeyBanker.Web.Controllers
 {
     public class AccountsController : CrudController<Account>
     {
-        protected ICrudable<Account> crudToAccounts;
-
         protected ICrudable<Person> crudToPeople;
 
         protected IIdFactory<Account> idFactory;
@@ -22,22 +20,20 @@ namespace MonkeyBanker.Web.Controllers
         public AccountsController(ICrudable<Account> crudToAccounts, ICrudable<Person> crudToPeople, IIdFactory<Account> idFactory)
             : base(crudToAccounts)
         {
-            this.crudToAccounts = crudToAccounts;
-
             this.crudToPeople = crudToPeople;
 
             this.idFactory = idFactory;
 
             bool needReadPeopleManually = true;
 
-            if (this.crudToAccounts is IRelatedCrudable<Account> relatedCrud)
+            if (this.crud is IRelatedCrudable<Account> relatedCrud)
             {
                 needReadPeopleManually = !relatedCrud.IsEager;
             }
 
             if (needReadPeopleManually)
             {
-                this.crudToAccounts = new ManualRelatedCrudableAccounts(this.crudToAccounts, this.crudToPeople, true);
+                this.crud = new ManualRelatedCrudableAccounts(this.crud, this.crudToPeople, true);
             }
         }
 
