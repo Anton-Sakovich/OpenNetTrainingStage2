@@ -45,8 +45,10 @@
     <Compile Include="ICrudable.cs" />
     <Compile Include="IEntitiesSet.cs" />
     <Compile Include="IRelatedCrudable.cs" />
+    <Compile Include="IRepositoryInitializer.cs" />
     <Compile Include="ManualEagerCrudableAccounts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonkeyBanker.Entities\MonkeyBanker.Entities.csproj">
