@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CrudableDecorator.cs" />
     <Compile Include="ICrudable.cs" />
+    <Compile Include="IEntitiesSet.cs" />
     <Compile Include="IRelatedCrudable.cs" />
     <Compile Include="ManualEagerCrudableAccounts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
