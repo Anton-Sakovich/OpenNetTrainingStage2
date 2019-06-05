@@ -36,16 +36,21 @@ namespace MonkeyBanker.ServiceResolver
     {
         public static IKernel CnfigureKernel(this IKernel kernel)
         {
+            kernel.Bind<Repository>().ToSelf()
+                .InSingletonScope();
+
+            kernel.Bind<ICrudable<Person>>()
+                .ToMethod(context => context.Kernel.Get<Repository>().People.Crud);
+
+            kernel.Bind<ICrudable<Account>>()
+                .ToMethod(context => context.Kernel.Get<Repository>().Accounts.Crud);
+
 #if USE_ADONET
             kernel.Bind<IDbEntryPoint>().To<SQLiteEntryPoint>()
                 .InSingletonScope();
 
-            kernel.Bind<ICrudable<Person>>().To<PeopleAdoNetCrudable>()
-                .InSingletonScope()
-                .WithConstructorArgument(typeof(string), (context) => ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString);
-
-            kernel.Bind<ICrudable<Account>>().To<AccountsAdoNetCrudable>()
-                .InSingletonScope()
+            kernel.Bind<IRepositoryInitializer>().To<AdoNetRepositoryInitializer>()
+                .WithConstructorArgument(typeof(IRepositoryInitializer), (object)null)
                 .WithConstructorArgument(typeof(string), (context) => ConfigurationManager.ConnectionStrings["TestDatabase"].ConnectionString);
 
             kernel.Bind<IIdFactory<Account>>().To<IncrementAccountIdFactory>()
